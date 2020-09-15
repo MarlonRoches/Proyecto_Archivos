@@ -12,16 +12,16 @@ import java.time.LocalDate;
  * @author roche
  */
 public class Usuario {
-    String usuario;
-    String nombre;
-    String usuarioApellido;
-    String passWord;
-    boolean rol;
-    LocalDate fecha;
-    String correoAlterno;
-    int telefono;
-    String path_Fotografia;
-    boolean estatus;
+    public String usuario;
+    public String nombre;
+    public String usuarioApellido;
+    public String passWord;
+    public boolean rol;
+    public LocalDate fecha;
+    public String correoAlterno;
+    public int telefono;
+    public String path_Fotografia;
+    public boolean estatus;
 
     public static Usuario setDatosUsuario(String usuario, String nombre, String usuarioApellido, String passWord, boolean rol, LocalDate fecha, String correoAlterno, int telefono, String path_Fotografia, boolean estatus) {
         Usuario newUsuario = new Usuario();

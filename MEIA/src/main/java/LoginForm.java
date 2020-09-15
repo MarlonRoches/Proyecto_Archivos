@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -117,15 +119,16 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean comprobacionUsuarios (String username, String password, String path) throws FileNotFoundException, IOException{
+    public boolean comprobacionUsuarios (String usernamef, String passwordf) throws FileNotFoundException, IOException{
     
-        FileReader file = new FileReader(path+"\\usuario.txt");
+        Usuario user = new Usuario();
+        boolean userFound = false;
+        FileReader file = new FileReader("C:/MEIA/usuario.txt");
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
         ArrayList<Usuario> usersList = new ArrayList<Usuario>();
         
         if(fileRead.readLine()!=null){
-            Usuario user = new Usuario();
             String[] addUser = usersFile.split("|");
             boolean rol = false;
             LocalDate date = LocalDate.now();
@@ -140,12 +143,23 @@ public class LoginForm extends javax.swing.JFrame {
             user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
             usersList.add(user);
         }
+        for(var userCheck:usersList)
+            {
+                if((userCheck.usuario.equals(usernamef))&&(userCheck.passWord.equals(passwordf)))
+                {
+                    userFound = true;
+                }
+            }
+        return userFound;
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
         String username = jUsername.getText();
         String password = jPassword.getText();
-        
-        
+        try {
+            boolean logIn = comprobacionUsuarios(username, password);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLoginActionPerformed
 
     /**
