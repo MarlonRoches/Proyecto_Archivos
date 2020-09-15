@@ -1,11 +1,13 @@
 
 import com.meia_2020.meia.Usuario;
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -120,6 +122,8 @@ public class LoginForm extends javax.swing.JFrame {
         FileReader file = new FileReader(path+"\\usuario.txt");
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
+        ArrayList<Usuario> usersList = new ArrayList<Usuario>();
+        
         if(fileRead.readLine()!=null){
             Usuario user = new Usuario();
             String[] addUser = usersFile.split("|");
@@ -134,6 +138,7 @@ public class LoginForm extends javax.swing.JFrame {
                 status = true;
             }
             user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
+            usersList.add(user);
         }
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
