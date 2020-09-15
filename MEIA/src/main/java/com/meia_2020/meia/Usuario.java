@@ -23,6 +23,19 @@ public class Usuario {
     String path_Fotografia;
     boolean estatus;
 
+    public void setDatosUsuario(String usuario, String nombre, String usuarioApellido, String passWord, boolean rol, LocalDate fecha, String correoAlterno, int telefono, String path_Fotografia, boolean estatus) {
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.usuarioApellido = usuarioApellido;
+        this.passWord = passWord;
+        this.rol = rol;
+        this.fecha = fecha;
+        this.correoAlterno = correoAlterno;
+        this.telefono = telefono;
+        this.path_Fotografia = path_Fotografia;
+        this.estatus = estatus;
+    }
+
     public String getUsuario() {
         return usuario;
     }
