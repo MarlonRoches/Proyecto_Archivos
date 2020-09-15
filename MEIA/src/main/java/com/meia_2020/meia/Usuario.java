@@ -23,17 +23,19 @@ public class Usuario {
     String path_Fotografia;
     boolean estatus;
 
-    public void setDatosUsuario(String usuario, String nombre, String usuarioApellido, String passWord, boolean rol, LocalDate fecha, String correoAlterno, int telefono, String path_Fotografia, boolean estatus) {
-        this.usuario = usuario;
-        this.nombre = nombre;
-        this.usuarioApellido = usuarioApellido;
-        this.passWord = passWord;
-        this.rol = rol;
-        this.fecha = fecha;
-        this.correoAlterno = correoAlterno;
-        this.telefono = telefono;
-        this.path_Fotografia = path_Fotografia;
-        this.estatus = estatus;
+    public static Usuario setDatosUsuario(String usuario, String nombre, String usuarioApellido, String passWord, boolean rol, LocalDate fecha, String correoAlterno, int telefono, String path_Fotografia, boolean estatus) {
+        Usuario newUsuario = new Usuario();
+        newUsuario.usuario = usuario;
+        newUsuario.nombre = nombre;
+        newUsuario.usuarioApellido = usuarioApellido;
+        newUsuario.passWord = passWord;
+        newUsuario.rol = rol;
+        newUsuario.fecha = fecha;
+        newUsuario.correoAlterno = correoAlterno;
+        newUsuario.telefono = telefono;
+        newUsuario.path_Fotografia = path_Fotografia;
+        newUsuario.estatus = estatus;
+        return newUsuario;
     }
 
     public String getUsuario() {

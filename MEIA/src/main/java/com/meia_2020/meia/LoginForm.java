@@ -1,3 +1,12 @@
+
+import com.meia_2020.meia.Usuario;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDate;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -47,6 +56,11 @@ public class LoginForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jPassword);
 
         jLogin.setText("Iniciar sesión");
+        jLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoginActionPerformed(evt);
+            }
+        });
 
         jNewUser.setText("Crear usuario");
 
@@ -100,6 +114,34 @@ public class LoginForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public boolean comprobacionUsuarios (String username, String password, String path) throws FileNotFoundException, IOException{
+    
+        FileReader file = new FileReader(path+"\\usuario.txt");
+        BufferedReader fileRead = new BufferedReader(file);
+        String usersFile = fileRead.toString();
+        if(fileRead.readLine()!=null){
+            Usuario user = new Usuario();
+            String[] addUser = usersFile.split("|");
+            boolean rol = false;
+            LocalDate date = LocalDate.now();
+            boolean status = false;
+            int phoneNumber = Integer.parseInt(addUser[7]);
+            if("1".equals(addUser[4])){
+                rol = true;
+            }
+            if("1".equals(addUser[9])){
+                status = true;
+            }
+            user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
+        }
+    }
+    private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
+        String username = jUsername.getText();
+        String password = jPassword.getText();
+        
+        
+    }//GEN-LAST:event_jLoginActionPerformed
 
     /**
      * @param args the command line arguments
