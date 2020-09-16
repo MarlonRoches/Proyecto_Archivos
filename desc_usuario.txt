@@ -1,3 +1,3 @@
-ElRoches|Marlon|Roches|manzana123|0|23/09/1999|roches856@gmail.com|12345678|path|1
-Masheeeee|Marcela|Estrada|pera123|1|01/06/2001|marcela.estrada@gmail.com|23456789|path|1
-Mischa|Avniel|Tobias|naranja123|0|23/09/1999|mischalol@gmail.com|46579831|path|1
+ElRoches-Marlon-Roches-manzana123-0-23/09/1999-roches856@gmail.com-12345678-path-1
+Masheeeee-Marcela-Estrada-pera123-1-01/06/2001-marcela.estrada@gmail.com-23456789-path-1
+Mischa-Avniel-Tobias-naranja123-0-23/09/1999-mischalol@gmail.com-46579831-path-1

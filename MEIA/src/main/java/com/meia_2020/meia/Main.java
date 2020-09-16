@@ -77,13 +77,13 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-            
+            //vamos a buscar el rol del usuario actual
           if (LoginForm.UsuarioActual.rol) {
             //es admin
             //abrimos uno nuevo
             var buscarUsuarioFrame = new BuscarUsuario();
             buscarUsuarioFrame.setVisible(true);
-              
+        
               
         } else{ 
             var lol =0;

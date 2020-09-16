@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -90,11 +96,39 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       String hola = BuscarUsuario_TxtBox.getText();
-               
-               
-               
+    
+            // TODO add your handling code here:
+            String userName = BuscarUsuario_TxtBox.getText();
+            boolean existe = false;
+        try 
+        {
+            var in = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
+            var linea =in.readLine();
+            while (linea != null) 
+            {                
+                var splited = linea.split("-");
+                var xd =splited[0];
+                if (xd.equals(userName)) {
+                    //devolver datos del usuario en el frame 
+                    var encontrado = true;
+                    break;
+                }
+                else
+                {  
+                linea =in.readLine();
+                }
+            }
+            
+        } 
+        catch (FileNotFoundException ex) 
+        {
+            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
