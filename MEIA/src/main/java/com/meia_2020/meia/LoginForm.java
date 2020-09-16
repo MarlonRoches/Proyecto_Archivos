@@ -1,3 +1,5 @@
+package com.meia_2020.meia;
+
 
 import com.meia_2020.meia.Usuario;
 import java.awt.List;
@@ -130,19 +132,20 @@ public class LoginForm extends javax.swing.JFrame {
          boolean arch_Usuario = new File("C:/MEIA/usuario.txt").exists();
         if (!arch_Usuario) {
             var creado = new File("C:/MEIA/usuario.txt").createNewFile();  
-            var lol =0;
         }
         FileReader file = new FileReader("C:/MEIA/usuario.txt");
-        
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
         ArrayList<Usuario> usersList = new ArrayList<Usuario>();
-        
-        if(fileRead.readLine()!=null){
-            String[] addUser = usersFile.split("|");
+        String linea = fileRead.readLine();
+        if(linea!=null){
+            String[] addUser = linea.split("-");
             boolean rol = false;
-            LocalDate date = LocalDate.now();
-            boolean status = false;
+            //var date = new SimpleDateFormat("dd/MM/yyyy").parse(addUser[5]);
+            var date = LocalDate.now();
+            var status = true;
+            var usuario = addUser[0];
+
             int phoneNumber = Integer.parseInt(addUser[7]);
             if("1".equals(addUser[4])){
                 rol = true;
@@ -161,6 +164,8 @@ public class LoginForm extends javax.swing.JFrame {
                 }
             }
         file.close();
+        
+        //Data.getInstance().usuarioActual.
         return userFound;
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
