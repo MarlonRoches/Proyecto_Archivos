@@ -28,6 +28,7 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Creates new form LoginForm
      */
+    public static Usuario UsuarioActual = new Usuario();
     public LoginForm() {
         initComponents();
     }
@@ -161,6 +162,10 @@ public class LoginForm extends javax.swing.JFrame {
                 if((userCheck.usuario.equals(usernamef))&&(userCheck.passWord.equals(passwordf)))
                 {
                     userFound = true;
+                    Data y = Data.getInstance(); 
+                   UsuarioActual = userCheck;
+                    //Data singleton =  Data.Instance().usuarioActual = userCheck;
+                    break;
                 }
             }
         file.close();
@@ -173,6 +178,11 @@ public class LoginForm extends javax.swing.JFrame {
         String password = jPassword.getText();
         try {
             boolean logIn = comprobacionUsuarios(username, password);
+            //abrimos uno nuevo
+            Main AbrirMenuPrincipal = new Main();
+            AbrirMenuPrincipal.setVisible(true);
+            //cerramos este form
+            this.setVisible(false);
         } catch (IOException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
