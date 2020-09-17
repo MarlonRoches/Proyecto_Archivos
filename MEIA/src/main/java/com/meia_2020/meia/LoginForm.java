@@ -175,11 +175,19 @@ public class LoginForm extends javax.swing.JFrame {
         String password = jPassword.getText();
         try {
             boolean logIn = comprobacionUsuarios(username, password);
-            //abrimos uno nuevo
-            Main AbrirMenuPrincipal = new Main();
-            AbrirMenuPrincipal.setVisible(true);
-            //cerramos este form
-            this.setVisible(false);
+            if(logIn){
+                //abrimos uno nuevo
+                Main AbrirMenuPrincipal = new Main();
+                AbrirMenuPrincipal.setVisible(true);
+                //cerramos este form
+                this.setVisible(false);
+            }else{
+                CrearUsuario crear = new CrearUsuario();
+                crear.setVisible(true);
+                this.setVisible(false);
+            }
+ 
+            
         } catch (IOException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
