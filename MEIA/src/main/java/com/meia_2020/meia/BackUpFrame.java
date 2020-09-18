@@ -5,6 +5,11 @@
  */
 
 package com.meia_2020.meia;
+import java.io.*;
+import java.nio.file.Path;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -26,21 +31,69 @@ public class BackUpFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        BtnRuta = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Ruta del backup");
+
+        BtnRuta.setText("Escoger ruta para el Backup");
+        BtnRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRutaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnRuta)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnRuta)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
+
+        jLabel1.getAccessibleContext().setAccessibleName("lblRutaBackup");
+        jTextField1.getAccessibleContext().setAccessibleName("TFRuta");
+        BtnRuta.getAccessibleContext().setAccessibleName("BtnRuta");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRutaActionPerformed
+        // TODO add your handling code here:
+        //Botón para buscar la ruta 
+        String ruta;
+        JFileChooser dialog = new JFileChooser();
+        dialog.setDialogTitle("Escoja la ruta para el backup");
+        dialog.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int valor = dialog.showSaveDialog(null);
+        if (valor == JFileChooser.APPROVE_OPTION) {
+            ruta = dialog.getSelectedFile().getAbsolutePath();
+            //hasta aquí ya llevo la ruta
+        }
+        else
+        {
+            showMessageDialog(null, "El usuario ha cancelado el backup");
+        }
+    }//GEN-LAST:event_BtnRutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,6 +131,9 @@ public class BackUpFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnRuta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
 }
