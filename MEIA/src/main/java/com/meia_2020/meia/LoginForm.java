@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -67,6 +68,11 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jNewUser.setText("Crear usuario");
+        jNewUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewUserActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("LOGO");
 
@@ -182,9 +188,12 @@ public class LoginForm extends javax.swing.JFrame {
                 //cerramos este form
                 this.setVisible(false);
             }else{
-                CrearUsuario crear = new CrearUsuario();
-                crear.setVisible(true);
-                this.setVisible(false);
+                int opcion = JOptionPane.showConfirmDialog(null,"Usuario o contraseña no fue encontrado, ¿desea crear un usuario?", "Aviso", JOptionPane.YES_NO_OPTION);
+                if(opcion==0){
+                    CrearUsuario crear = new CrearUsuario();
+                    crear.setVisible(true);
+                    this.setVisible(false);
+                }
             }
  
             
@@ -192,6 +201,13 @@ public class LoginForm extends javax.swing.JFrame {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLoginActionPerformed
+
+    private void jNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewUserActionPerformed
+        // Abre menú de crear usuario 
+        CrearUsuario crear = new CrearUsuario();
+        crear.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jNewUserActionPerformed
 
     /**
      * @param args the command line arguments
