@@ -17,7 +17,7 @@ public class Bitacora_Usuario {
         return true;
     }
     public Usuario InfoDeUsuario(String nickName_User){
-        Data.
+ 
         return null;
     }
 }

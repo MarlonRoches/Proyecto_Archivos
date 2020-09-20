@@ -96,7 +96,6 @@ public class Main extends javax.swing.JFrame {
         
               
         } else{ 
-            var lol =0;
               showMessageDialog(null, "No tienes permisos de Admin");
           }
         
