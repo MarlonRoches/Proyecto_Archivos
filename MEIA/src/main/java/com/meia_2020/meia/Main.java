@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnBackup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,10 +39,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Hacer Un BackUp");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnBackup.setText("Hacer Un BackUp");
+        BtnBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnBackupActionPerformed(evt);
             }
         });
 
@@ -53,7 +53,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(279, Short.MAX_VALUE))
         );
@@ -63,16 +63,26 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(BtnBackup)
                 .addContainerGap(229, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        // Botón para el backup
+        if (Data.getInstance().usuarioActual.rol == true) {
+            BackUpFrame backup = new BackUpFrame();
+            backup.setVisible(true);
+            this.setVisible(false); //Revisar si dejamos el main abierto o tenemos que irlo cerrando y abriendo
+        }
+        else
+        {
+            showMessageDialog(null, "No tienes permisos de administrador");
+        }
+    }//GEN-LAST:event_BtnBackupActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -128,7 +138,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBackup;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
