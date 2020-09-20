@@ -10,6 +10,7 @@ package com.meia_2020.meia;
  * @author roche
  */
 public class Bitacora_Usuario {
+          
     public boolean buscarEnA_Usuario(String nickName_User){
         return true;
     }
