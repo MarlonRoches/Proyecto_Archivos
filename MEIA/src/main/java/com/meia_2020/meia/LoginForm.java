@@ -129,6 +129,7 @@ public class LoginForm extends javax.swing.JFrame {
     
         Usuario user = new Usuario();
         boolean userFound = false;
+       
         boolean directory = new File("C:/MEIA").exists();
         if (!directory) {
             var creado = new File("C:/MEIA").mkdir();  

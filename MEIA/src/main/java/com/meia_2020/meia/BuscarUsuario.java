@@ -20,6 +20,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
     /**
      * Creates new form BuscarUsuario
      */
+    //true -> principal
+    //false -> bitacora
+    public static boolean Fuente = true; 
     public BuscarUsuario() {
         initComponents();
     }
@@ -34,11 +37,172 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         panel_Busqueda = new javax.swing.JPanel();
-        BuscarUsuario_TxtBox = new javax.swing.JTextField();
+        Btn_EditarDatos = new javax.swing.JButton();
+        Txt_Usuario = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Txt_Nombre = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Txt_Apellido = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        Txt_Contraseña = new javax.swing.JTextField();
+        Radio_Rol = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        Txt_Fecha = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        Txt_Correo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        Txt_Telefono = new javax.swing.JTextField();
+        Label_PathFoto = new javax.swing.JLabel();
+        Txt_Foto = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        Radio_Estado = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
+        BuscarUsuario_TxtBox = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Btn_EditarDatos.setText("Editar Datos");
+        Btn_EditarDatos.setEnabled(false);
+        Btn_EditarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_EditarDatosActionPerformed(evt);
+            }
+        });
+
+        Txt_Usuario.setEnabled(false);
+
+        jLabel2.setText("Usuario");
+
+        jLabel3.setText("Nombre");
+
+        Txt_Nombre.setEnabled(false);
+
+        jLabel4.setText("Apellido");
+
+        Txt_Apellido.setEnabled(false);
+
+        jLabel5.setText("Contraseña");
+
+        Txt_Contraseña.setEnabled(false);
+
+        Radio_Rol.setText("Admin");
+        Radio_Rol.setEnabled(false);
+
+        jLabel6.setText("Rol");
+
+        jLabel7.setText("Fecha De Nacimiento");
+
+        Txt_Fecha.setEnabled(false);
+
+        jLabel8.setText("Correo");
+
+        Txt_Correo.setEnabled(false);
+
+        jLabel9.setText("Telefono");
+
+        Txt_Telefono.setEnabled(false);
+
+        Label_PathFoto.setText("Foto");
+
+        Txt_Foto.setEnabled(false);
+
+        jLabel10.setText("Estatus");
+
+        Radio_Estado.setText("Habilitado");
+        Radio_Estado.setEnabled(false);
+
+        javax.swing.GroupLayout panel_BusquedaLayout = new javax.swing.GroupLayout(panel_Busqueda);
+        panel_Busqueda.setLayout(panel_BusquedaLayout);
+        panel_BusquedaLayout.setHorizontalGroup(
+            panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Txt_Contraseña, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Txt_Apellido)
+                    .addComponent(Txt_Nombre)
+                    .addComponent(Txt_Usuario)
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Radio_Rol)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 103, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Txt_Fecha)
+                    .addComponent(Txt_Foto, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Txt_Telefono)
+                    .addComponent(Txt_Correo)
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Label_PathFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Radio_Estado)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 63, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(Btn_EditarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panel_BusquedaLayout.setVerticalGroup(
+            panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_BusquedaLayout.createSequentialGroup()
+                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Label_PathFoto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Txt_Foto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(5, 5, 5)
+                        .addComponent(Radio_Rol))
+                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(5, 5, 5)
+                        .addComponent(Radio_Estado)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Btn_EditarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
 
         jLabel1.setText("Usuario A Buscar");
 
@@ -49,47 +213,36 @@ public class BuscarUsuario extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panel_BusquedaLayout = new javax.swing.GroupLayout(panel_Busqueda);
-        panel_Busqueda.setLayout(panel_BusquedaLayout);
-        panel_BusquedaLayout.setHorizontalGroup(
-            panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_BusquedaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panel_BusquedaLayout.setVerticalGroup(
-            panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_BusquedaLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(panel_BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel_BusquedaLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(190, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel_Busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -111,6 +264,38 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 if (xd.equals(userName)) {
                     //devolver datos del usuario en el frame 
                     var encontrado = true;
+                    Txt_Usuario.enable(true);   Txt_Usuario.setText(splited[0]);
+                    Txt_Nombre.enable(true);    Txt_Nombre.setText(splited[1]);
+                    Txt_Apellido.enable(true);  Txt_Apellido.setText(splited[2]);
+                    Txt_Contraseña.enable(true);Txt_Contraseña.setText(splited[3]);
+                    
+                    Radio_Rol.setEnabled(true);
+                    if (splited[4].equals("1"))
+                    {
+                        Radio_Rol.setSelected(true);
+                    }
+                    else
+                    {
+                     Radio_Rol.setSelected(false);   
+                    }
+                    Txt_Fecha.enable(true);     Txt_Fecha.setText(splited[5]);
+
+                    Txt_Correo.enable(true);    Txt_Correo.setText(splited[6]);
+
+                    Txt_Telefono.enable(true);  Txt_Telefono.setText(splited[7]);
+
+                    Txt_Foto.enable(true);      Txt_Foto.setText(splited[8]);
+
+                    Radio_Estado.setEnabled(true);
+                    if (splited[9].equals("1"))
+                    {
+                        Radio_Estado.setSelected(true);
+                    }
+                    else
+                    {
+                     Radio_Estado.setSelected(false);   
+                    }       
+                    Btn_EditarDatos.setEnabled(true);
                     break;
                 }
                 else
@@ -118,7 +303,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 linea =in.readLine();
                 }
             }
-            
+            in.close();
         } 
         catch (FileNotFoundException ex) 
         {
@@ -130,6 +315,22 @@ public class BuscarUsuario extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Btn_EditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarDatosActionPerformed
+        // TODO add your handling code here:
+        //mandamos a revisar el descriptivo para saber si se mueven o se quedan los datos
+        if (Fuente)
+        {
+            //al archivo principal
+            // PENDIENTE cambiar |
+            String lineaNueva= Txt_Usuario.getText()+"-"+Txt_Nombre.getText()+"-"+Txt_Apellido.getText()+"-"+Txt_Contraseña.getText()+"-"+ Radio_Rol.isSelected()+"-"+ Txt_Fecha.getText()+"-"+Txt_Correo.getText()+"-"+Txt_Telefono.getText()+"-"+Txt_Foto.getText()+"-"+ Radio_Estado.isSelected();
+           var lol = 0 ;         
+        }               
+        else
+        {
+            //a labitacora
+        }
+    }//GEN-LAST:event_Btn_EditarDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,9 +368,30 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton Btn_EditarDatos;
     private javax.swing.JTextField BuscarUsuario_TxtBox;
+    private javax.swing.JLabel Label_PathFoto;
+    public javax.swing.JRadioButton Radio_Estado;
+    public javax.swing.JRadioButton Radio_Rol;
+    public javax.swing.JTextField Txt_Apellido;
+    public javax.swing.JTextField Txt_Contraseña;
+    public javax.swing.JTextField Txt_Correo;
+    public javax.swing.JTextField Txt_Fecha;
+    public javax.swing.JTextField Txt_Foto;
+    public javax.swing.JTextField Txt_Nombre;
+    public javax.swing.JTextField Txt_Telefono;
+    public javax.swing.JTextField Txt_Usuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel panel_Busqueda;
     // End of variables declaration//GEN-END:variables
 }

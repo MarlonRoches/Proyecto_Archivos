@@ -12,24 +12,21 @@ package com.meia_2020.meia;
 public class Data {
      // static variable single_instance of type Singleton 
     private static Data single_instance = null; 
-  
+
     // variable of type String 
     public String s; 
     public Usuario usuarioActual = new Usuario();
     // private constructor restricted to this class itself 
     private Data() 
     { 
-        
     } 
-  
     // static method to create instance of Singleton class 
     public static Data getInstance() 
     { 
         if (single_instance == null) 
             single_instance = new Data(); 
-  
+
         return single_instance; 
     } 
-    
     
 }
