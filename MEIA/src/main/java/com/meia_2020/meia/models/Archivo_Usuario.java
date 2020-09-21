@@ -5,10 +5,14 @@
  */
 package com.meia_2020.meia.models;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,31 +22,76 @@ import java.util.logging.Logger;
  */
 public class Archivo_Usuario {
     
-    public void contieneUsuario(String userName)
+    public boolean contieneUsuario(String nombreDeUsuario, Usuario actualizado_)
     {
-        
+        var salida =false;
+        int lineaindex =0;
+         var lineas = new ArrayList<String>();
      try {
              BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
              String linea ="";
              String[] array_nuevo;
              try {
                  while((linea = buf.readLine()) != null){
-                           if (linea.split("\\|")[0].equals(userName)) {
-                          
+                           if (linea.split("\\|")[0].equals(nombreDeUsuario)) 
+                           {
                                array_nuevo =linea.split("\\|");
+                               
                                //cambiar datos
-                               break;
-                     }
+                               //setVariable(lineaindex, actualizado_.usuarioToString());
+                               lineas.add(actualizado_.usuarioToString()); 
+                               
+                               salida = true;
+                           }
+                           else
+                           {
+                               lineaindex++;
+                               lineas.add(linea);
+                           }
                  }
                  buf.close();
+                   setVariable("C:/MEIA/usuario.txt",lineas);
              } catch (IOException ex) {
                  Logger.getLogger(Desc_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
              }
          } catch (FileNotFoundException ex) {
              Logger.getLogger(Desc_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
          }   
+     
+
         
-        
+        return salida;
+    }
+    
+    
+    
+    
+    
+    public void setVariable(String ruta, ArrayList<String> array) throws IOException {
+   
+        // Creates FileWriter. Append is on.
+        FileWriter fw = new FileWriter(ruta, false);       
+
+        PrintWriter pw = new PrintWriter(fw);       
+
+        //cycles through file until line designated to be rewritten is reached
+        for (int i = 0; i <= array.size(); i++) {     
+            //TODO: need to figure out how to change the append to false to overwrite data   
+            if (i == array.size() -1) {
+                var linea =array.toArray()[i].toString();
+                pw.print(array.toArray()[i].toString());
+                break;
+            } else {
+                var linea =array.toArray()[i].toString();
+             pw.println(array.toArray()[i].toString());
+        }
+    }
+    
+    pw.close();
+    fw.close();
+    
+}
+    public void sortNombres(){
         
     }
     

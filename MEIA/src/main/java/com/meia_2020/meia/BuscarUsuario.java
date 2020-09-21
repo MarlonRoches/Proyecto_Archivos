@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
+import com.meia_2020.meia.models.Archivo_Usuario;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -344,6 +345,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
            
            new Desc_Usuarios().actualizarJson(desc);
              var lol = usuarioModificado.usuarioToString() ; 
+             new Archivo_Usuario().contieneUsuario(BuscarUsuario_TxtBox.getText(),usuarioModificado);
              var lolll =0;
         }               
         else
