@@ -6,6 +6,7 @@
 package com.meia_2020.meia.models;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -36,6 +37,25 @@ public class Usuario {
         newUsuario.telefono = telefono;
         newUsuario.path_Fotografia = path_Fotografia;
         newUsuario.estatus = estatus;
+        return newUsuario;
+    }
+    
+    
+    public Usuario setUsuariofromString(String[] array) {
+        
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        
+        Usuario newUsuario = new Usuario();
+        newUsuario.usuario = array[0];
+        newUsuario.nombre = array[1];
+        newUsuario.usuarioApellido = array[2];
+        newUsuario.passWord = array[3];
+        newUsuario.rol = array[4].equals("1") ? true: false;
+        newUsuario.fecha = LocalDate.parse(array[5],formatter);
+        newUsuario.correoAlterno = array[6];
+        newUsuario.telefono = Integer.parseInt(array[7]);
+        newUsuario.path_Fotografia = array[8];
+        newUsuario.estatus = array[9].equals("1") ? true: false;
         return newUsuario;
     }
     public String usuarioToString(){
