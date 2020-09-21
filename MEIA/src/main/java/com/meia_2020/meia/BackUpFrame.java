@@ -122,19 +122,27 @@ public class BackUpFrame extends javax.swing.JFrame {
             newDir.mkdir();
         }
         
-        File imagesBackup = new File(BackupRoute + "/MEIA_Backup/fotografia");
+        File newDir2 = new File(BackupRoute + "/MEIA_Backup/fotografia");
+        if (!newDir2.exists()) {
+            newDir2.mkdir();
+        }
+        
         File usersBackup = new File(BackupRoute + "/MEIA_Backup/usuario.txt");
         File binnacleBackup = new File(BackupRoute + "/MEIA_Backup/desc_usuario.txt");
         
         try
         {
-            Files.copy(originalImages.toPath(), imagesBackup.toPath());
+            for (int i = 0; i < originalImages.listFiles().length; i++) {
+                var originalFile = new File(originalImages.listFiles()[i].toString());
+                var newFile = new File(BackupRoute + "/MEIA_Backup/fotografia/" + originalImages.listFiles()[i].getName());
+                Files.copy(originalFile.toPath(), newFile.toPath());
+            }
             Files.copy(originalUsers.toPath(), usersBackup.toPath());
             Files.copy(originalUsersBinnacle.toPath(), binnacleBackup.toPath());
         }
         catch(Exception e)
         {
-            showMessageDialog(null, "El archivo que está intentando copiar no existe");
+            showMessageDialog(null, "El archivo que ha intentado copiar no existe");
         }
     }//GEN-LAST:event_BtnRealizarBackupActionPerformed
 
