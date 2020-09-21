@@ -5,20 +5,13 @@
  */
 package com.meia_2020.meia;
 
+import com.meia_2020.meia.models.Usuario;
+
 /**
  *
  * @author roche
  */
 public class Bitacora_Usuario {
           
-    public boolean buscarEnA_Usuario(String nickName_User){
-        return true;
-    }
-    public boolean buscarEnBitacora_Usuario(String nickName_User){
-        return true;
-    }
-    public Usuario InfoDeUsuario(String nickName_User){
- 
-        return null;
-    }
+   
 }

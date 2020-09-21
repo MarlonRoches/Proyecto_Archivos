@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import  com.meia_2020.meia.models.Desc_Bitacora;
+import  com.meia_2020.meia.models.Desc_Usuarios;
 
 /**
  *
@@ -324,7 +326,8 @@ public class BuscarUsuario extends javax.swing.JFrame {
             //al archivo principal
             // PENDIENTE cambiar |
             String lineaNueva= Txt_Usuario.getText()+"-"+Txt_Nombre.getText()+"-"+Txt_Apellido.getText()+"-"+Txt_Contraseña.getText()+"-"+ Radio_Rol.isSelected()+"-"+ Txt_Fecha.getText()+"-"+Txt_Correo.getText()+"-"+Txt_Telefono.getText()+"-"+Txt_Foto.getText()+"-"+ Radio_Estado.isSelected();
-           var lol = 0 ;         
+           var lol = 0 ; 
+           var desc = new Desc_Usuarios().devolverObjeto().numRegistros;
         }               
         else
         {

@@ -5,6 +5,7 @@
  */
 package com.meia_2020.meia;
 
+import com.google.gson.Gson;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

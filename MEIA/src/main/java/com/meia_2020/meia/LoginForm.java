@@ -1,7 +1,7 @@
 package com.meia_2020.meia;
 
 
-import com.meia_2020.meia.Usuario;
+import com.meia_2020.meia.models.Usuario;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
