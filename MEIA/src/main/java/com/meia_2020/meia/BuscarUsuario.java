@@ -12,6 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import  com.meia_2020.meia.models.Desc_Bitacora;
 import  com.meia_2020.meia.models.Desc_Usuarios;
+import com.meia_2020.meia.models.Usuario;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -322,18 +325,26 @@ public class BuscarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         //mandamos a revisar el descriptivo para saber si se mueven o se quedan los datos
         if (Fuente)
-        {
+        {    
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+              LocalDate fecha = LocalDate.parse(Txt_Fecha.getText(),formatter);
             //al archivo principal
             // PENDIENTE cambiar |
-            String lineaNueva= Txt_Usuario.getText()+"|"+Txt_Nombre.getText()+"|"+Txt_Apellido.getText()+"|"+Txt_Contraseña.getText()+"|"+ Radio_Rol.isSelected()+"|"+ Txt_Fecha.getText()+"|"+Txt_Correo.getText()+"|"+Txt_Telefono.getText()+"|"+Txt_Foto.getText()+"|"+ Radio_Estado.isSelected();
+        
+            var usuarioModificado = new Usuario().setDatosUsuario(Txt_Usuario.getText(), Txt_Nombre.getText(), 
+                 Txt_Apellido.getText(), Txt_Contraseña.getText(), Radio_Rol.isSelected(),  fecha, 
+                 Txt_Correo.getText(), Integer.parseInt(Txt_Telefono.getText()), Txt_Foto.getText(), Radio_Estado.isSelected());
          
+         //obteniendo el desc de usuarios
            var desc = new Desc_Usuarios().devolverObjeto();
            desc.numRegistros++;           
            desc.nombreSimbolico ="Ya lo actualasdasdasdasdai";
-
+           
+           //myBoolean ? 1 : 0 DateTimeFormatter.ofPattern("dd-MMM-yyyy").parseLocalDate(Txt_Fecha.getText());
            
            new Desc_Usuarios().actualizarJson(desc);
-             var lol = 0 ; 
+             var lol = usuarioModificado.usuarioToString() ; 
+             var lolll =0;
         }               
         else
         {

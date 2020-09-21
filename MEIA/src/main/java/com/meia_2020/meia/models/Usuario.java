@@ -23,6 +23,7 @@ public class Usuario {
     public String path_Fotografia;
     public boolean estatus;
 
+    
     public static Usuario setDatosUsuario(String usuario, String nombre, String usuarioApellido, String passWord, boolean rol, LocalDate fecha, String correoAlterno, int telefono, String path_Fotografia, boolean estatus) {
         Usuario newUsuario = new Usuario();
         newUsuario.usuario = usuario;
@@ -37,7 +38,11 @@ public class Usuario {
         newUsuario.estatus = estatus;
         return newUsuario;
     }
-
+    public String usuarioToString(){
+        
+        return this.usuario+"|"+ this.nombre+"|"+this.usuarioApellido +"|"+this.passWord +"|"+ (this.rol ? 1 : 0)+"|"+this.fecha.getDayOfMonth()+"/"+this.fecha.getMonthValue()+"/"+this.fecha.getYear()+"|"+this.correoAlterno +"|"+ this.telefono+"|"+this.path_Fotografia +"|"+(this.estatus? 1 : 0);
+    }
+    
     public String getUsuario() {
         return usuario;
     }
