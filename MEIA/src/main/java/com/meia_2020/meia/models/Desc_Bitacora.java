@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,13 +29,25 @@ public class Desc_Bitacora {
         public int registrosActivos;
         public int reOrganizacionMax;
 
-        public String actualizarJson(Desc_Bitacora actualizado)
+        //boolean contiene usuario
+        //
+        
+        
+        public void actualizarJson(Desc_Bitacora actualizado)
         {
 
+            
             var gson = new Gson(); 
             var objetoJson  = gson.toJson(actualizado);
-            //return  JsonConvert.SerializeObject(new Desc_Bitacora());
-            return objetoJson;
+         try {
+             //return  JsonConvert.SerializeObject(new Desc_Bitacora());
+             var fileWriter = new FileWriter("C:/MEIA/desc_Bitacora.json", false); //overwrites file
+             fileWriter.write(objetoJson);
+             fileWriter.close();
+         } catch (IOException ex) {
+             Logger.getLogger(Desc_Bitacora.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
         }
         
         public Desc_Bitacora devolverObjeto()

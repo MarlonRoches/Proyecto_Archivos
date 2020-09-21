@@ -327,7 +327,12 @@ public class BuscarUsuario extends javax.swing.JFrame {
             // PENDIENTE cambiar |
             String lineaNueva= Txt_Usuario.getText()+"|"+Txt_Nombre.getText()+"|"+Txt_Apellido.getText()+"|"+Txt_Contraseña.getText()+"|"+ Radio_Rol.isSelected()+"|"+ Txt_Fecha.getText()+"|"+Txt_Correo.getText()+"|"+Txt_Telefono.getText()+"|"+Txt_Foto.getText()+"|"+ Radio_Estado.isSelected();
          
-           var desc = new Desc_Usuarios().devolverObjeto().numRegistros;
+           var desc = new Desc_Usuarios().devolverObjeto();
+           desc.numRegistros++;           
+           desc.nombreSimbolico ="Ya lo actualicé pai";
+
+           
+           new Desc_Usuarios().actualizarJson(desc);
              var lol = 0 ; 
         }               
         else
