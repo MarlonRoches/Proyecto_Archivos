@@ -329,7 +329,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
          
            var desc = new Desc_Usuarios().devolverObjeto();
            desc.numRegistros++;           
-           desc.nombreSimbolico ="Ya lo actualicé pai";
+           desc.nombreSimbolico ="Ya lo actualasdasdasdasdai";
 
            
            new Desc_Usuarios().actualizarJson(desc);
