@@ -5,8 +5,10 @@
  */
 package com.meia_2020.meia;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -17,6 +19,8 @@ public class CrearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CrearUsuario
      */
+    public int contadorUsuarios = 0;
+    
     public CrearUsuario() {
         initComponents();
     }
@@ -86,6 +90,11 @@ public class CrearUsuario extends javax.swing.JFrame {
         jScrollPane6.setViewportView(cRuta);
 
         bBuscar.setText("Buscar foto");
+        bBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBuscarActionPerformed(evt);
+            }
+        });
 
         bCrear.setText("Crear usuario");
         bCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -193,14 +202,58 @@ public class CrearUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public boolean ComprobarContrasenia(String password){
-        boolean esSegura = false;
-        String comprobacion = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
-        if(password.matches(comprobacion)){
-            esSegura = true;
+    public String comprobarContrasenia(String password){
+        int contador = 0;
+        String nivelSeguridad = "";
+        String comprobacionNumeros = "(?=.*[0-9])";
+        String comprobacionMinuscula = "(?=.*[a-z])";
+        String comprobacionMayuscula = "(?=.*[A-Z])";
+        String comprobacionSignos = "(?=.*[@#$%^&+=])";
+        String comprobacionEspacios = "(?=\\S+$)";
+        String comprobacionLargo = ".{8,}";
+        
+        if(password.matches(comprobacionNumeros)){
+            contador++;
         }
-        return esSegura;
+        if(password.matches(comprobacionMinuscula)){
+            contador++;
+        }
+        if(password.matches(comprobacionMayuscula)){
+            contador++;
+        }
+        if(password.matches(comprobacionSignos)){
+            contador++;
+        }
+        if(password.matches(comprobacionEspacios)){
+            contador++;
+        }
+        if(password.matches(comprobacionLargo)){
+            contador++;
+        }
+        
+        switch(contador){
+            case 1:
+                nivelSeguridad = "Bajo";
+                break;
+            case 2:
+                nivelSeguridad = "Bajo";
+                break;
+            case 3:
+                nivelSeguridad = "Medio";
+                break;
+            case 4:
+                nivelSeguridad = "Medio";
+                break;
+            case 5:
+                nivelSeguridad = "Alto";
+                break;
+            case 6:
+                nivelSeguridad = "Alto";
+                break;
+        }
+        return nivelSeguridad;
     }
+
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         String usuario = cUsuario.getText();
@@ -211,20 +264,39 @@ public class CrearUsuario extends javax.swing.JFrame {
         String correoAlterno = cCorreo.getText();
         int telefono = Integer.valueOf(cTelefono.getText());
         String path_Fotografia = cRuta.getText();
-        boolean rol;
-        boolean estatus;
+        String rol;
+        String estatus = "vigente";
+        String nivelSeguridad = comprobarContrasenia(passWord);
         
-        if(ComprobarContrasenia(passWord)){
-            //contrase;a es segura, puede crearse el perfil 
-        }else{
-            //contrase;a no es segura, lanzar mensaje
+        if(!"Bajo".equals(nivelSeguridad)){
+            if(contadorUsuarios!=0){
+                rol = "usuario";
+            }else{
+                rol = "administrador";
         }
+        }else{
+            //lanza error de contrase;a insegura
+            //borra field contrase;a
+        }
+        
     }//GEN-LAST:event_bCrearActionPerformed
+
+    private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
+        JFileChooser dialogo = new JFileChooser();
+        File fotoGuardada;
+        String rutaFoto;
+        int valor = dialogo.showOpenDialog(this);
+        if(valor == JFileChooser.APPROVE_OPTION){
+        fotoGuardada = dialogo.getSelectedFile();
+        rutaFoto = fotoGuardada.getPath();
+        cRuta.setText(rutaFoto);
+        }
+    }//GEN-LAST:event_bBuscarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
