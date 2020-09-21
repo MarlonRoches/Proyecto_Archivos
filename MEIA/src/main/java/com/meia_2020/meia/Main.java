@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
+import com.meia_2020.meia.models.Data;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
