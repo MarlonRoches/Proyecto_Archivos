@@ -39,7 +39,7 @@ public String actualizarJson(Desc_Usuarios actualizado)
         {
             String json ="";
          try {
-             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/desc_usuario.txt"));
+             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/desc_usuario.json"));
              String linea ="";
              
              try {

@@ -56,6 +56,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario");
 
+        jUsername.setText("admin");
         jScrollPane1.setViewportView(jUsername);
 
         jLabel2.setText("Contraseña");
@@ -75,6 +76,8 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jLabel3.setText("LOGO");
+
+        jPassword.setText("admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +147,7 @@ public class LoginForm extends javax.swing.JFrame {
         ArrayList<Usuario> usersList = new ArrayList<Usuario>();
         String linea = fileRead.readLine();
         if(linea!=null){
-            String[] addUser = linea.split("-");
+            String[] addUser = linea.split("\\|");
             boolean rol = false;
             //var date = new SimpleDateFormat("dd/MM/yyyy").parse(addUser[5]);
             var date = LocalDate.now();

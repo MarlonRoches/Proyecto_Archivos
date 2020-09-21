@@ -261,15 +261,15 @@ public class BuscarUsuario extends javax.swing.JFrame {
             var linea =in.readLine();
             while (linea != null) 
             {                
-                var splited = linea.split("-");
+                var splited = linea.split("\\|");
                 var xd =splited[0];
                 if (xd.equals(userName)) {
                     //devolver datos del usuario en el frame 
                     var encontrado = true;
-                    Txt_Usuario.enable(true);   Txt_Usuario.setText(splited[0]);
-                    Txt_Nombre.enable(true);    Txt_Nombre.setText(splited[1]);
-                    Txt_Apellido.enable(true);  Txt_Apellido.setText(splited[2]);
-                    Txt_Contraseña.enable(true);Txt_Contraseña.setText(splited[3]);
+                    Txt_Usuario.setEnabled(true);   Txt_Usuario.setText(splited[0]);
+                    Txt_Nombre.setEnabled(true);    Txt_Nombre.setText(splited[1]);
+                    Txt_Apellido.setEnabled(true);  Txt_Apellido.setText(splited[2]);
+                    Txt_Contraseña.setEnabled(true);Txt_Contraseña.setText(splited[3]);
                     
                     Radio_Rol.setEnabled(true);
                     if (splited[4].equals("1"))
@@ -280,13 +280,13 @@ public class BuscarUsuario extends javax.swing.JFrame {
                     {
                      Radio_Rol.setSelected(false);   
                     }
-                    Txt_Fecha.enable(true);     Txt_Fecha.setText(splited[5]);
+                    Txt_Fecha.setEnabled(true);     Txt_Fecha.setText(splited[5]);
 
-                    Txt_Correo.enable(true);    Txt_Correo.setText(splited[6]);
+                    Txt_Correo.setEnabled(true);    Txt_Correo.setText(splited[6]);
 
-                    Txt_Telefono.enable(true);  Txt_Telefono.setText(splited[7]);
+                    Txt_Telefono.setEnabled(true);  Txt_Telefono.setText(splited[7]);
 
-                    Txt_Foto.enable(true);      Txt_Foto.setText(splited[8]);
+                    Txt_Foto.setEnabled(true);      Txt_Foto.setText(splited[8]);
 
                     Radio_Estado.setEnabled(true);
                     if (splited[9].equals("1"))
@@ -325,9 +325,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
         {
             //al archivo principal
             // PENDIENTE cambiar |
-            String lineaNueva= Txt_Usuario.getText()+"-"+Txt_Nombre.getText()+"-"+Txt_Apellido.getText()+"-"+Txt_Contraseña.getText()+"-"+ Radio_Rol.isSelected()+"-"+ Txt_Fecha.getText()+"-"+Txt_Correo.getText()+"-"+Txt_Telefono.getText()+"-"+Txt_Foto.getText()+"-"+ Radio_Estado.isSelected();
-           var lol = 0 ; 
-           var desc = new Desc_Usuarios().devolverObjeto().numRegistros;
+            String lineaNueva= Txt_Usuario.getText()+"|"+Txt_Nombre.getText()+"|"+Txt_Apellido.getText()+"|"+Txt_Contraseña.getText()+"|"+ Radio_Rol.isSelected()+"|"+ Txt_Fecha.getText()+"|"+Txt_Correo.getText()+"|"+Txt_Telefono.getText()+"|"+Txt_Foto.getText()+"|"+ Radio_Estado.isSelected();
+         
+           
         }               
         else
         {

@@ -41,7 +41,7 @@ public class Desc_Bitacora {
         {
             String json ="";
          try {
-             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/desc_Bitacora.txt"));
+             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/desc_Bitacora.json"));
              String linea ="";
              
              try {
