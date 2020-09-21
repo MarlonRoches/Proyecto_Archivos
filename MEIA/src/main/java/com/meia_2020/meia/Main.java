@@ -73,7 +73,7 @@ public class Main extends javax.swing.JFrame {
     private void BtnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackupActionPerformed
         // TODO add your handling code here:
         // Botón para el backup
-        if (Data.getInstance().usuarioActual.rol == true) {
+        if (Data.getInstance().usuarioActual.rol == false) {
             BackUpFrame backup = new BackUpFrame();
             backup.setVisible(true);
             this.setVisible(false); //Revisar si dejamos el main abierto o tenemos que irlo cerrando y abriendo

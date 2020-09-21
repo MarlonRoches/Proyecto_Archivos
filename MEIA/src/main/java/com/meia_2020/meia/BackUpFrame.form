@@ -26,11 +26,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="BtnRealizarBackup" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRuta" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnRuta" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="467" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="93" max="32767" attributes="0"/>
+              <EmptySpace pref="393" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -40,10 +41,12 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblRuta" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="BtnRuta" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="282" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="BtnRealizarBackup" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="241" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,11 +60,6 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lblRutaBackup"/>
       </AccessibilityProperties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="TFRuta"/>
-      </AccessibilityProperties>
-    </Component>
     <Component class="javax.swing.JButton" name="BtnRuta">
       <Properties>
         <Property name="text" type="java.lang.String" value="Escoger ruta para el Backup"/>
@@ -71,6 +69,19 @@
       </AccessibilityProperties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRutaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRuta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="____"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnRealizarBackup">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Realizar Backup"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRealizarBackupActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
