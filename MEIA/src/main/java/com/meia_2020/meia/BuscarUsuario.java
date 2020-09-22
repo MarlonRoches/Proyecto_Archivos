@@ -28,7 +28,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
      */
     //true -> principal
     //false -> bitacora
-    public static boolean Fuente = true; 
+    public static String global_Ruta = ""; 
     public BuscarUsuario() {
         initComponents();
     }
@@ -259,7 +259,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
             String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
             var ruta = new Archivo_Usuario().ArchivoPerteneciente(userName);
-        
+        global_Ruta = ruta;
     
             
         try 
@@ -348,7 +348,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
            new Desc_Usuarios().actualizarJson(desc);
              var lol = usuarioModificado.usuarioToString() ; 
              //verificar que este en el archivo de usuarios
-             new Archivo_Usuario().midificarUsuario("C:/MEIA/usuario.txt",BuscarUsuario_TxtBox.getText(),usuarioModificado);
+             var modificado =new Archivo_Usuario().midificarUsuario(ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
              var lolll =0;  
         if (Fuente)
         { 
