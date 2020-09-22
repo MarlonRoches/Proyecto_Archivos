@@ -90,16 +90,16 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         
             //vamos a buscar el rol del usuario actual
-          if (LoginForm.UsuarioActual.rol) {
+          //if (LoginForm.UsuarioActual.rol) {
             //es admin
             //abrimos uno nuevo
             var buscarUsuarioFrame = new BuscarUsuario();
             buscarUsuarioFrame.setVisible(true);
         
               
-        } else{ 
-              showMessageDialog(null, "No tienes permisos de Admin");
-          }
+       // } else{ 
+       //      showMessageDialog(null, "No tienes permisos de Admin");
+         // }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

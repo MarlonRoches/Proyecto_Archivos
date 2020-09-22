@@ -59,8 +59,15 @@ public class Usuario {
         return newUsuario;
     }
     public String usuarioToString(){
+        String unpadded = "";
+        unpadded += this.fecha.getMonthValue();
+        String padded =  "00".substring(unpadded.length()) +unpadded ;
         
-        return this.usuario+"|"+ this.nombre+"|"+this.usuarioApellido +"|"+this.passWord +"|"+ (this.rol ? 1 : 0)+"|"+this.fecha.getDayOfMonth()+"/"+this.fecha.getMonthValue()+"/"+this.fecha.getYear()+"|"+this.correoAlterno +"|"+ this.telefono+"|"+this.path_Fotografia +"|"+(this.estatus? 1 : 0);
+        String unpadded1 = "";
+        unpadded1 += this.fecha.getDayOfMonth();
+        String padded2 =  "00".substring(unpadded1.length())+unpadded1;
+        
+        return this.usuario+"|"+ this.nombre+"|"+this.usuarioApellido +"|"+this.passWord +"|"+ (this.rol ? 1 : 0)+"|"+padded2+"/"+padded+"/"+this.fecha.getYear()+"|"+this.correoAlterno +"|"+ this.telefono+"|"+this.path_Fotografia +"|"+(this.estatus? 1 : 0);
     }
     
     public String getUsuario() {

@@ -29,9 +29,15 @@ public class BuscarUsuario extends javax.swing.JFrame {
     //true -> principal
     //false -> bitacora
     public static String global_Ruta = ""; 
-    public static boolean rol_UsuarioActual=LoginForm.UsuarioActual.rol;
+    public static Usuario UsuarioActual=LoginForm.UsuarioActual;
     public BuscarUsuario() {
         initComponents();
+        if (LoginForm.UsuarioActual.rol) {
+            BuscarUsuario_TxtBox.setEnabled(true);
+        }else{
+        BuscarUsuario_TxtBox.setText(UsuarioActual.usuario);
+         CargarDatos();
+        }
     }
 
     /**
@@ -213,6 +219,8 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario A Buscar");
 
+        BuscarUsuario_TxtBox.setEnabled(false);
+
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +265,12 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-            String userName = BuscarUsuario_TxtBox.getText();
+          
+        CargarDatos();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+    void CargarDatos(){
+          String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
            global_Ruta= new Archivo_Usuario().ArchivoPerteneciente(userName);
        
@@ -274,35 +287,22 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 if (xd.equals(userName)) {
                     //devolver datos del usuario en el frame 
                     var encontrado = true;
-                    
                     Txt_Usuario.setEnabled(true);   Txt_Usuario.setText(splited[0]);
                      Txt_Nombre.setText(splited[1]);
                       Txt_Apellido.setText(splited[2]);
-                    
-                    
-                    if (rol_UsuarioActual) {
+                    if (UsuarioActual.rol) {
                         Txt_Usuario.setEnabled(true);
-                         Txt_Nombre.setEnabled(true);  
+                        Txt_Nombre.setEnabled(true);  
                         Txt_Apellido.setEnabled(true);
-                         Radio_Estado.setEnabled(true);
-                             Radio_Rol.setEnabled(true);
+                        Radio_Estado.setEnabled(true);
+                        Radio_Rol.setEnabled(true);
                     }
-                    
-                    
                     Txt_Telefono.setEnabled(true);  
                     Txt_Contraseña.setEnabled(true);
                     Txt_Correo.setEnabled(true);        
                     Txt_Fecha.setEnabled(true);     
                     Txt_Foto.setEnabled(true);    
-                      
-                      
-                      
-                      
-                      
                     Txt_Contraseña.setText(splited[3]);
-                    
-                
-                    
                     if (splited[4].equals("1"))
                     {
                         Radio_Rol.setSelected(true);
@@ -311,19 +311,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
                     {
                      Radio_Rol.setSelected(false);   
                     }
-              
                     Txt_Fecha.setText(splited[5]);
-
-                  
                     Txt_Correo.setText(splited[6]);
-
-                  
                     Txt_Telefono.setText(splited[7]);
-
-                     
                     Txt_Foto.setText(splited[8]);
-
-                   
                     if (splited[9].equals("1"))
                     {
                         Radio_Estado.setSelected(true);
@@ -349,16 +340,27 @@ public class BuscarUsuario extends javax.swing.JFrame {
             Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private void Btn_EditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarDatosActionPerformed
         // TODO add your handling code here:
         //mandamos a revisar el descriptivo para saber si se mueven o se quedan los datos
           
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-              LocalDate fecha = LocalDate.parse(Txt_Fecha.getText(),formatter);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            var splited = Txt_Fecha.getText().split("/");
+
+            if (splited[0].length() == 1) {
+            splited[0] = "0"+splited[0];
+        }
+            if (splited[1].length() == 1) {
+                splited[1] = "0"+splited[1];
+            
+        }
+            if (splited[2].length() < 4 ||splited[2].length()  > 4) {
+            
+        }
+                        var nueva_fecha=splited[0]+"/"+splited[1]+"/"+splited[2];
+              LocalDate fecha = LocalDate.parse(nueva_fecha,formatter);
             //al archivo principal
             // PENDIENTE cambiar |
         
