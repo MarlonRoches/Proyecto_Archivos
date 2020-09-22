@@ -22,13 +22,13 @@ import java.util.logging.Logger;
  */
 public class Archivo_Usuario {
     
-    public boolean contieneUsuario(String nombreDeUsuario, Usuario actualizado_)
+    public boolean midificarUsuario(String archivo,String nombreDeUsuario, Usuario actualizado_)
     {
         var salida =false;
         int lineaindex =0;
          var lineas = new ArrayList<String>();
      try {
-             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
+             BufferedReader buf = new BufferedReader(new FileReader(archivo));
              String linea ="";
              String[] array_nuevo;
              try {
@@ -50,7 +50,13 @@ public class Archivo_Usuario {
                            }
                  }
                  buf.close();
-                   setVariable("C:/MEIA/usuario.txt",lineas);
+                 if (salida) {
+                     setVariable(archivo,lineas);
+                 return true;
+                 }
+                 else{
+                     return false;
+                 }
              } catch (IOException ex) {
                  Logger.getLogger(Desc_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -95,5 +101,35 @@ public class Archivo_Usuario {
         
     }
     
-    
+    //C:\MEIA\bitacora_Usuarios.txt
+    public boolean estaEn_Bitacora(String nombreDeUsuario_) throws FileNotFoundException, IOException{
+        BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/bitacora_Usuarios.txt"));
+             String linea ="";
+            
+                 while((linea = buf.readLine()) != null){
+                           if (linea.split("\\|")[0].equals(nombreDeUsuario_)) 
+                           {
+                               buf.close();
+                               return true;
+                           }
+                 }
+                               buf.close();
+        return true;
+    }
+                 
+                 //C:/MEIA/usuario.txt
+   public boolean estaEn_Usuarios(String nombreDeUsuario_) throws FileNotFoundException, IOException{
+        BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/usuarios.txt"));
+             String linea ="";
+            
+                 while((linea = buf.readLine()) != null){
+                           if (linea.split("\\|")[0].equals(nombreDeUsuario_)) 
+                           {
+                               buf.close();
+                               return true;
+                           }
+                 }
+                               buf.close();
+        return true;
+    }
 }

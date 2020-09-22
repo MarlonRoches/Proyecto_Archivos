@@ -41,7 +41,7 @@ public class Usuario {
     }
     
     
-    public Usuario setUsuariofromString(String[] array) {
+    public Usuario setUsuariofromArray(String[] array) {
         
          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         

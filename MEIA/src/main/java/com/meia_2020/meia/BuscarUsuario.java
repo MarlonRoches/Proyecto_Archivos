@@ -255,10 +255,27 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-            // TODO add your handling code here:
+        // TODO add your handling code here:
             String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
+            var ruta = "";
+        try {
+            
+            
+            if (new Archivo_Usuario().estaEn_Bitacora(userName)) {
+                
+            } else if(new Archivo_Usuario().estaEn_Bitacora(userName)) {
+                
+            }else{
+                 existe = false;
+            }
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+            
         try 
         {
             var in = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
@@ -325,8 +342,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
     private void Btn_EditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarDatosActionPerformed
         // TODO add your handling code here:
         //mandamos a revisar el descriptivo para saber si se mueven o se quedan los datos
-        if (Fuente)
-        {    
+          
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
               LocalDate fecha = LocalDate.parse(Txt_Fecha.getText(),formatter);
             //al archivo principal
@@ -345,8 +361,11 @@ public class BuscarUsuario extends javax.swing.JFrame {
            
            new Desc_Usuarios().actualizarJson(desc);
              var lol = usuarioModificado.usuarioToString() ; 
-             new Archivo_Usuario().contieneUsuario(BuscarUsuario_TxtBox.getText(),usuarioModificado);
-             var lolll =0;
+             //verificar que este en el archivo de usuarios
+             new Archivo_Usuario().midificarUsuario("C:/MEIA/usuario.txt",BuscarUsuario_TxtBox.getText(),usuarioModificado);
+             var lolll =0;  
+        if (Fuente)
+        { 
         }               
         else
         {
