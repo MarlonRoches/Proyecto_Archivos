@@ -258,13 +258,13 @@ public class BuscarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
             String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
-            var ruta = new Archivo_Usuario().ArchivoPerteneciente(userName);
-        global_Ruta = ruta;
+           global_Ruta= new Archivo_Usuario().ArchivoPerteneciente(userName);
+       
     
             
         try 
         {
-            var in = new BufferedReader(new FileReader(ruta));
+            var in = new BufferedReader(new FileReader(global_Ruta));
             var linea =in.readLine();
             while (linea != null) 
             {                
@@ -348,15 +348,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
            new Desc_Usuarios().actualizarJson(desc);
              var lol = usuarioModificado.usuarioToString() ; 
              //verificar que este en el archivo de usuarios
-             var modificado =new Archivo_Usuario().midificarUsuario(ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
+             var modificado =new Archivo_Usuario().midificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
              var lolll =0;  
-        if (Fuente)
-        { 
-        }               
-        else
-        {
-            //a labitacora
-        }
+       
     }//GEN-LAST:event_Btn_EditarDatosActionPerformed
 
     /**
