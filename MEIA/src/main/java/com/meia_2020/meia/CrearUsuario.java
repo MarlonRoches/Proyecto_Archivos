@@ -267,13 +267,14 @@ public class CrearUsuario extends javax.swing.JFrame {
         String rol;
         String estatus = "vigente";
         String nivelSeguridad = comprobarContrasenia(passWord);
-        
+
         if(!"Bajo".equals(nivelSeguridad)){
             if(contadorUsuarios!=0){
                 rol = "usuario";
             }else{
                 rol = "administrador";
-        }
+                
+            }
         }else{
             //lanza error de contrase;a insegura
             //borra field contrase;a
