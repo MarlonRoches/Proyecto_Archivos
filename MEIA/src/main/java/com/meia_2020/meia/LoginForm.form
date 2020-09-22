@@ -91,6 +91,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jUsername">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="admin"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -121,6 +124,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="admin"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

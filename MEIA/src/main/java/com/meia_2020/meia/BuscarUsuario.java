@@ -4,12 +4,18 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
+import com.meia_2020.meia.models.Archivo_Usuario;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import  com.meia_2020.meia.models.Desc_Bitacora;
+import  com.meia_2020.meia.models.Desc_Usuarios;
+import com.meia_2020.meia.models.Usuario;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -17,14 +23,21 @@ import java.util.logging.Logger;
  */
 public class BuscarUsuario extends javax.swing.JFrame {
 
-    /**
+    /**LoginForm.UsuarioActual.rol
      * Creates new form BuscarUsuario
      */
     //true -> principal
     //false -> bitacora
-    public static boolean Fuente = true; 
+    public static String global_Ruta = ""; 
+    public static Usuario UsuarioActual=LoginForm.UsuarioActual;
     public BuscarUsuario() {
         initComponents();
+        if (LoginForm.UsuarioActual.rol) {
+            BuscarUsuario_TxtBox.setEnabled(true);
+        }else{
+        BuscarUsuario_TxtBox.setText(UsuarioActual.usuario);
+         CargarDatos();
+        }
     }
 
     /**
@@ -206,6 +219,8 @@ public class BuscarUsuario extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario A Buscar");
 
+        BuscarUsuario_TxtBox.setEnabled(false);
+
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,27 +264,45 @@ public class BuscarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-            // TODO add your handling code here:
-            String userName = BuscarUsuario_TxtBox.getText();
+        // TODO add your handling code here:
+          
+        CargarDatos();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+    void CargarDatos(){
+          String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
+           global_Ruta= new Archivo_Usuario().ArchivoPerteneciente(userName);
+       
+    
+            
         try 
         {
-            var in = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
+            var in = new BufferedReader(new FileReader(global_Ruta));
             var linea =in.readLine();
             while (linea != null) 
             {                
-                var splited = linea.split("-");
+                var splited = linea.split("\\|");
                 var xd =splited[0];
                 if (xd.equals(userName)) {
                     //devolver datos del usuario en el frame 
                     var encontrado = true;
-                    Txt_Usuario.enable(true);   Txt_Usuario.setText(splited[0]);
-                    Txt_Nombre.enable(true);    Txt_Nombre.setText(splited[1]);
-                    Txt_Apellido.enable(true);  Txt_Apellido.setText(splited[2]);
-                    Txt_Contraseña.enable(true);Txt_Contraseña.setText(splited[3]);
-                    
-                    Radio_Rol.setEnabled(true);
+                    Txt_Usuario.setEnabled(true);   Txt_Usuario.setText(splited[0]);
+                     Txt_Nombre.setText(splited[1]);
+                      Txt_Apellido.setText(splited[2]);
+                    if (UsuarioActual.rol) {
+                        Txt_Usuario.setEnabled(true);
+                        Txt_Nombre.setEnabled(true);  
+                        Txt_Apellido.setEnabled(true);
+                        Radio_Estado.setEnabled(true);
+                        Radio_Rol.setEnabled(true);
+                    }
+                    Txt_Telefono.setEnabled(true);  
+                    Txt_Contraseña.setEnabled(true);
+                    Txt_Correo.setEnabled(true);        
+                    Txt_Fecha.setEnabled(true);     
+                    Txt_Foto.setEnabled(true);    
+                    Txt_Contraseña.setText(splited[3]);
                     if (splited[4].equals("1"))
                     {
                         Radio_Rol.setSelected(true);
@@ -278,15 +311,10 @@ public class BuscarUsuario extends javax.swing.JFrame {
                     {
                      Radio_Rol.setSelected(false);   
                     }
-                    Txt_Fecha.enable(true);     Txt_Fecha.setText(splited[5]);
-
-                    Txt_Correo.enable(true);    Txt_Correo.setText(splited[6]);
-
-                    Txt_Telefono.enable(true);  Txt_Telefono.setText(splited[7]);
-
-                    Txt_Foto.enable(true);      Txt_Foto.setText(splited[8]);
-
-                    Radio_Estado.setEnabled(true);
+                    Txt_Fecha.setText(splited[5]);
+                    Txt_Correo.setText(splited[6]);
+                    Txt_Telefono.setText(splited[7]);
+                    Txt_Foto.setText(splited[8]);
                     if (splited[9].equals("1"))
                     {
                         Radio_Estado.setSelected(true);
@@ -312,24 +340,47 @@ public class BuscarUsuario extends javax.swing.JFrame {
             Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private void Btn_EditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarDatosActionPerformed
         // TODO add your handling code here:
         //mandamos a revisar el descriptivo para saber si se mueven o se quedan los datos
-        if (Fuente)
-        {
+          
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            
+            var splited = Txt_Fecha.getText().split("/");
+
+            if (splited[0].length() == 1) {
+            splited[0] = "0"+splited[0];
+        }
+            if (splited[1].length() == 1) {
+                splited[1] = "0"+splited[1];
+            
+        }
+            if (splited[2].length() < 4 ||splited[2].length()  > 4) {
+            
+        }
+                        var nueva_fecha=splited[0]+"/"+splited[1]+"/"+splited[2];
+              LocalDate fecha = LocalDate.parse(nueva_fecha,formatter);
             //al archivo principal
             // PENDIENTE cambiar |
-            String lineaNueva= Txt_Usuario.getText()+"-"+Txt_Nombre.getText()+"-"+Txt_Apellido.getText()+"-"+Txt_Contraseña.getText()+"-"+ Radio_Rol.isSelected()+"-"+ Txt_Fecha.getText()+"-"+Txt_Correo.getText()+"-"+Txt_Telefono.getText()+"-"+Txt_Foto.getText()+"-"+ Radio_Estado.isSelected();
-           var lol = 0 ;         
-        }               
-        else
-        {
-            //a labitacora
-        }
+        
+            var usuarioModificado = new Usuario().setDatosUsuario(Txt_Usuario.getText(), Txt_Nombre.getText(), 
+                 Txt_Apellido.getText(), Txt_Contraseña.getText(), Radio_Rol.isSelected(),  fecha, 
+                 Txt_Correo.getText(), Integer.parseInt(Txt_Telefono.getText()), Txt_Foto.getText(), Radio_Estado.isSelected());
+         
+         //obteniendo el desc de usuarios
+           var desc = new Desc_Usuarios().devolverObjeto();
+           desc.numRegistros++;           
+           desc.nombreSimbolico ="Ya lo actualasdasdasdasdai";
+           
+           //myBoolean ? 1 : 0 DateTimeFormatter.ofPattern("dd-MMM-yyyy").parseLocalDate(Txt_Fecha.getText());
+           
+           new Desc_Usuarios().actualizarJson(desc);
+             var lol = usuarioModificado.usuarioToString() ; 
+             //verificar que este en el archivo de usuarios
+             var modificado =new Archivo_Usuario().midificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
+             var lolll =0;  
+       
     }//GEN-LAST:event_Btn_EditarDatosActionPerformed
 
     /**

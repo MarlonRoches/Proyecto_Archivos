@@ -1,7 +1,8 @@
 package com.meia_2020.meia;
 
 
-import com.meia_2020.meia.Usuario;
+import com.meia_2020.meia.models.Data;
+import com.meia_2020.meia.models.Usuario;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
@@ -56,6 +57,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario");
 
+        jUsername.setText("admin");
         jScrollPane1.setViewportView(jUsername);
 
         jLabel2.setText("Contraseña");
@@ -75,6 +77,8 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jLabel3.setText("LOGO");
+
+        jPassword.setText("admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,9 +146,10 @@ public class LoginForm extends javax.swing.JFrame {
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
         ArrayList<Usuario> usersList = new ArrayList<Usuario>();
-        String linea = fileRead.readLine();
+        String linea = "";
         if(linea!=null){
-            String[] addUser = linea.split("-");
+        while((linea =fileRead.readLine())!= null){
+             String[] addUser = linea.split("\\|");
             boolean rol = false;
             //var date = new SimpleDateFormat("dd/MM/yyyy").parse(addUser[5]);
             var date = LocalDate.now();
@@ -160,6 +165,10 @@ public class LoginForm extends javax.swing.JFrame {
             }
             user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
             usersList.add(user);
+        }       
+        
+        
+           
         }
         for(var userCheck:usersList)
             {

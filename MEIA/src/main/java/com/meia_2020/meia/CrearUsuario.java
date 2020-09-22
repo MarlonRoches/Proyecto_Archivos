@@ -5,6 +5,8 @@
  */
 package com.meia_2020.meia;
 
+
+import com.google.gson.Gson;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -84,6 +86,11 @@ public class CrearUsuario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(cApellido);
 
         cNacimiento.setText("dd/mm/yyyy");
+        cNacimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cNacimientoActionPerformed(evt);
+            }
+        });
 
         jScrollPane5.setViewportView(cCorreo);
 
@@ -293,6 +300,10 @@ public class CrearUsuario extends javax.swing.JFrame {
         cRuta.setText(rutaFoto);
         }
     }//GEN-LAST:event_bBuscarActionPerformed
+
+    private void cNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNacimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cNacimientoActionPerformed
 
     /**
      * @param args the command line arguments

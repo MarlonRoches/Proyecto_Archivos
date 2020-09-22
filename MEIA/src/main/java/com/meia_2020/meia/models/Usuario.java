@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.meia_2020.meia;
+package com.meia_2020.meia.models;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Usuario {
     public String path_Fotografia;
     public boolean estatus;
 
+    
     public static Usuario setDatosUsuario(String usuario, String nombre, String usuarioApellido, String passWord, boolean rol, LocalDate fecha, String correoAlterno, int telefono, String path_Fotografia, boolean estatus) {
         Usuario newUsuario = new Usuario();
         newUsuario.usuario = usuario;
@@ -37,7 +39,37 @@ public class Usuario {
         newUsuario.estatus = estatus;
         return newUsuario;
     }
-
+    
+    
+    public Usuario setUsuariofromArray(String[] array) {
+        
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        
+        Usuario newUsuario = new Usuario();
+        newUsuario.usuario = array[0];
+        newUsuario.nombre = array[1];
+        newUsuario.usuarioApellido = array[2];
+        newUsuario.passWord = array[3];
+        newUsuario.rol = array[4].equals("1") ? true: false;
+        newUsuario.fecha = LocalDate.parse(array[5],formatter);
+        newUsuario.correoAlterno = array[6];
+        newUsuario.telefono = Integer.parseInt(array[7]);
+        newUsuario.path_Fotografia = array[8];
+        newUsuario.estatus = array[9].equals("1") ? true: false;
+        return newUsuario;
+    }
+    public String usuarioToString(){
+        String unpadded = "";
+        unpadded += this.fecha.getMonthValue();
+        String padded =  "00".substring(unpadded.length()) +unpadded ;
+        
+        String unpadded1 = "";
+        unpadded1 += this.fecha.getDayOfMonth();
+        String padded2 =  "00".substring(unpadded1.length())+unpadded1;
+        
+        return this.usuario+"|"+ this.nombre+"|"+this.usuarioApellido +"|"+this.passWord +"|"+ (this.rol ? 1 : 0)+"|"+padded2+"/"+padded+"/"+this.fecha.getYear()+"|"+this.correoAlterno +"|"+ this.telefono+"|"+this.path_Fotografia +"|"+(this.estatus? 1 : 0);
+    }
+    
     public String getUsuario() {
         return usuario;
     }
