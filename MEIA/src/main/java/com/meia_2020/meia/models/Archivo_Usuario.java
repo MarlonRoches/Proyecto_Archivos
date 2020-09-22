@@ -5,6 +5,7 @@
  */
 package com.meia_2020.meia.models;
 
+import com.meia_2020.meia.BuscarUsuario;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -132,4 +133,25 @@ public class Archivo_Usuario {
                                buf.close();
         return true;
     }
+   
+   public String ArchivoPerteneciente(String usuario_){
+       try {
+            
+            
+            if (estaEn_Bitacora(usuario_)) {
+                //existe en el principal bitacora_Usuarios
+                return "C:/MEIA/bitacora_Usuarios.txt";
+            } else if(estaEn_Bitacora(usuario_)) {
+                //existe en la bitacora
+            return "C:/MEIA/usuarios.txt";
+            }else{
+                 return "";
+            }
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return "";
+   }
 }

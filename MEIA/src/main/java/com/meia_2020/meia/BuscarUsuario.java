@@ -258,27 +258,13 @@ public class BuscarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
             String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
-            var ruta = "";
-        try {
-            
-            
-            if (new Archivo_Usuario().estaEn_Bitacora(userName)) {
-                
-            } else if(new Archivo_Usuario().estaEn_Bitacora(userName)) {
-                
-            }else{
-                 existe = false;
-            }
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            var ruta = new Archivo_Usuario().ArchivoPerteneciente(userName);
+        
     
             
         try 
         {
-            var in = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
+            var in = new BufferedReader(new FileReader(ruta));
             var linea =in.readLine();
             while (linea != null) 
             {                
