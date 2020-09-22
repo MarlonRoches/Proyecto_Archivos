@@ -23,12 +23,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class BuscarUsuario extends javax.swing.JFrame {
 
-    /**
+    /**LoginForm.UsuarioActual.rol
      * Creates new form BuscarUsuario
      */
     //true -> principal
     //false -> bitacora
     public static String global_Ruta = ""; 
+    public static boolean rol_UsuarioActual=LoginForm.UsuarioActual.rol;
     public BuscarUsuario() {
         initComponents();
     }
@@ -273,12 +274,35 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 if (xd.equals(userName)) {
                     //devolver datos del usuario en el frame 
                     var encontrado = true;
-                    Txt_Usuario.setEnabled(true);   Txt_Usuario.setText(splited[0]);
-                    Txt_Nombre.setEnabled(true);    Txt_Nombre.setText(splited[1]);
-                    Txt_Apellido.setEnabled(true);  Txt_Apellido.setText(splited[2]);
-                    Txt_Contraseña.setEnabled(true);Txt_Contraseña.setText(splited[3]);
                     
-                    Radio_Rol.setEnabled(true);
+                    Txt_Usuario.setEnabled(true);   Txt_Usuario.setText(splited[0]);
+                     Txt_Nombre.setText(splited[1]);
+                      Txt_Apellido.setText(splited[2]);
+                    
+                    
+                    if (rol_UsuarioActual) {
+                        Txt_Usuario.setEnabled(true);
+                         Txt_Nombre.setEnabled(true);  
+                        Txt_Apellido.setEnabled(true);
+                         Radio_Estado.setEnabled(true);
+                             Radio_Rol.setEnabled(true);
+                    }
+                    
+                    
+                    Txt_Telefono.setEnabled(true);  
+                    Txt_Contraseña.setEnabled(true);
+                    Txt_Correo.setEnabled(true);        
+                    Txt_Fecha.setEnabled(true);     
+                    Txt_Foto.setEnabled(true);    
+                      
+                      
+                      
+                      
+                      
+                    Txt_Contraseña.setText(splited[3]);
+                    
+                
+                    
                     if (splited[4].equals("1"))
                     {
                         Radio_Rol.setSelected(true);
@@ -287,15 +311,19 @@ public class BuscarUsuario extends javax.swing.JFrame {
                     {
                      Radio_Rol.setSelected(false);   
                     }
-                    Txt_Fecha.setEnabled(true);     Txt_Fecha.setText(splited[5]);
+              
+                    Txt_Fecha.setText(splited[5]);
 
-                    Txt_Correo.setEnabled(true);    Txt_Correo.setText(splited[6]);
+                  
+                    Txt_Correo.setText(splited[6]);
 
-                    Txt_Telefono.setEnabled(true);  Txt_Telefono.setText(splited[7]);
+                  
+                    Txt_Telefono.setText(splited[7]);
 
-                    Txt_Foto.setEnabled(true);      Txt_Foto.setText(splited[8]);
+                     
+                    Txt_Foto.setText(splited[8]);
 
-                    Radio_Estado.setEnabled(true);
+                   
                     if (splited[9].equals("1"))
                     {
                         Radio_Estado.setSelected(true);

@@ -146,9 +146,10 @@ public class LoginForm extends javax.swing.JFrame {
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
         ArrayList<Usuario> usersList = new ArrayList<Usuario>();
-        String linea = fileRead.readLine();
+        String linea = "";
         if(linea!=null){
-            String[] addUser = linea.split("\\|");
+        while((linea =fileRead.readLine())!= null){
+             String[] addUser = linea.split("\\|");
             boolean rol = false;
             //var date = new SimpleDateFormat("dd/MM/yyyy").parse(addUser[5]);
             var date = LocalDate.now();
@@ -164,6 +165,10 @@ public class LoginForm extends javax.swing.JFrame {
             }
             user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
             usersList.add(user);
+        }       
+        
+        
+           
         }
         for(var userCheck:usersList)
             {
