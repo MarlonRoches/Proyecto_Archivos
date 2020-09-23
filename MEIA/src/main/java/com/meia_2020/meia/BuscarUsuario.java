@@ -296,15 +296,22 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 if (xd.equals(userName)) {
                     //devolver datos del usuario en el frame 
                     var encontrado = true;
-                    Txt_Usuario.setEnabled(true);   Txt_Usuario.setText(splited[0]);
+                    Txt_Usuario.setEnabled(true);   
+                    Txt_Usuario.setText(splited[0]);
                      Txt_Nombre.setText(splited[1]);
                       Txt_Apellido.setText(splited[2]);
                     if (UsuarioActual.rol) {
                         Txt_Usuario.setEnabled(true);
                         Txt_Nombre.setEnabled(true);  
                         Txt_Apellido.setEnabled(true);
-                        Radio_Estado.setEnabled(true);
+                        
                         Radio_Rol.setEnabled(true);
+                        if (splited[0].equals(UsuarioActual.usuario)) {
+                            Radio_Estado.setEnabled(false);
+                        }else{
+                            Radio_Estado.setEnabled(true);
+                        }
+                        
                     }
                     Txt_Telefono.setEnabled(true);  
                     Txt_Contraseña.setEnabled(true);
@@ -312,6 +319,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
                     Txt_Fecha.setEnabled(true);     
                     Txt_Foto.setEnabled(true);    
                     Txt_Contraseña.setText(splited[3]);
+                    
                     if (splited[4].equals("1"))
                     {
                         Radio_Rol.setSelected(true);
@@ -324,6 +332,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
                     Txt_Correo.setText(splited[6]);
                     Txt_Telefono.setText(splited[7]);
                     Txt_Foto.setText(splited[8]);
+                    
+                   
+                    
                     if (splited[9].equals("1"))
                     {
                         Radio_Estado.setSelected(true);
