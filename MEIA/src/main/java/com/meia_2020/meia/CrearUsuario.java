@@ -6,22 +6,38 @@
 package com.meia_2020.meia;
 
 
-import com.google.gson.Gson;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.*;
 
 /**
  *
  * @author marce
  */
+
 public class CrearUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form CrearUsuario
      */
     public int contadorUsuarios = 0;
+    public int contadorFotografias = 0;
+    FileInputStream entrada;
+    FileOutputStream salida;
+    File carpeta;
+    JFileChooser seleccionado = new JFileChooser();
+    File archivo;
+    byte[] bytesFotografia;
     
     public CrearUsuario() {
         initComponents();
@@ -61,6 +77,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         cTelefono = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         cPassword = new javax.swing.JTextPane();
+        jFotografia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,48 +138,49 @@ public class CrearUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(125, 125, 125)
+                .addComponent(bCrear)
+                .addContainerGap(276, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addContainerGap(319, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bBuscar)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel7)
-                                            .addComponent(cNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane3)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel1)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addGap(97, 97, 97)
-                                            .addComponent(jLabel3))))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jScrollPane6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(bBuscar))
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(bCrear)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(cNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jFotografia)
+                        .addGap(90, 90, 90))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,15 +199,16 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel4)
+                    .addComponent(jFotografia))
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -197,13 +216,13 @@ public class CrearUsuario extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bBuscar)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(bCrear)
-                .addGap(24, 24, 24))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,24 +279,80 @@ public class CrearUsuario extends javax.swing.JFrame {
         }
         return nivelSeguridad;
     }
-
+    public boolean LlenarArchivo(String path,String usuarioIngresado) throws IOException
+    {
+        File Archivo = new File(path);
+        FileWriter Escribir = new FileWriter(Archivo,true);
+        BufferedWriter bw = new BufferedWriter(Escribir);
+        bw.write(usuarioIngresado + System.getProperty( "line.separator" ));
+        bw.close();
+        Escribir.close();
+        return true;
+    }
+    public String usuarioAString(String user, String nombre, String apellido, String pass, String fecha, String correo, int tel, String path, String rol, String estatus){
+        String usuarioNuevo = user+"|"+nombre+"|"+apellido+"|"+pass+"|"+rol+"|"+fecha+"|"+correo+"|"+String.valueOf(tel)+"|"+path+"|"+estatus;
+        return usuarioNuevo;
+    }
+    public byte[] abrirImagen(File archivo) throws FileNotFoundException, IOException{
+        byte[] bytesFoto = new byte[1024*100];
+        entrada = new FileInputStream(archivo);
+        entrada.read(bytesFoto);
+        return bytesFoto;
+    }
+    public String guardarFotografia(File archivo, byte[] bytesFoto) throws FileNotFoundException, IOException{
+        String respuesta = null;
+        salida = new FileOutputStream(archivo);
+        salida.write(bytesFoto);
+        respuesta = "La imagen se guardo con exito";
+        return respuesta; 
+    }
+    public byte[] abrirFotografia(JFileChooser path) throws IOException{
+     archivo = path.getSelectedFile();
+     if(archivo.canRead()){
+      if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
+          bytesFotografia = abrirImagen(archivo);
+          jFotografia.setIcon(new ImageIcon(bytesFotografia));
+      }   
+     }
+     return bytesFotografia;
+    }
+    public void guardar(JFileChooser path, File carpeta) throws IOException{
+     archivo = path.getSelectedFile();
+     if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
+         String respuesta = guardarFotografia(carpeta,bytesFotografia);
+         if(respuesta!=null){
+             JOptionPane.showMessageDialog(null, respuesta);
+         }else{
+             JOptionPane.showMessageDialog(null, "no se pudo");
+         }
+     }
+    }
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         String usuario = cUsuario.getText();
         String nombre = cNombre.getText();
-        String usuarioApellido = cApellido.getText();
+        String apellido = cApellido.getText();
         String passWord = cPassword.getText();
-        LocalDate fecha = LocalDate.parse(cNacimiento.getText(),formatter);
+        String fecha = (LocalDate.parse(cNacimiento.getText(),formatter)).toString();
         String correoAlterno = cCorreo.getText();
         int telefono = Integer.valueOf(cTelefono.getText());
         String path_Fotografia = cRuta.getText();
         String rol;
         String estatus = "vigente";
         String nivelSeguridad = comprobarContrasenia(passWord);
-
+        
         if(!"Bajo".equals(nivelSeguridad)){
             if(contadorUsuarios!=0){
                 rol = "usuario";
+                if(contadorUsuarios<5){
+                    //ingresarlos en bitacoraUsuario
+                    //actualizar el des_bitacora
+                }else if(contadorUsuarios==5){
+                    //Pasar los usuarios de bitacoraUsuario a Usuarios
+                    //Ordenarlos 
+                    //Actualizar el desc_Usuario
+                    //Insertar el nuevo en bitacoraUsuario 
+                }
             }else{
                 rol = "administrador";
                 
@@ -295,12 +370,16 @@ public class CrearUsuario extends javax.swing.JFrame {
         String rutaFoto;
         int valor = dialogo.showOpenDialog(this);
         if(valor == JFileChooser.APPROVE_OPTION){
-        fotoGuardada = dialogo.getSelectedFile();
-        rutaFoto = fotoGuardada.getPath();
-        cRuta.setText(rutaFoto);
-        }
+            try {
+                fotoGuardada = dialogo.getSelectedFile();
+                rutaFoto = fotoGuardada.getPath();
+                cRuta.setText(rutaFoto);
+                abrirFotografia(dialogo);
+            } catch (IOException ex) {
+                Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_bBuscarActionPerformed
-
+    }
     private void cNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNacimientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cNacimientoActionPerformed
@@ -351,6 +430,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     private javax.swing.JTextPane cRuta;
     private javax.swing.JTextPane cTelefono;
     private javax.swing.JTextPane cUsuario;
+    private javax.swing.JLabel jFotografia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
