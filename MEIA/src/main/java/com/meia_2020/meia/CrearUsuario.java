@@ -6,6 +6,7 @@
 package com.meia_2020.meia;
 
 
+import com.meia_2020.meia.models.Desc_Usuarios;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -328,7 +329,7 @@ public class CrearUsuario extends javax.swing.JFrame {
      }
     }
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String usuario = cUsuario.getText();
         String nombre = cNombre.getText();
         String apellido = cApellido.getText();
@@ -340,12 +341,13 @@ public class CrearUsuario extends javax.swing.JFrame {
         String rol;
         String estatus = "vigente";
         String nivelSeguridad = comprobarContrasenia(passWord);
-        
+         var desc = new Desc_Usuarios().devolverObjeto();
         if(!"Bajo".equals(nivelSeguridad)){
             if(contadorUsuarios!=0){
                 rol = "usuario";
                 if(contadorUsuarios<5){
                     //ingresarlos en bitacoraUsuario
+                    
                     //actualizar el des_bitacora
                 }else if(contadorUsuarios==5){
                     //Pasar los usuarios de bitacoraUsuario a Usuarios
