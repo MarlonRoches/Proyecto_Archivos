@@ -16,6 +16,9 @@ import  com.meia_2020.meia.models.Desc_Usuarios;
 import com.meia_2020.meia.models.Usuario;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -273,9 +276,15 @@ public class BuscarUsuario extends javax.swing.JFrame {
           String userName = BuscarUsuario_TxtBox.getText();
             boolean existe = false;
            global_Ruta= new Archivo_Usuario().ArchivoPerteneciente(userName);
-       
-    
-            
+           
+        if (global_Ruta.equals(""))
+        {
+            showMessageDialog(null, "El usuario no existe");
+             BuscarUsuario_TxtBox.setText("");
+            BuscarUsuario_TxtBox.setText("");
+        }
+        else
+        {
         try 
         {
             var in = new BufferedReader(new FileReader(global_Ruta));
@@ -339,6 +348,9 @@ public class BuscarUsuario extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+            
+        
            
     }
     private void Btn_EditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarDatosActionPerformed

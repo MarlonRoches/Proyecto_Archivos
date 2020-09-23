@@ -131,7 +131,7 @@ public class Archivo_Usuario {
                            }
                  }
                                buf.close();
-        return true;
+        return false;
     }
    
    public String ArchivoPerteneciente(String usuario_){
@@ -145,6 +145,7 @@ public class Archivo_Usuario {
                 //existe en la bitacora
             return "C:/MEIA/usuario.txt";
             }else{
+                //all el usuario no existe
                  return "";
             }
             

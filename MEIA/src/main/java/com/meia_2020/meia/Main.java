@@ -31,6 +31,8 @@ public class Main extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         BtnBackup = new javax.swing.JButton();
+        Btn_CrearUsuario = new javax.swing.JButton();
+        Btn_BuscarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +50,20 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Btn_CrearUsuario.setText("Crear Usuario");
+        Btn_CrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CrearUsuarioActionPerformed(evt);
+            }
+        });
+
+        Btn_BuscarUsuario.setText("Buscar Usuario");
+        Btn_BuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_BuscarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,8 +71,11 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(379, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -65,8 +84,12 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
+                .addComponent(Btn_CrearUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(Btn_BuscarUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addComponent(BtnBackup)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -102,6 +125,15 @@ public class Main extends javax.swing.JFrame {
          // }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Btn_CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CrearUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_CrearUsuarioActionPerformed
+
+    private void Btn_BuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarUsuarioActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_Btn_BuscarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,6 +172,8 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBackup;
+    private javax.swing.JButton Btn_BuscarUsuario;
+    private javax.swing.JButton Btn_CrearUsuario;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
