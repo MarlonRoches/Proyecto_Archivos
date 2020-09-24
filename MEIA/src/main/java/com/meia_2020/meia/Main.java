@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
+import static com.meia_2020.meia.BuscarUsuario.global_Ruta;
+import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -31,6 +33,9 @@ public class Main extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         BtnBackup = new javax.swing.JButton();
+        Btn_CrearUsuario = new javax.swing.JButton();
+        Btn_BuscarUsuario = new javax.swing.JButton();
+        BuscarUsuario_TxtBox = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,25 +53,49 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Btn_CrearUsuario.setText("Crear Usuario");
+        Btn_CrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CrearUsuarioActionPerformed(evt);
+            }
+        });
+
+        Btn_BuscarUsuario.setText("Buscar Usuario");
+        Btn_BuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_BuscarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(379, Short.MAX_VALUE))
+                    .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Btn_BuscarUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
+                .addComponent(Btn_CrearUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(BtnBackup)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -102,6 +131,34 @@ public class Main extends javax.swing.JFrame {
          // }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Btn_CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CrearUsuarioActionPerformed
+        // TODO add your handling code here:
+        var crearUsuarioFrame = new admin_CrearUsuario();
+            crearUsuarioFrame.setVisible(true);
+    }//GEN-LAST:event_Btn_CrearUsuarioActionPerformed
+
+    private void Btn_BuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BuscarUsuarioActionPerformed
+        // TODO add your handling code here:
+         String userName = BuscarUsuario_TxtBox.getText();
+            boolean existe = false;
+           global_Ruta= new Archivo_Usuario().ArchivoPerteneciente(userName);
+           
+            if (global_Ruta.equals(""))
+        {
+             showMessageDialog(null, "El usuario no existe");
+             BuscarUsuario_TxtBox.setText("");
+            
+        }
+        else
+        {
+            showMessageDialog(null, "El usuario si existe, se ubica en :" + global_Ruta );
+            BuscarUsuario_TxtBox.setText("");
+            
+        }
+           
+           
+    }//GEN-LAST:event_Btn_BuscarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,6 +197,9 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBackup;
+    private javax.swing.JButton Btn_BuscarUsuario;
+    private javax.swing.JButton Btn_CrearUsuario;
+    private javax.swing.JTextField BuscarUsuario_TxtBox;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

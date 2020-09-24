@@ -23,13 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="BtnBackup" min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="Btn_CrearUsuario" min="-2" pref="125" max="-2" attributes="0"/>
+                  <Component id="BuscarUsuario_TxtBox" min="-2" pref="146" max="-2" attributes="0"/>
+                  <Component id="Btn_BuscarUsuario" min="-2" pref="125" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnBackup" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="379" max="32767" attributes="0"/>
+              <EmptySpace pref="141" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,10 +41,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="BuscarUsuario_TxtBox" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="Btn_BuscarUsuario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="Btn_CrearUsuario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="139" max="32767" attributes="0"/>
               <Component id="BtnBackup" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="238" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,6 +71,24 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnBackupActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btn_CrearUsuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_CrearUsuarioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btn_BuscarUsuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar Usuario"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_BuscarUsuarioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="BuscarUsuario_TxtBox">
     </Component>
   </SubComponents>
 </Form>

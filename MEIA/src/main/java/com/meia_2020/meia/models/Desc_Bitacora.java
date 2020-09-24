@@ -28,11 +28,8 @@ public class Desc_Bitacora {
         public int registrosInActivos; 
         public int registrosActivos;
         public int reOrganizacionMax;
-
         //boolean contiene usuario
         //
-        
-        
         public void actualizarJson(Desc_Bitacora actualizado)
         {
 

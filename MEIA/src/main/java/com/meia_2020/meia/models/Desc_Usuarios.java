@@ -24,7 +24,8 @@ public String usuarioCreacion;
 public String fechaModificacion;
 public String usuarioModificacion;
 public int numRegistros;
-public int registrosInActivos;public int registrosActivos;
+public int registrosInActivos;
+public int registrosActivos;
 
 
 public void actualizarJson(Desc_Usuarios actualizado)

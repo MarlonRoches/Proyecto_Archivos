@@ -6,7 +6,9 @@
 package com.meia_2020.meia;
 
 
+
 import com.meia_2020.meia.models.Usuario;
+import com.meia_2020.meia.models.Desc_Usuarios;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +24,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.*;
+
+import javax.swing.JFileChooser;
+
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
+import com.meia_2020.meia.models.Desc_Usuarios;
 
 /**
  *
@@ -336,6 +346,7 @@ public class CrearUsuario extends javax.swing.JFrame {
          }
      }
     }
+
     public boolean comprobarCaracteres(Usuario user){
         boolean siCumple = false;
         if(user.usuario.length() <= 20 && user.nombre.length() <= 30 && user.usuarioApellido.length() <= 30 && user.passWord.length() <= 40 && user.correoAlterno.length() <= 40 && user.path_Fotografia.length() <= 200){
@@ -403,8 +414,8 @@ public class CrearUsuario extends javax.swing.JFrame {
             //no cumple con la cantidad de caracteres **voy a ponerle un limite a los textfields
             JOptionPane.showMessageDialog(null, "Campos incorrectos");
         }
-        
     }
+
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         newUser.usuario = cUsuario.getText();
@@ -416,6 +427,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         newUser.telefono = Integer.valueOf(cTelefono.getText());
         newUser.path_Fotografia = cRuta.getText();
         newUser.estatus = true;
+        var desc = new Desc_Usuarios().devolverObjeto();
         
         try {
             crearNuevo();

@@ -4,43 +4,23 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
-import com.meia_2020.meia.models.Archivo_Usuario;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import  com.meia_2020.meia.models.Desc_Bitacora;
-import  com.meia_2020.meia.models.Desc_Usuarios;
+
+import com.meia_2020.meia.models.Desc_Usuarios;
 import com.meia_2020.meia.models.Usuario;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
  * @author roche
  */
-public class BuscarUsuario extends javax.swing.JFrame {
+public class admin_CrearUsuario extends javax.swing.JFrame {
 
-    /**LoginForm.UsuarioActual.rol
-     * Creates new form BuscarUsuario
+    /**
+     * Creates new form admin_CrearUsuario
      */
-    //true -> principal
-    //false -> bitacora
-    public static String global_Ruta = ""; 
-    public static Usuario UsuarioActual=LoginForm.UsuarioActual;
-    public BuscarUsuario() {
+    public admin_CrearUsuario() {
         initComponents();
-        if (LoginForm.UsuarioActual.rol) {
-            BuscarUsuario_TxtBox.setEnabled(true);
-        }else{
-        BuscarUsuario_TxtBox.setText(UsuarioActual.usuario);
-         CargarDatos();
-        }
     }
 
     /**
@@ -74,61 +54,39 @@ public class BuscarUsuario extends javax.swing.JFrame {
         Txt_Foto = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         Radio_Estado = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        BuscarUsuario_TxtBox = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Btn_EditarDatos.setText("Editar Datos");
-        Btn_EditarDatos.setEnabled(false);
+        Btn_EditarDatos.setText("Crear Usuario");
         Btn_EditarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_EditarDatosActionPerformed(evt);
             }
         });
 
-        Txt_Usuario.setEnabled(false);
-
         jLabel2.setText("Usuario");
 
         jLabel3.setText("Nombre");
 
-        Txt_Nombre.setEnabled(false);
-
         jLabel4.setText("Apellido");
-
-        Txt_Apellido.setEnabled(false);
 
         jLabel5.setText("Contraseña");
 
-        Txt_Contraseña.setEnabled(false);
-
         Radio_Rol.setText("Admin");
-        Radio_Rol.setEnabled(false);
 
         jLabel6.setText("Rol");
 
         jLabel7.setText("Fecha De Nacimiento");
 
-        Txt_Fecha.setEnabled(false);
-
         jLabel8.setText("Correo");
-
-        Txt_Correo.setEnabled(false);
 
         jLabel9.setText("Telefono");
 
-        Txt_Telefono.setEnabled(false);
-
         Label_PathFoto.setText("Foto");
-
-        Txt_Foto.setEnabled(false);
 
         jLabel10.setText("Estatus");
 
         Radio_Estado.setText("Habilitado");
-        Radio_Estado.setEnabled(false);
 
         javax.swing.GroupLayout panel_BusquedaLayout = new javax.swing.GroupLayout(panel_Busqueda);
         panel_Busqueda.setLayout(panel_BusquedaLayout);
@@ -220,190 +178,71 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Usuario A Buscar");
-
-        BuscarUsuario_TxtBox.setEnabled(false);
-
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel_Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-          
-        CargarDatos();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-    void CargarDatos(){
-          String userName = BuscarUsuario_TxtBox.getText();
-            boolean existe = false;
-           global_Ruta= new Archivo_Usuario().ArchivoPerteneciente(userName);
-           
-        if (global_Ruta.equals(""))
-        {
-            showMessageDialog(null, "El usuario no existe");
-             BuscarUsuario_TxtBox.setText("");
-            BuscarUsuario_TxtBox.setText("");
-        }
-        else
-        {
-        try 
-        {
-            var in = new BufferedReader(new FileReader(global_Ruta));
-            var linea =in.readLine();
-            while (linea != null) 
-            {                
-                var splited = linea.split("\\|");
-                var xd =splited[0];
-                if (xd.equals(userName)) {
-                    //devolver datos del usuario en el frame 
-                    var encontrado = true;
-                    Txt_Usuario.setEnabled(true);   
-                    Txt_Usuario.setText(splited[0]);
-                     Txt_Nombre.setText(splited[1]);
-                      Txt_Apellido.setText(splited[2]);
-                    if (UsuarioActual.rol) {
-                        Txt_Usuario.setEnabled(true);
-                        Txt_Nombre.setEnabled(true);  
-                        Txt_Apellido.setEnabled(true);
-                        
-                        Radio_Rol.setEnabled(true);
-                        if (splited[0].equals(UsuarioActual.usuario)) {
-                            Radio_Estado.setEnabled(false);
-                        }else{
-                            Radio_Estado.setEnabled(true);
-                        }
-                        
-                    }
-                    Txt_Telefono.setEnabled(true);  
-                    Txt_Contraseña.setEnabled(true);
-                    Txt_Correo.setEnabled(true);        
-                    Txt_Fecha.setEnabled(true);     
-                    Txt_Foto.setEnabled(true);    
-                    Txt_Contraseña.setText(splited[3]);
-                    
-                    if (splited[4].equals("1"))
-                    {
-                        Radio_Rol.setSelected(true);
-                    }
-                    else
-                    {
-                     Radio_Rol.setSelected(false);   
-                    }
-                    Txt_Fecha.setText(splited[5]);
-                    Txt_Correo.setText(splited[6]);
-                    Txt_Telefono.setText(splited[7]);
-                    Txt_Foto.setText(splited[8]);
-                    
-                   
-                    
-                    if (splited[9].equals("1"))
-                    {
-                        Radio_Estado.setSelected(true);
-                    }
-                    else
-                    {
-                     Radio_Estado.setSelected(false);   
-                    }       
-                    Btn_EditarDatos.setEnabled(true);
-                    break;
-                }
-                else
-                {  
-                linea =in.readLine();
-                }
-            }
-            in.close();
-        } 
-        catch (FileNotFoundException ex) 
-        {
-            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-            
-        
-           
-    }
     private void Btn_EditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditarDatosActionPerformed
         // TODO add your handling code here:
         //mandamos a revisar el descriptivo para saber si se mueven o se quedan los datos
-          
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            
-            var splited = Txt_Fecha.getText().split("/");
 
-            if (splited[0].length() == 1) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        var splited = Txt_Fecha.getText().split("/");
+
+        if (splited[0].length() == 1) {
             splited[0] = "0"+splited[0];
         }
-            if (splited[1].length() == 1) {
-                splited[1] = "0"+splited[1];
-            
+        if (splited[1].length() == 1) {
+            splited[1] = "0"+splited[1];
+
         }
-            if (splited[2].length() < 4 ||splited[2].length()  > 4) {
-            
+        if (splited[2].length() < 4 ||splited[2].length()  > 4) {
+
         }
-                        var nueva_fecha=splited[0]+"/"+splited[1]+"/"+splited[2];
-              LocalDate fecha = LocalDate.parse(nueva_fecha,formatter);
-            //al archivo principal
-            // PENDIENTE cambiar |
+        var nueva_fecha=splited[0]+"/"+splited[1]+"/"+splited[2];
+        LocalDate fecha = LocalDate.parse(nueva_fecha,formatter);
+        //al archivo principal
+        // PENDIENTE cambiar |
+
+        var usuarioModificado = new Usuario().setDatosUsuario(Txt_Usuario.getText(), Txt_Nombre.getText(),
+            Txt_Apellido.getText(), Txt_Contraseña.getText(), Radio_Rol.isSelected(),  fecha,
+            Txt_Correo.getText(), Integer.parseInt(Txt_Telefono.getText()), Txt_Foto.getText(), Radio_Estado.isSelected());
+
+        //obteniendo el desc de usuarios
+        var desc = new Desc_Usuarios().devolverObjeto();
+        if (desc.registrosActivos < desc.numRegistros) {
+            
+            //escribir en a bitacora
+        }else{
+            //reorganizar
+        }
+        //desc.numRegistros++;
+       // desc.nombreSimbolico ="Ya lo actualasdasdasdasdai";
+
+        //myBoolean ? 1 : 0 DateTimeFormatter.ofPattern("dd-MMM-yyyy").parseLocalDate(Txt_Fecha.getText());
+
+        new Desc_Usuarios().actualizarJson(desc);
+        var lol = usuarioModificado.usuarioToString() ;
         
-            var usuarioModificado = new Usuario().setDatosUsuario(Txt_Usuario.getText(), Txt_Nombre.getText(), 
-                 Txt_Apellido.getText(), Txt_Contraseña.getText(), Radio_Rol.isSelected(),  fecha, 
-                 Txt_Correo.getText(), Integer.parseInt(Txt_Telefono.getText()), Txt_Foto.getText(), Radio_Estado.isSelected());
-         
-         //obteniendo el desc de usuarios
-           var desc = new Desc_Usuarios().devolverObjeto();
-           desc.numRegistros++;           
-           desc.nombreSimbolico ="Ya lo actualasdasdasdasdai";
-           
-           //myBoolean ? 1 : 0 DateTimeFormatter.ofPattern("dd-MMM-yyyy").parseLocalDate(Txt_Fecha.getText());
-           
-           new Desc_Usuarios().actualizarJson(desc);
-             var lol = usuarioModificado.usuarioToString() ; 
-             //verificar que este en el archivo de usuarios
-             var modificado =new Archivo_Usuario().midificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
-             var lolll =0;  
-       
+        var lolll =0;
+
     }//GEN-LAST:event_Btn_EditarDatosActionPerformed
 
     /**
@@ -423,27 +262,26 @@ public class BuscarUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admin_CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admin_CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admin_CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admin_CrearUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarUsuario().setVisible(true);
+                new admin_CrearUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Btn_EditarDatos;
-    private javax.swing.JTextField BuscarUsuario_TxtBox;
     private javax.swing.JLabel Label_PathFoto;
     public javax.swing.JRadioButton Radio_Estado;
     public javax.swing.JRadioButton Radio_Rol;
@@ -455,8 +293,6 @@ public class BuscarUsuario extends javax.swing.JFrame {
     public javax.swing.JTextField Txt_Nombre;
     public javax.swing.JTextField Txt_Telefono;
     public javax.swing.JTextField Txt_Usuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
