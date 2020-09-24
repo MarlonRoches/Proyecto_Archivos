@@ -17,7 +17,7 @@ public class Usuario {
     public String nombre;
     public String usuarioApellido;
     public String passWord;
-    public boolean rol;
+    public Boolean rol;
     public LocalDate fecha;
     public String correoAlterno;
     public int telefono;

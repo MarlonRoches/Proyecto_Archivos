@@ -6,6 +6,7 @@
 package com.meia_2020.meia;
 
 
+import com.meia_2020.meia.models.Usuario;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
@@ -38,6 +41,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     JFileChooser seleccionado = new JFileChooser();
     File archivo;
     byte[] bytesFotografia;
+    Usuario newUser = new Usuario();
     
     public CrearUsuario() {
         initComponents();
@@ -279,7 +283,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         }
         return nivelSeguridad;
     }
-    public boolean LlenarArchivo(String path,String usuarioIngresado) throws IOException
+    public boolean llenarArchivo(String path,String usuarioIngresado) throws IOException
     {
         File Archivo = new File(path);
         FileWriter Escribir = new FileWriter(Archivo,true);
@@ -289,9 +293,14 @@ public class CrearUsuario extends javax.swing.JFrame {
         Escribir.close();
         return true;
     }
-    public String usuarioAString(String user, String nombre, String apellido, String pass, String fecha, String correo, int tel, String path, String rol, String estatus){
-        String usuarioNuevo = user+"|"+nombre+"|"+apellido+"|"+pass+"|"+rol+"|"+fecha+"|"+correo+"|"+String.valueOf(tel)+"|"+path+"|"+estatus;
-        return usuarioNuevo;
+    public String rolString(Boolean rol){
+        String estadoRol;
+        if(rol){
+            estadoRol = "administrador";
+        }else{
+            estadoRol = "usuario";
+        }
+        return estadoRol;
     }
     public byte[] abrirImagen(File archivo) throws FileNotFoundException, IOException{
         byte[] bytesFoto = new byte[1024*100];
@@ -327,41 +336,92 @@ public class CrearUsuario extends javax.swing.JFrame {
          }
      }
     }
-    private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        String usuario = cUsuario.getText();
-        String nombre = cNombre.getText();
-        String apellido = cApellido.getText();
-        String passWord = cPassword.getText();
-        String fecha = (LocalDate.parse(cNacimiento.getText(),formatter)).toString();
-        String correoAlterno = cCorreo.getText();
-        int telefono = Integer.valueOf(cTelefono.getText());
-        String path_Fotografia = cRuta.getText();
-        String rol;
-        String estatus = "vigente";
-        String nivelSeguridad = comprobarContrasenia(passWord);
+    public boolean comprobarCaracteres(Usuario user){
+        boolean siCumple = false;
+        if(user.usuario.length() <= 20 && user.nombre.length() <= 30 && user.usuarioApellido.length() <= 30 && user.passWord.length() <= 40 && user.correoAlterno.length() <= 40 && user.path_Fotografia.length() <= 200){
+            siCumple = true;
+        }
+        return siCumple;
+    }
+    public void pasarFichero(String origen, String destino) throws FileNotFoundException, IOException{
+        File origenFichero = new File(origen);
+        File destinoFichero = new File(destino);
+        InputStream in = new FileInputStream(origenFichero);
+        OutputStream out = new FileOutputStream(destinoFichero);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(origenFichero));
+        byte[] bytesFichero = new byte[1024];
+        int length;
         
-        if(!"Bajo".equals(nivelSeguridad)){
-            if(contadorUsuarios!=0){
-                rol = "usuario";
-                if(contadorUsuarios<5){
-                    //ingresarlos en bitacoraUsuario
-                    //actualizar el des_bitacora
-                }else if(contadorUsuarios==5){
-                    //Pasar los usuarios de bitacoraUsuario a Usuarios
-                    //Ordenarlos 
-                    //Actualizar el desc_Usuario
-                    //Insertar el nuevo en bitacoraUsuario 
-                }
-            }else{
-                rol = "administrador";
-                
-            }
-        }else{
-            //lanza error de contrase;a insegura
-            //borra field contrase;a
+        while((length = in.read(bytesFichero)) > 0){
+            out.write(bytesFichero, 0, length);
         }
         
+        bw.write("");
+        bw.close();
+    }
+    public void crearNuevo() throws FileNotFoundException, IOException{
+        String nivelSeguridad = comprobarContrasenia(newUser.passWord);
+        String path = "./bitacora_Usuarios.txt";
+        
+        if(comprobarCaracteres(newUser)){
+            if(!"Bajo".equals(nivelSeguridad)){
+                if(contadorUsuarios!=0){
+                    newUser.rol = false;
+                    if(contadorUsuarios<5){
+                        //ingresarlos en bitacoraUsuario
+                        contadorUsuarios++;
+                        String usuario = newUser.usuarioToString();
+                        llenarArchivo("./bitacora_Usuarios.txt",usuario);
+                        
+                        //actualizar el des_bitacora
+                        
+                    }else if(contadorUsuarios==5){
+                        //Pasar los usuarios de bitacoraUsuario a Usuarios
+                        pasarFichero("./bitacora_Usuarios.txt","./usuario.txt");
+                        
+                        //Ordenarlos 
+                        
+                        //Actualizar el desc_Usuario
+                        
+                        //Insertar el nuevo en bitacoraUsuario
+                        String usuario = newUser.usuarioToString();
+                        llenarArchivo("./bitacora_Usuarios.txt",usuario);
+                    }
+                }else{
+                    newUser.rol = true;
+                    String usuario = newUser.usuarioToString();
+                    llenarArchivo("./bitacora_Usuarios.txt",usuario);
+                }
+            }else{
+                //lanza error de contrase;a insegura
+                JOptionPane.showMessageDialog(null, "Contraseña insegura");
+                
+                //borra field contrase;a
+                cPassword.setText(null);
+            }
+        }else{
+            //no cumple con la cantidad de caracteres **voy a ponerle un limite a los textfields
+            JOptionPane.showMessageDialog(null, "Campos incorrectos");
+        }
+        
+    }
+    private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        newUser.usuario = cUsuario.getText();
+        newUser.nombre = cNombre.getText();
+        newUser.usuarioApellido = cApellido.getText();
+        newUser.passWord = cPassword.getText();
+        newUser.fecha = (LocalDate.parse(cNacimiento.getText(),formatter));
+        newUser.correoAlterno = cCorreo.getText();
+        newUser.telefono = Integer.valueOf(cTelefono.getText());
+        newUser.path_Fotografia = cRuta.getText();
+        newUser.estatus = true;
+        
+        try {
+            crearNuevo();
+        } catch (IOException ex) {
+            Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bCrearActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
