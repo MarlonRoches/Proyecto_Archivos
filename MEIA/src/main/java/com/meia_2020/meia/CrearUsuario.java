@@ -427,10 +427,13 @@ public class CrearUsuario extends javax.swing.JFrame {
         newUser.telefono = Integer.valueOf(cTelefono.getText());
         newUser.path_Fotografia = cRuta.getText();
         newUser.estatus = true;
+        String foto = "./Fotografias";
+        File fotos = new File(foto);
         var desc = new Desc_Usuarios().devolverObjeto();
         
         try {
             crearNuevo();
+            guardar(seleccionado, fotos);
         } catch (IOException ex) {
             Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
