@@ -25,11 +25,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="BtnRealizarBackup" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblRuta" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnRuta" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnRuta" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnRealizarBackup" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="393" max="32767" attributes="0"/>
           </Group>

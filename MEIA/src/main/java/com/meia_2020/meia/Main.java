@@ -73,8 +73,8 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,7 +104,7 @@ public class Main extends javax.swing.JFrame {
     private void BtnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackupActionPerformed
         // TODO add your handling code here:
         // Botón para el backup
-        if (Data.getInstance().usuarioActual.rol == false) {
+        if (Data.getInstance().usuarioActual.rol == true) {
             BackUpFrame backup = new BackUpFrame();
             backup.setVisible(true);
             this.setVisible(false); //Revisar si dejamos el main abierto o tenemos que irlo cerrando y abriendo

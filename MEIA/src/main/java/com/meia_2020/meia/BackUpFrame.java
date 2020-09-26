@@ -65,11 +65,11 @@ public class BackUpFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnRealizarBackup)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblRuta)
-                    .addComponent(BtnRuta)
-                    .addComponent(jLabel1))
+                    .addComponent(BtnRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(BtnRealizarBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(393, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,39 +113,40 @@ public class BackUpFrame extends javax.swing.JFrame {
 
     private void BtnRealizarBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRealizarBackupActionPerformed
         // TODO add your handling code here:
-        File originalImages = new File("C:/MEIA/fotografia");
-        File originalUsers = new File("C:/MEIA/usuario.txt");
-        File originalUsersBinnacle = new File("C:/MEIA/desc_usuario.txt");
-        
-        File newDir = new File(BackupRoute + "/MEIA_Backup");
-        if (!newDir.exists()) {
-            newDir.mkdir();
+        File originalFile = new File("C:/MEIA");
+        File backupDir = new File(BackupRoute + "/MEIA_Backup");
+        if (!backupDir.exists()) {
+            backupDir.mkdir();
         }
-        
-        File newDir2 = new File(BackupRoute + "/MEIA_Backup/fotografia");
-        if (!newDir2.exists()) {
-            newDir2.mkdir();
-        }
-        
-        File usersBackup = new File(BackupRoute + "/MEIA_Backup/usuario.txt");
-        File binnacleBackup = new File(BackupRoute + "/MEIA_Backup/desc_usuario.txt");
-        
+        Copiar(originalFile, backupDir);
+    }//GEN-LAST:event_BtnRealizarBackupActionPerformed
+
+    private static void Copiar(File originalFile, File backupDir)
+    {
         try
         {
-            for (int i = 0; i < originalImages.listFiles().length; i++) {
-                var originalFile = new File(originalImages.listFiles()[i].toString());
-                var newFile = new File(BackupRoute + "/MEIA_Backup/fotografia/" + originalImages.listFiles()[i].getName());
-                Files.copy(originalFile.toPath(), newFile.toPath());
+            for (int i = 0; i < originalFile.listFiles().length; i++) {
+                if (originalFile.listFiles()[i].isDirectory()) {
+                    File newDir = new File(backupDir.toPath() + "/" + originalFile.listFiles()[i].getName());
+                    if (!newDir.exists()) {
+                        newDir.mkdir();
+                    }
+                    Copiar(originalFile.listFiles()[i], newDir);
+                }
+                else
+                {
+                    File originalFile2 = new File(originalFile.listFiles()[i].toString());
+                    var newFile = new File(backupDir.toPath() + "/" + originalFile2.getName());
+                    Files.copy(originalFile2.toPath(), newFile.toPath());
+                }
             }
-            Files.copy(originalUsers.toPath(), usersBackup.toPath());
-            Files.copy(originalUsersBinnacle.toPath(), binnacleBackup.toPath());
         }
         catch(Exception e)
         {
-            showMessageDialog(null, "El archivo que ha intentado copiar no existe");
+            showMessageDialog(null, "El archivo que ha intentado copiar no existe o el backup ya ha sido creado en la dirección provista.");
         }
-    }//GEN-LAST:event_BtnRealizarBackupActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
