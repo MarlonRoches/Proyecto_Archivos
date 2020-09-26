@@ -6,6 +6,7 @@
 
 package com.meia_2020.meia;
 import com.meia_2020.meia.models.Data;
+import com.meia_2020.meia.models.desc_bitacora_backup;
 import java.io.*;
 import java.lang.Object;
 import java.io.File;
@@ -157,6 +158,7 @@ public class BackUpFrame extends javax.swing.JFrame {
                     showMessageDialog(null, "No se ha podido actualizar la bitácora del backup correctamente.");
                 }
             }
+            desc_bitacora_backup.WriteDescBinnacle(Data.getInstance().usuarioActual.usuario);
         }
     }//GEN-LAST:event_BtnRealizarBackupActionPerformed
 
