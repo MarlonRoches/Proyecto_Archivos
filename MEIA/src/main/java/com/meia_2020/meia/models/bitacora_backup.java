@@ -15,6 +15,13 @@ public class bitacora_backup {
     String ruta_absoluta;
     String Usuario;
     LocalDate fecha;
+    
+    public bitacora_backup(String route, String user, String date)
+    {
+        ruta_absoluta = route;
+        Usuario = user;
+        fecha = LocalDate.parse(date);
+    }
 
     public String getRuta_absoluta() {
         return ruta_absoluta;

@@ -5,11 +5,14 @@
  */
 
 package com.meia_2020.meia;
+import com.meia_2020.meia.models.Data;
 import java.io.*;
 import java.lang.Object;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -118,10 +121,46 @@ public class BackUpFrame extends javax.swing.JFrame {
         if (!backupDir.exists()) {
             backupDir.mkdir();
         }
-        Copiar(originalFile, backupDir);
+         
+        if (Copiar(originalFile, backupDir)) {
+            showMessageDialog(null, "El backup ha sido creado exitosamente.");
+            File backupBinnacle = new File("C:/MEIA/bitacora_backup.txt");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDateTime now = LocalDateTime.now();  
+            if (backupBinnacle.exists()) {
+                try
+                {
+                    FileInputStream stream = new FileInputStream(backupBinnacle);
+                    byte[] data = new byte[(int) backupBinnacle.length()];
+                    stream.read(data);
+                    stream.close();
+                    String file = new String(data, "UTF-8");
+                    file += BackupRoute + "|" + Data.getInstance().usuarioActual.usuario + "|" + formatter.format(now) + "\r\n";
+                    data = file.getBytes();
+                    Files.write(backupBinnacle.toPath(), data);
+                }
+                catch (Exception e)
+                {
+                    showMessageDialog(null, "No se ha podido actualizar la bitácora del backup correctamente.");
+                }
+            }
+            else
+            {
+                try
+                {
+                    String line = BackupRoute + "|" + Data.getInstance().usuarioActual.usuario + "|" + formatter.format(now) + "\r\n";
+                    byte[] data = line.getBytes();
+                    Files.write(backupBinnacle.toPath(), data);
+                }
+                catch (Exception e)
+                {
+                    showMessageDialog(null, "No se ha podido actualizar la bitácora del backup correctamente.");
+                }
+            }
+        }
     }//GEN-LAST:event_BtnRealizarBackupActionPerformed
 
-    private static void Copiar(File originalFile, File backupDir)
+    private static boolean Copiar(File originalFile, File backupDir)
     {
         try
         {
@@ -140,10 +179,12 @@ public class BackUpFrame extends javax.swing.JFrame {
                     Files.copy(originalFile2.toPath(), newFile.toPath());
                 }
             }
+            return true;
         }
         catch(Exception e)
         {
             showMessageDialog(null, "El archivo que ha intentado copiar no existe o el backup ya ha sido creado en la dirección provista.");
+            return false;
         }
     }
     

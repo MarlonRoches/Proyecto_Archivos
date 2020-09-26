@@ -417,7 +417,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     }
 
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         newUser.usuario = cUsuario.getText();
         newUser.nombre = cNombre.getText();
         newUser.usuarioApellido = cApellido.getText();
