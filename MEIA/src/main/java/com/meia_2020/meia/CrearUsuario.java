@@ -8,9 +8,7 @@ package com.meia_2020.meia;
 
 
 import com.meia_2020.meia.models.Usuario;
-import com.meia_2020.meia.models.Desc_Usuarios;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,16 +20,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.*;
-
-import javax.swing.JFileChooser;
-
 import java.io.File;
-
 import javax.swing.JFileChooser;
-
 import com.meia_2020.meia.models.Desc_Usuarios;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -421,7 +414,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         newUser.usuario = cUsuario.getText();
         newUser.nombre = cNombre.getText();
         newUser.usuarioApellido = cApellido.getText();
-        newUser.passWord = cPassword.getText();
+        newUser.passWord = DigestUtils.md5Hex(cPassword.getText());
         newUser.fecha = (LocalDate.parse(cNacimiento.getText(),formatter));
         newUser.correoAlterno = cCorreo.getText();
         newUser.telefono = Integer.valueOf(cTelefono.getText());
