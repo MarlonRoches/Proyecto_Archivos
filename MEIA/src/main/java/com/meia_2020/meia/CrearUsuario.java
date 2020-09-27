@@ -24,6 +24,8 @@ import javax.swing.*;
 import java.io.File;
 import javax.swing.JFileChooser;
 import com.meia_2020.meia.models.Desc_Usuarios;
+import com.meia_2020.meia.models.desc_bitacora_usuarios;
+import com.meia_2020.meia.models.desc_usuario;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -339,7 +341,6 @@ public class CrearUsuario extends javax.swing.JFrame {
          }
      }
     }
-
     public boolean comprobarCaracteres(Usuario user){
         boolean siCumple = false;
         if(user.usuario.length() <= 20 && user.nombre.length() <= 30 && user.usuarioApellido.length() <= 30 && user.passWord.length() <= 40 && user.correoAlterno.length() <= 40 && user.path_Fotografia.length() <= 200){
@@ -376,9 +377,10 @@ public class CrearUsuario extends javax.swing.JFrame {
                         contadorUsuarios++;
                         String usuario = newUser.usuarioToString();
                         llenarArchivo("./bitacora_Usuarios.txt",usuario);
+                        contadorUsuarios++;
                         
                         //actualizar el des_bitacora
-                        
+                        desc_bitacora_usuarios.WriteDescBinnacle();
                     }else if(contadorUsuarios==5){
                         //Pasar los usuarios de bitacoraUsuario a Usuarios
                         pasarFichero("./bitacora_Usuarios.txt","./usuario.txt");
@@ -386,10 +388,14 @@ public class CrearUsuario extends javax.swing.JFrame {
                         //Ordenarlos 
                         
                         //Actualizar el desc_Usuario
+                        desc_usuario.WriteDescBinnacle(contadorUsuarios);
+                        contadorUsuarios=0;
                         
                         //Insertar el nuevo en bitacoraUsuario
                         String usuario = newUser.usuarioToString();
                         llenarArchivo("./bitacora_Usuarios.txt",usuario);
+                        contadorUsuarios++;
+                        
                     }
                 }else{
                     newUser.rol = true;
@@ -408,7 +414,6 @@ public class CrearUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campos incorrectos");
         }
     }
-
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         newUser.usuario = cUsuario.getText();
@@ -428,7 +433,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             crearNuevo();
             guardar(seleccionado, fotos);
         } catch (IOException ex) {
-            Logger.getLogger(CrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No se pudo crear el usuarios");
         }
     }//GEN-LAST:event_bCrearActionPerformed
 
