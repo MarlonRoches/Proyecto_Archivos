@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -188,7 +189,7 @@ public class LoginForm extends javax.swing.JFrame {
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
         String username = jUsername.getText();
-        String password = jPassword.getText();
+        String password = DigestUtils.md5Hex(jPassword.getText());
         try {
             boolean logIn = comprobacionUsuarios(username, password);
             if(logIn){
