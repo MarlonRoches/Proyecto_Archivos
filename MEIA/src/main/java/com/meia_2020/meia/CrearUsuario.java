@@ -394,11 +394,15 @@ public class CrearUsuario extends javax.swing.JFrame {
         String nivelSeguridad = comprobarContrasenia(newUser.passWord);
         String path = "C:/MEIA/bitacora_Usuarios.txt";
         File usuariosComprobacion = new File("C:/MEIA/usuarios.txt");
+        File directory = new File("C:/MEIA");
+        if (!directory.exists()) {
+           directory.mkdir();  
+        }
         if(comprobarCaracteres(newUser)){
             if(!"Bajo".equals(nivelSeguridad)){
                 try{
                     if (usuariosComprobacion.length()!=0) {
-                   newUser.rol = false;
+                        newUser.rol = false;
                         if(contadorUsuarios!=0){
 
                              if(contadorUsuarios<5){
@@ -424,11 +428,11 @@ public class CrearUsuario extends javax.swing.JFrame {
                                  contadorUsuarios++;
 
                              }
-                         }else{
-                             newUser.rol = false;
-                             String usuario = newUser.usuarioToString();
-                             llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
-                         }
+                        }else{
+                            newUser.rol = true;
+                            String usuario = newUser.usuarioToString();
+                            llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
+                        }
                     }else{
                         newUser.rol = true;
                         String usuario = newUser.usuarioToString();
