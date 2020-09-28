@@ -171,12 +171,6 @@ public class LoginForm extends javax.swing.JFrame {
             var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
         }
         
-        
-        
-        
-        
-        
-        
         FileReader file = new FileReader(ubicacion);
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
