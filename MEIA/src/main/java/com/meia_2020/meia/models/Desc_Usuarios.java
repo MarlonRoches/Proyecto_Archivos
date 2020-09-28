@@ -31,6 +31,27 @@ public int registrosInActivos;
 public int registrosActivos;
 
 
+ public Desc_Usuarios(){
+          this.nombreSimbolico="";
+          this.fechaCreacion="";
+        
+          this.usuarioCreacion="";
+        
+          this.fechaModificacion="";
+          this.usuarioModificacion="";
+        
+          this.numRegistros=0;
+          this.registrosInActivos=0; 
+          this.registrosActivos=0;
+                    this.registrosActivos=0;
+
+        }
+        public void crearBitacora(){
+            var nuevo = new Desc_Usuarios();
+            actualizarJson(nuevo);
+        }
+
+
  public Desc_Usuarios calcularBitacora(Desc_Usuarios viejo_) throws FileNotFoundException, IOException{
             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/desc_usuario.json"));
             String linea ="";

@@ -38,6 +38,25 @@ public class Desc_Bitacora {
         public int reOrganizacionMax;
         
 
+        public Desc_Bitacora(){
+          this.nombreSimbolico="bitacora_Usuarios";
+          
+          this.fechaCreacion="";
+        
+          this.usuarioCreacion="";
+        
+          this.fechaModificacion="";
+          this.usuarioModificacion="";
+        
+          this.numRegistros=0;
+          this.registrosInActivos=0; 
+          this.registrosActivos=0;
+          this.reOrganizacionMax=5;
+        }
+        public void crearBitacora(){
+            var nuevo = new Desc_Bitacora();
+            actualizarJson(nuevo);
+        }
         public Desc_Bitacora calcularBitacora(Desc_Bitacora viejo_) throws FileNotFoundException, IOException{
             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/desc_Bitacora.json"));
             String linea ="";
