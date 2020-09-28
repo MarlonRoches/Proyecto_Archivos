@@ -393,7 +393,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     public void crearNuevo() throws FileNotFoundException, IOException{
         String nivelSeguridad = comprobarContrasenia(newUser.passWord);
         String path = "C:/MEIA/bitacora_Usuarios.txt";
-        File usuariosComprobacion = new File("C:/MEIA/usuarios.txt");
+        File usuariosComprobacion = new File("C:/MEIA/usuario.txt");
         File directory = new File("C:/MEIA");
         if (!directory.exists()) {
            directory.mkdir();  
