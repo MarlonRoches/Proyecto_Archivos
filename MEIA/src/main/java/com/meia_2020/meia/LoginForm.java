@@ -273,6 +273,7 @@ public class LoginForm extends javax.swing.JFrame {
         
         String username = jUsername.getText();
         String password = DigestUtils.md5Hex(jPassword.getText());
+      //...
       
         try {
             boolean logIn = comprobacionUsuarios(username, password);
