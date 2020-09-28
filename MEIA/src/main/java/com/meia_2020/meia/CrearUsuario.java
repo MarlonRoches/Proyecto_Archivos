@@ -123,6 +123,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         cCorreo.setText("correo@ejemplo.com");
         jScrollPane5.setViewportView(cCorreo);
 
+        cRuta.setText("C:\\Users\\roche\\Documents\\Captura de pantalla 2020-09-26 123822.png");
         jScrollPane6.setViewportView(cRuta);
 
         bBuscar.setText("Buscar foto");
@@ -236,7 +237,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(bCrear)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         pack();
@@ -298,7 +299,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         File Archivo = new File(path);
         FileWriter Escribir = new FileWriter(Archivo,true);
         BufferedWriter bw = new BufferedWriter(Escribir);
-        bw.write(usuarioIngresado + System.getProperty( "line.separator" ));
+        bw.write(usuarioIngresado + '\n');
         bw.close();
         Escribir.close();
         return true;
@@ -337,6 +338,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     }
     public void guardar(JFileChooser path, File carpeta) throws IOException{
      archivo = path.getSelectedFile();
+     
      if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
          String respuesta = guardarFotografia(carpeta,bytesFotografia);
          if(respuesta!=null){
@@ -405,7 +407,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 }else{
                     newUser.rol = true;
                     String usuario = newUser.usuarioToString();
-                    llenarArchivo("./bitacora_Usuarios.txt",usuario);
+                    llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
                 }
             }else{
                 //lanza error de contrase;a insegura
@@ -440,6 +442,10 @@ public class CrearUsuario extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear el usuarios");
         }
+        
+        var form = new LoginForm();
+        form.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bCrearActionPerformed
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed

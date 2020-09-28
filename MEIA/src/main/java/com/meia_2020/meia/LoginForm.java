@@ -142,10 +142,41 @@ public class LoginForm extends javax.swing.JFrame {
         if (!directory) {
             var creado = new File("C:/MEIA").mkdir();  
         }
+         boolean imagenes = new File("C:/MEIA/Fotografias").exists();
+        if (!imagenes) {
+            var creado = new File("C:/MEIA/Fotografias").mkdir();  
+        }
          boolean arch_Usuario = new File("C:/MEIA/usuario.txt").exists();
         if (!arch_Usuario) {
             var creado = new File("C:/MEIA/usuario.txt").createNewFile();  
         }
+        
+        boolean arch_Bit_Usuario = new File("C:/MEIA/bitacora_Usuarios.txt").exists();
+        if (!arch_Bit_Usuario) {
+            var creado = new File("C:/MEIA/bitacora_Usuarios.txt").createNewFile();  
+        }
+        
+        
+        
+        boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
+        if (!arch_Bit_Usuario) {
+            var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile();  
+        }
+        
+        
+        
+        
+        boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_usuario.json").exists();
+        if (!arch_Bit_Usuario) {
+            var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
+        }
+        
+        
+        
+        
+        
+        
+        
         FileReader file = new FileReader(ubicacion);
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
