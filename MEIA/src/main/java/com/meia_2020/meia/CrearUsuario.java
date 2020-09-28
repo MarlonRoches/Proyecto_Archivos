@@ -404,7 +404,6 @@ public class CrearUsuario extends javax.swing.JFrame {
                     if (usuariosComprobacion.length()!=0) {
                         newUser.rol = false;
                         if(contadorUsuarios!=0){
-
                              if(contadorUsuarios<5){
                                  //ingresarlos en bitacoraUsuario
                                  contadorUsuarios++;
