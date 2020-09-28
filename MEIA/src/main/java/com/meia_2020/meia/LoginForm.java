@@ -41,7 +41,7 @@ public class LoginForm extends javax.swing.JFrame {
             @Override
             public void run(){
                 try {
-                    CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuarios.txt");
+                    CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuario.txt");
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -275,7 +275,7 @@ public class LoginForm extends javax.swing.JFrame {
         String password = DigestUtils.md5Hex(jPassword.getText());
       //...
       
-        try {
+            try {
             boolean logIn = comprobacionUsuarios(username, password);
             if(logIn){
                 //abrimos uno nuevo
