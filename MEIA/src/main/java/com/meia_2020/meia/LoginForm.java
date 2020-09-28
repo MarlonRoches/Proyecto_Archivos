@@ -243,18 +243,27 @@ public class LoginForm extends javax.swing.JFrame {
             var status = true;
             var usuario = addUser[0];
 
-            if("1".equals(addUser[9])){
-                int phoneNumber = Integer.parseInt(addUser[7]);
-            if("1".equals(addUser[4])){
-                rol = true;
-            }
-            if("1".equals(addUser[9])){
-                status = true;
-            }
-            user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
-            usersList.add(user);
+            int phoneNumber = Integer.parseInt(addUser[7]);
+            if("1".equals(addUser[9]))
+            {
+                
+                
+                if("1".equals(addUser[4]))
+                {
+                    rol = true;
+                }
+            
+                if("1".equals(addUser[9]))
+                {
+                    status = true;
+                user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
+                usersList.add(user);
+                 }
             }else{
-                JOptionPane.showMessageDialog(null, "El usuario esta de baja");
+                 user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
+                 user.estatus= false;
+                 usersList.add(user);
+               
             }
             
         }       
@@ -266,9 +275,15 @@ public class LoginForm extends javax.swing.JFrame {
             {
                 if((userCheck.usuario.equals(usernamef))&&(userCheck.passWord.equals(passwordf)))
                 {
+                    UsuarioActual = userCheck;
                     userFound = true;
+                    if (UsuarioActual.estatus) {
+                        
                     Data y = Data.getInstance(); 
-                   UsuarioActual = userCheck;
+                   
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El usuario esta de baja");
+                    }
                     //Data singleton =  Data.Instance().usuarioActual = userCheck;
                     break;
                 }
