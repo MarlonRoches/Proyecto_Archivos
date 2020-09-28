@@ -1,9 +1,11 @@
 package com.meia_2020.meia;
 
 
+import static com.meia_2020.meia.CrearUsuario.contadorUsuarios;
 import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
+import com.meia_2020.meia.models.desc_usuario;
 import java.awt.List;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -42,6 +44,7 @@ public class LoginForm extends javax.swing.JFrame {
             public void run(){
                 try {
                     CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuarios.txt");
+                    desc_usuario.WriteDescBinnacle(contadorUsuarios);
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
