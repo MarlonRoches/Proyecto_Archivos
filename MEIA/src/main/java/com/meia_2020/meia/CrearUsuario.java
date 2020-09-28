@@ -239,7 +239,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(bCrear)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -370,13 +370,22 @@ public class CrearUsuario extends javax.swing.JFrame {
         stream.read(data);
         stream.close();
         String file = new String(data, "UTF-8");
-        FileInputStream stream2 = new FileInputStream(destinoArchivo);
-        byte[] data2 = new byte[(int) destinoArchivo.length()];
-        stream2.read(data2);
-        stream2.close();
+        byte[] data2 = new byte[(int) origenArchivo.length()];
         String file2 = new String(data2, "UTF-8");
-        file2+=file;
-        data2 = file2.getBytes();
+        if (destinoArchivo.exists()) {
+            FileInputStream stream2 = new FileInputStream(destinoArchivo);
+            data2 = new byte[(int) destinoArchivo.length()];
+            stream2.read(data2);
+            stream2.close();
+            file2 = new String(data2, "UTF-8");
+            file2+=file;
+            data2 = file2.getBytes();
+        }
+        else
+        {
+            file2 = file;
+            data2 = file2.getBytes();
+        }
         Files.write(destinoArchivo.toPath(), data2);
         data="".getBytes();
         Files.write(origenArchivo.toPath(), data);

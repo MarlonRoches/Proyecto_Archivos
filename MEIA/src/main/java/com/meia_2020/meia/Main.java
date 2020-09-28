@@ -8,6 +8,7 @@ import static com.meia_2020.meia.BuscarUsuario.global_Ruta;
 import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
+import java.awt.event.WindowEvent;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
@@ -107,7 +108,6 @@ public class Main extends javax.swing.JFrame {
         if (Data.getInstance().usuarioActual.rol == true) {
             BackUpFrame backup = new BackUpFrame();
             backup.setVisible(true);
-            this.setVisible(false); //Revisar si dejamos el main abierto o tenemos que irlo cerrando y abriendo
         }
         else
         {
