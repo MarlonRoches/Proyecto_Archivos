@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /*
@@ -292,7 +293,7 @@ public class LoginForm extends javax.swing.JFrame {
  
             
         } catch (IOException ex) {
-            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+            showMessageDialog(null, "Los datos ingresados han sido incorrectos, por favor intente de nuevo");
         }
     }//GEN-LAST:event_jLoginActionPerformed
 
