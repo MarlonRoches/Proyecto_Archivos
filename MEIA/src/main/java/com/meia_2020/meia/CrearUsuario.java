@@ -7,6 +7,7 @@ package com.meia_2020.meia;
 
 
 
+import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -26,6 +27,7 @@ import javax.swing.JFileChooser;
 import com.meia_2020.meia.models.Desc_Usuarios;
 import com.meia_2020.meia.models.desc_bitacora_usuarios;
 import com.meia_2020.meia.models.desc_usuario;
+import java.nio.file.Files;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -155,7 +157,7 @@ public class CrearUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(bCrear)
-                .addContainerGap(555, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -163,7 +165,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addContainerGap(595, Short.MAX_VALUE))
+                        .addContainerGap(215, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -237,7 +239,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(bCrear)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -319,9 +321,9 @@ public class CrearUsuario extends javax.swing.JFrame {
         entrada.read(bytesFoto);
         return bytesFoto;
     }
-    public String guardarFotografia(File archivo, byte[] bytesFoto) throws FileNotFoundException, IOException{
+    public String guardarFotografia(File carpeta, byte[] bytesFoto) throws FileNotFoundException, IOException{
         String respuesta = null;
-        salida = new FileOutputStream(archivo);
+        salida = new FileOutputStream(carpeta);
         salida.write(bytesFoto);
         respuesta = "La imagen se guardo con exito";
         return respuesta; 
@@ -331,22 +333,27 @@ public class CrearUsuario extends javax.swing.JFrame {
      if(archivo.canRead()){
       if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
           bytesFotografia = abrirImagen(archivo);
-          jFotografia.setIcon(new ImageIcon(bytesFotografia));
       }   
      }
      return bytesFotografia;
     }
     public void guardar(JFileChooser path, File carpeta) throws IOException{
-     archivo = path.getSelectedFile();
+     //archivo = path.getSelectedFile();
      
-     if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
-         String respuesta = guardarFotografia(carpeta,bytesFotografia);
-         if(respuesta!=null){
-             JOptionPane.showMessageDialog(null, respuesta);
-         }else{
-             JOptionPane.showMessageDialog(null, "no se pudo");
-         }
-     }
+        if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
+            try{
+            File newPhoto= new File(archivo.toString());
+            File dirFoto = new File("C:/MEIA/Fotografias");
+                if (!dirFoto.exists()) {
+                    dirFoto.mkdir();
+                }
+            File copiaPhoto = new File("C:/MEIA/Fotografias/"+archivo.getName());
+            Files.copy(newPhoto.toPath(),copiaPhoto.toPath());
+            }catch(Exception e){
+            
+            }
+
+        }
     }
     public boolean comprobarCaracteres(Usuario user){
         boolean siCumple = false;
@@ -355,60 +362,73 @@ public class CrearUsuario extends javax.swing.JFrame {
         }
         return siCumple;
     }
-    public void pasarFichero(String origen, String destino) throws FileNotFoundException, IOException{
-        File origenFichero = new File(origen);
-        File destinoFichero = new File(destino);
-        InputStream in = new FileInputStream(origenFichero);
-        OutputStream out = new FileOutputStream(destinoFichero);
-        BufferedWriter bw = new BufferedWriter(new FileWriter(origenFichero));
-        byte[] bytesFichero = new byte[1024];
-        int length;
-        
-        while((length = in.read(bytesFichero)) > 0){
-            out.write(bytesFichero, 0, length);
-        }
-        
-        bw.write("");
-        bw.close();
+    public static void pasarFichero(String origen, String destino) throws FileNotFoundException, IOException{
+        File origenArchivo = new File(origen);
+        File destinoArchivo = new File(destino);
+        FileInputStream stream = new FileInputStream(origenArchivo);
+        byte[] data = new byte[(int) origenArchivo.length()];
+        stream.read(data);
+        stream.close();
+        String file = new String(data, "UTF-8");
+        FileInputStream stream2 = new FileInputStream(destinoArchivo);
+        byte[] data2 = new byte[(int) destinoArchivo.length()];
+        stream2.read(data2);
+        stream2.close();
+        String file2 = new String(data2, "UTF-8");
+        file2+=file;
+        data2 = file2.getBytes();
+        Files.write(destinoArchivo.toPath(), data2);
+        data="".getBytes();
+        Files.write(origenArchivo.toPath(), data);
     }
     public void crearNuevo() throws FileNotFoundException, IOException{
         String nivelSeguridad = comprobarContrasenia(newUser.passWord);
-        String path = "./bitacora_Usuarios.txt";
-        
+        String path = "C:/MEIA/bitacora_Usuarios.txt";
+        File usuariosComprobacion = new File("C:/MEIA/usuarios.txt");
         if(comprobarCaracteres(newUser)){
             if(!"Bajo".equals(nivelSeguridad)){
-                if(contadorUsuarios!=0){
-                    newUser.rol = false;
-                    if(contadorUsuarios<5){
-                        //ingresarlos en bitacoraUsuario
-                        contadorUsuarios++;
+                try{
+                    if (usuariosComprobacion.length()!=0) {
+                   newUser.rol = false;
+                        if(contadorUsuarios!=0){
+
+                             if(contadorUsuarios<5){
+                                 //ingresarlos en bitacoraUsuario
+                                 contadorUsuarios++;
+                                 String usuario = newUser.usuarioToString();
+                                 llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
+                                 contadorUsuarios++;
+
+                                 //actualizar el des_bitacora
+                                 desc_bitacora_usuarios.WriteDescBinnacle();
+                             }else{
+                                 //Pasar los usuarios de bitacoraUsuario a Usuarios
+                                 pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuarios.txt");
+
+                                 //Actualizar el desc_Usuario
+                                 desc_usuario.WriteDescBinnacle(contadorUsuarios);
+                                 contadorUsuarios=0;
+
+                                 //Insertar el nuevo en bitacoraUsuario
+                                 String usuario = newUser.usuarioToString();
+                                 llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
+                                 contadorUsuarios++;
+
+                             }
+                         }else{
+                             newUser.rol = false;
+                             String usuario = newUser.usuarioToString();
+                             llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
+                         }
+                    }else{
+                        newUser.rol = true;
                         String usuario = newUser.usuarioToString();
-                        llenarArchivo("./bitacora_Usuarios.txt",usuario);
-                        contadorUsuarios++;
-                        
-                        //actualizar el des_bitacora
-                        desc_bitacora_usuarios.WriteDescBinnacle();
-                    }else if(contadorUsuarios==5){
-                        //Pasar los usuarios de bitacoraUsuario a Usuarios
-                        pasarFichero("./bitacora_Usuarios.txt","./usuario.txt");
-                        
-                        //Ordenarlos 
-                        
-                        //Actualizar el desc_Usuario
-                        desc_usuario.WriteDescBinnacle(contadorUsuarios);
-                        contadorUsuarios=0;
-                        
-                        //Insertar el nuevo en bitacoraUsuario
-                        String usuario = newUser.usuarioToString();
-                        llenarArchivo("./bitacora_Usuarios.txt",usuario);
-                        contadorUsuarios++;
-                        
+                        llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
                     }
-                }else{
-                    newUser.rol = true;
-                    String usuario = newUser.usuarioToString();
-                    llenarArchivo("C:/MEIA/bitacora_Usuarios.txt",usuario);
+                }catch(Exception e){
+                
                 }
+                
             }else{
                 //lanza error de contrase;a insegura
                 JOptionPane.showMessageDialog(null, "Contraseña insegura");
@@ -430,7 +450,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         newUser.fecha = (LocalDate.parse(cNacimiento.getText(),formatter));
         newUser.correoAlterno = cCorreo.getText();
         newUser.telefono = Integer.valueOf(cTelefono.getText());
-        newUser.path_Fotografia = cRuta.getText();
+        newUser.path_Fotografia = "C:/MEIA/Fotografias";
         newUser.estatus = true;
         String foto = "./Fotografias";
         File fotos = new File(foto);
