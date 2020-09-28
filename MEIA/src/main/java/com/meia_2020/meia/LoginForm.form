@@ -116,11 +116,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\marce\Desktop\2020\Semestre II 2020\Manejo e implementaci&#xf3;n de archivos\Proyecto_Archivos\Logo S2.png"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPassword">
       <Properties>

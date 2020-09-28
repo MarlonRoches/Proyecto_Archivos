@@ -392,16 +392,24 @@ public class BuscarUsuario extends javax.swing.JFrame {
                  Txt_Correo.getText(), Integer.parseInt(Txt_Telefono.getText()), Txt_Foto.getText(), Radio_Estado.isSelected());
          
          //obteniendo el desc de usuarios
-           var desc = new Desc_Usuarios().devolverObjeto();
-           desc.numRegistros++;           
-           desc.nombreSimbolico ="Ya lo actualasdasdasdasdai";
-           
-           //myBoolean ? 1 : 0 DateTimeFormatter.ofPattern("dd-MMM-yyyy").parseLocalDate(Txt_Fecha.getText());
-           
-           new Desc_Usuarios().actualizarJson(desc);
+          
              var lol = usuarioModificado.usuarioToString() ; 
              //verificar que este en el archivo de usuarios
              var modificado =new Archivo_Usuario().midificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
+            
+             if (global_Ruta.equals("asdasd")) {
+            
+        }
+             
+             
+              var desc = new Desc_Bitacora().devolverObjeto();
+        try {
+            desc = desc.calcularBitacora(desc);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           new Desc_Bitacora().actualizarJson(desc);
+             
              var lolll =0;  
        
     }//GEN-LAST:event_Btn_EditarDatosActionPerformed
