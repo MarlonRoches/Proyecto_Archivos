@@ -120,7 +120,7 @@ public class Archivo_Usuario {
                  
                  //C:/MEIA/usuario.txt
    public boolean estaEn_Usuarios(String nombreDeUsuario_) throws FileNotFoundException, IOException{
-        BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/usuarios.txt"));
+        BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/usuario.txt"));
              String linea ="";
             
                  while((linea = buf.readLine()) != null){
@@ -143,7 +143,7 @@ public class Archivo_Usuario {
                 return "C:/MEIA/bitacora_Usuarios.txt";
             } else if(estaEn_Usuarios(usuario_)) {
                 //existe en la bitacora
-            return "C:/MEIA/usuarios.txt";
+            return "C:/MEIA/usuario.txt";
             }else{
                 //all el usuario no existe
                  return "";

@@ -415,7 +415,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                                  desc_bitacora_usuarios.WriteDescBinnacle();
                              }else{
                                  //Pasar los usuarios de bitacoraUsuario a Usuarios
-                                 pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuarios.txt");
+                                 pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuario.txt");
 
                                  //Actualizar el desc_Usuario
                                  desc_usuario.WriteDescBinnacle(contadorUsuarios);
