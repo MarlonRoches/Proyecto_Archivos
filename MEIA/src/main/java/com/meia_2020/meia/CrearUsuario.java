@@ -40,7 +40,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CrearUsuario
      */
-    public int contadorUsuarios = 0;
+    public static int contadorUsuarios = 0;
     public int contadorFotografias = 0;
     FileInputStream entrada;
     FileOutputStream salida;
@@ -404,7 +404,6 @@ public class CrearUsuario extends javax.swing.JFrame {
                     if (usuariosComprobacion.length()!=0) {
                         newUser.rol = false;
                         if(contadorUsuarios!=0){
-
                              if(contadorUsuarios<5){
                                  //ingresarlos en bitacoraUsuario
                                  contadorUsuarios++;
@@ -454,6 +453,14 @@ public class CrearUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campos incorrectos");
         }
     }
+    public String nombreFoto(String ruta){
+        String nombre = "";
+        String[] nombreF = ruta.split("\\\\");
+        int cantidad = 0;
+        cantidad = nombreF.length;
+        nombre = nombreF[cantidad-1];
+        return nombre;
+    }
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         newUser.usuario = cUsuario.getText();
@@ -463,7 +470,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         newUser.fecha = (LocalDate.parse(cNacimiento.getText(),formatter));
         newUser.correoAlterno = cCorreo.getText();
         newUser.telefono = Integer.valueOf(cTelefono.getText());
-        newUser.path_Fotografia = "C:/MEIA/Fotografias";
+        newUser.path_Fotografia = nombreFoto(cRuta.getText());;
         newUser.estatus = true;
         String foto = "./Fotografias";
         File fotos = new File(foto);
