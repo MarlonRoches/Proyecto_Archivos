@@ -215,9 +215,7 @@ public class LoginForm extends javax.swing.JFrame {
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/bitacora_Usuarios.txt").createNewFile();  
         }
-        
-        
-        
+
         boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile();  
@@ -245,7 +243,8 @@ public class LoginForm extends javax.swing.JFrame {
             var status = true;
             var usuario = addUser[0];
 
-            int phoneNumber = Integer.parseInt(addUser[7]);
+            if("1".equals(addUser[9])){
+                int phoneNumber = Integer.parseInt(addUser[7]);
             if("1".equals(addUser[4])){
                 rol = true;
             }
@@ -254,6 +253,10 @@ public class LoginForm extends javax.swing.JFrame {
             }
             user = Usuario.setDatosUsuario(addUser[0], addUser[1], addUser[2], addUser[3], rol, date, addUser[6], phoneNumber, addUser[8], status);
             usersList.add(user);
+            }else{
+                JOptionPane.showMessageDialog(null, "El usuario esta de baja");
+            }
+            
         }       
         
         
