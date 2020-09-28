@@ -136,7 +136,7 @@ public class BackUpFrame extends javax.swing.JFrame {
                     stream.read(data);
                     stream.close();
                     String file = new String(data, "UTF-8");
-                    file += BackupRoute + "|" + Data.getInstance().usuarioActual.usuario + "|" + formatter.format(now) + "\r\n";
+                    file += BackupRoute + "|" + LoginForm.UsuarioActual.usuario + "|" + formatter.format(now) + "\r\n";
                     data = file.getBytes();
                     Files.write(backupBinnacle.toPath(), data);
                 }
@@ -149,7 +149,7 @@ public class BackUpFrame extends javax.swing.JFrame {
             {
                 try
                 {
-                    String line = BackupRoute + "|" + Data.getInstance().usuarioActual.usuario + "|" + formatter.format(now) + "\r\n";
+                    String line = BackupRoute + "|" + LoginForm.UsuarioActual.usuario + "|" + formatter.format(now) + "\r\n";
                     byte[] data = line.getBytes();
                     Files.write(backupBinnacle.toPath(), data);
                 }
@@ -158,7 +158,7 @@ public class BackUpFrame extends javax.swing.JFrame {
                     showMessageDialog(null, "No se ha podido actualizar la bitácora del backup correctamente.");
                 }
             }
-            desc_bitacora_backup.WriteDescBinnacle(Data.getInstance().usuarioActual.usuario);
+            desc_bitacora_backup.WriteDescBinnacle(LoginForm.UsuarioActual.usuario);
         }
     }//GEN-LAST:event_BtnRealizarBackupActionPerformed
 
