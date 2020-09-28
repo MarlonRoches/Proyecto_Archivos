@@ -1,6 +1,7 @@
 package com.meia_2020.meia;
 
 
+import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
 import java.awt.List;
@@ -134,7 +135,9 @@ public class LoginForm extends javax.swing.JFrame {
     
         Usuario user = new Usuario();
         boolean userFound = false;
-       
+          String ubicacion = new Archivo_Usuario().ArchivoPerteneciente(usernamef);
+        
+        
         boolean directory = new File("C:/MEIA").exists();
         if (!directory) {
             var creado = new File("C:/MEIA").mkdir();  
@@ -143,7 +146,7 @@ public class LoginForm extends javax.swing.JFrame {
         if (!arch_Usuario) {
             var creado = new File("C:/MEIA/usuario.txt").createNewFile();  
         }
-        FileReader file = new FileReader("C:/MEIA/usuario.txt");
+        FileReader file = new FileReader(ubicacion);
         BufferedReader fileRead = new BufferedReader(file);
         String usersFile = fileRead.toString();
         ArrayList<Usuario> usersList = new ArrayList<Usuario>();
@@ -188,8 +191,12 @@ public class LoginForm extends javax.swing.JFrame {
         return userFound;
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
+        
+       
+        
         String username = jUsername.getText();
         String password = DigestUtils.md5Hex(jPassword.getText());
+      
         try {
             boolean logIn = comprobacionUsuarios(username, password);
             if(logIn){
