@@ -134,7 +134,7 @@ public class Main extends javax.swing.JFrame {
 
     private void Btn_CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CrearUsuarioActionPerformed
         // TODO add your handling code here:
-        var crearUsuarioFrame = new admin_CrearUsuario();
+        var crearUsuarioFrame = new CrearUsuario();
             crearUsuarioFrame.setVisible(true);
     }//GEN-LAST:event_Btn_CrearUsuarioActionPerformed
 
