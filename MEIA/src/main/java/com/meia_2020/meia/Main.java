@@ -21,6 +21,16 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        
+        
+        
+        if (LoginForm.UsuarioActual.rol) {
+            
+            //es admin
+            labelNombre.setText("Bienvenido Admin: "+ LoginForm.UsuarioActual.usuario );
+        } else{
+         labelNombre.setText("Bienvenido Usuario: "+ LoginForm.UsuarioActual.usuario );
+    }
     }
 
     /**
@@ -37,6 +47,8 @@ public class Main extends javax.swing.JFrame {
         Btn_CrearUsuario = new javax.swing.JButton();
         Btn_BuscarUsuario = new javax.swing.JButton();
         BuscarUsuario_TxtBox = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,25 +80,34 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Bienvenido: ");
+
+        labelNombre.setText("Bienvenido: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(141, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelNombre)
+                .addGap(31, 31, 31)
                 .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_BuscarUsuario)
@@ -94,7 +115,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_CrearUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(BtnBackup)
                 .addContainerGap())
         );
@@ -201,5 +222,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Btn_CrearUsuario;
     private javax.swing.JTextField BuscarUsuario_TxtBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
 }
