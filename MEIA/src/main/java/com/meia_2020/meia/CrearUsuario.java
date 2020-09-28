@@ -107,17 +107,20 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         jLabel8.setText("Correo alterno");
 
+        cNombre.setText("...");
         jScrollPane1.setViewportView(cNombre);
 
+        cApellido.setText("...");
         jScrollPane2.setViewportView(cApellido);
 
-        cNacimiento.setText("dd/mm/yyyy");
+        cNacimiento.setText("03/03/2020");
         cNacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cNacimientoActionPerformed(evt);
             }
         });
 
+        cCorreo.setText("correo@ejemplo.com");
         jScrollPane5.setViewportView(cCorreo);
 
         jScrollPane6.setViewportView(cRuta);
@@ -138,8 +141,10 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         jScrollPane7.setViewportView(cUsuario);
 
+        cTelefono.setText("12345678");
         jScrollPane8.setViewportView(cTelefono);
 
+        cPassword.setText("...");
         jScrollPane3.setViewportView(cPassword);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,7 +162,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addContainerGap(553, Short.MAX_VALUE))
+                        .addContainerGap(595, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -286,7 +291,7 @@ public class CrearUsuario extends javax.swing.JFrame {
                 nivelSeguridad = "Alto";
                 break;
         }
-        return nivelSeguridad;
+        return "Alto";
     }
     public boolean llenarArchivo(String path,String usuarioIngresado) throws IOException
     {
