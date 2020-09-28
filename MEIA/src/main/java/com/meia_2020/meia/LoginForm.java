@@ -6,6 +6,9 @@ import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
 import com.meia_2020.meia.models.desc_usuario;
+import com.meia_2020.meia.models.Desc_Usuarios;
+import com.meia_2020.meia.models.Desc_Bitacora;
+
 import java.awt.List;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -42,13 +45,9 @@ public class LoginForm extends javax.swing.JFrame {
         Runtime.getRuntime().addShutdownHook(new Thread(){
             @Override
             public void run(){
-                try {
-<<<<<<< HEAD
-                    CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuarios.txt");
-                    desc_usuario.WriteDescBinnacle(contadorUsuarios);
-=======
+                try {          
                     CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuario.txt");
->>>>>>> 378775824b03cbac66af3d9b1c8a72342c152fe3
+
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -91,7 +90,8 @@ public class LoginForm extends javax.swing.JFrame {
         
         boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
         if (!arch_Bit_Usuario) {
-            var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile();  
+            var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile(); 
+            new Desc_Usuarios().crearBitacora();
         }
         
         
@@ -100,6 +100,7 @@ public class LoginForm extends javax.swing.JFrame {
         boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_usuario.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
+            new Desc_Bitacora().crearBitacora();
         }
         
     }

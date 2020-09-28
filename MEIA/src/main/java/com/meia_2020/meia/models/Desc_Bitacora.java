@@ -13,8 +13,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -40,8 +42,9 @@ public class Desc_Bitacora {
 
         public Desc_Bitacora(){
           this.nombreSimbolico="bitacora_Usuarios";
-          
-          this.fechaCreacion="";
+          SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy  HH:mm:ss ");
+            Date date = new Date(System.currentTimeMillis());
+          this.fechaCreacion=formatter.format(date);
         
           this.usuarioCreacion="";
         
