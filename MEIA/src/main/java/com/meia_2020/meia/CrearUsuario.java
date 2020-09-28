@@ -454,16 +454,24 @@ public class CrearUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campos incorrectos");
         }
     }
+    public String nombreFoto(String ruta){
+        String nombre = "";
+        String[] nombreF = ruta.split("\\\\");
+        int cantidad = 0;
+        cantidad = nombreF.length;
+        nombre = nombreF[cantidad-1];
+        return nombre;
+    }
     private void bCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearActionPerformed
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         newUser.usuario = cUsuario.getText();
         newUser.nombre = cNombre.getText();
         newUser.usuarioApellido = cApellido.getText();
-        newUser.passWord = DigestUtils.md5Hex(cPassword.getText());
+        newUser.passWord = DigestUtils.sha1Hex(cPassword.getText());
         newUser.fecha = (LocalDate.parse(cNacimiento.getText(),formatter));
         newUser.correoAlterno = cCorreo.getText();
         newUser.telefono = Integer.valueOf(cTelefono.getText());
-        newUser.path_Fotografia = "C:/MEIA/Fotografias";
+        newUser.path_Fotografia = nombreFoto(cRuta.getText());;
         newUser.estatus = true;
         String foto = "./Fotografias";
         File fotos = new File(foto);
