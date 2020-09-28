@@ -397,18 +397,30 @@ public class BuscarUsuario extends javax.swing.JFrame {
              //verificar que este en el archivo de usuarios
              var modificado =new Archivo_Usuario().midificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
             
-             if (global_Ruta.equals("asdasd")) {
-            
+             if (global_Ruta.equals("C:/MEIA/bitacora_Usuarios.txt")) {
+              var desc = new Desc_Usuarios().devolverObjeto();
+        try 
+        {
+            desc = desc.calcularBitacora(desc);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-             
-             
+           new Desc_Usuarios().actualizarJson(desc);
+        }else if(global_Ruta.equals("C:/MEIA/usuario.txt")){
+            
               var desc = new Desc_Bitacora().devolverObjeto();
-        try {
+        try 
+        {
             desc = desc.calcularBitacora(desc);
         } catch (IOException ex) {
             Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
            new Desc_Bitacora().actualizarJson(desc);
+             
+        }else{
+            // no actualizar
+        }
+             
              
              var lolll =0;  
        
