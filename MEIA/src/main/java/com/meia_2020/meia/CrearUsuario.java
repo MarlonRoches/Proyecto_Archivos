@@ -40,7 +40,7 @@ public class CrearUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CrearUsuario
      */
-    public int contadorUsuarios = 0;
+    public static int contadorUsuarios = 0;
     public int contadorFotografias = 0;
     FileInputStream entrada;
     FileOutputStream salida;
@@ -467,7 +467,7 @@ public class CrearUsuario extends javax.swing.JFrame {
         newUser.usuario = cUsuario.getText();
         newUser.nombre = cNombre.getText();
         newUser.usuarioApellido = cApellido.getText();
-        newUser.passWord = DigestUtils.sha1Hex(cPassword.getText());
+        newUser.passWord = DigestUtils.md5Hex(cPassword.getText());
         newUser.fecha = (LocalDate.parse(cNacimiento.getText(),formatter));
         newUser.correoAlterno = cCorreo.getText();
         newUser.telefono = Integer.valueOf(cTelefono.getText());
