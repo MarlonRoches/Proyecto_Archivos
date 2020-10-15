@@ -89,7 +89,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jUsername">
           <Properties>
-            <Property name="text" type="java.lang.String" value="admin"/>
+            <Property name="text" type="java.lang.String" value="ElRoches"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -119,7 +119,7 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="admin"/>
+        <Property name="text" type="java.lang.String" value="elmomo"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -120,7 +120,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario");
 
-        jUsername.setText("admin");
+        jUsername.setText("ElRoches");
         jScrollPane1.setViewportView(jUsername);
 
         jLabel2.setText("Contraseña");
@@ -139,9 +139,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\marce\\Desktop\\2020\\Semestre II 2020\\Manejo e implementación de archivos\\Proyecto_Archivos\\Logo S2.png")); // NOI18N
-
-        jPassword.setText("admin");
+        jPassword.setText("elmomo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,9 +292,7 @@ public class LoginForm extends javax.swing.JFrame {
         return userFound;
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
-        
-       
-        
+
         String username = jUsername.getText();
         String password = DigestUtils.md5Hex(jPassword.getText());
       //...
