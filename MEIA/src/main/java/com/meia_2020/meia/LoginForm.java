@@ -232,6 +232,7 @@ public class LoginForm extends javax.swing.JFrame {
         if (!arch_Desc_IndiceGrupos) {
             var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();  
             new Desc_IndiceGrupos().crearBitacora();
+            
         }
         
         // crear archivo de grupos

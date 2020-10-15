@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,10 +39,12 @@ public int NoBloques;
         public void crearBitacora(){
             var nuevo = new Desc_IndiceGrupos();
             nuevo.nombre_simbolico = "Desc_IndiceGrupos";
-            num_registros= 0;
-            registros_activos =0;
-            
-            max_reorganizacion =4;
+            nuevo.num_registros= 0;
+            nuevo.registros_activos =0;
+            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+            Date date = new Date(System.currentTimeMillis());
+          nuevo.fecha_creacion= formatter.format(date);
+           nuevo.max_reorganizacion =4;
             actualizarJson(nuevo);
         }
         

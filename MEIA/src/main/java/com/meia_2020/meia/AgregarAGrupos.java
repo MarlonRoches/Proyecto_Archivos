@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
+import fase2.Desc_IndiceGrupos;
 import fase2.Mamejo_de_Grupos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -201,12 +202,17 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int indexAmigo = ListaAmigos.getSelectedIndex();
-        
+        new Desc_IndiceGrupos().crearBitacora();        
+        var lol = new Desc_IndiceGrupos().devolverObjeto();
+
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
-        try {  
-            new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
-        } catch (IOException ex) {
+        try 
+        {  
+            var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
+        } 
+        catch (IOException ex) 
+        {
             Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
         }
       
