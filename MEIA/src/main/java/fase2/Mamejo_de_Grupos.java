@@ -10,5 +10,9 @@ package fase2;
  * @author roche
  */
 public class Mamejo_de_Grupos {
-    
+    boolean AgregarAmigoAGrupo()
+    {
+        
+        return false;
+    }
 }
