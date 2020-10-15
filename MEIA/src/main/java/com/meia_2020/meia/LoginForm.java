@@ -8,7 +8,7 @@ import com.meia_2020.meia.models.Usuario;
 import com.meia_2020.meia.models.desc_usuario;
 import com.meia_2020.meia.models.Desc_Usuarios;
 import com.meia_2020.meia.models.Desc_Bitacora;
-
+import fase2.Desc_IndiceGrupos;
 import java.awt.List;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -221,25 +221,36 @@ public class LoginForm extends javax.swing.JFrame {
         
         
         
-        //creando archivo de grupos
+        //creando archivo de 
         boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_usuario.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
         }
         
+          //creando archivo de 
+        boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
+        if (!arch_Desc_IndiceGrupos) {
+            var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();  
+            new Desc_IndiceGrupos().crearBitacora();
+        }
         
         // crear archivo de grupos
-         boolean arch_desc_grupo = new File("C:/MEIA/grupo.json").exists();
-        if (!arch_Bit_Usuario) {
-            var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
+         boolean arch_grupo = new File("C:/MEIA/grupo.txt").exists();
+        if (!arch_grupo) {
+            var creado = new File("C:/MEIA/grupo.txt").createNewFile();  
         }
         
         // crear archivo de listas de amigos
-         boolean arch_desc_lista_amigos = new File("C:/MEIA/lista_amigos.json").exists();
-        if (!arch_Bit_Usuario) {
-            var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
+         boolean arch_lista_amigos = new File("C:/MEIA/lista_amigos.txt").exists();
+        if (!arch_lista_amigos) {
+            var creado = new File("C:/MEIA/lista_amigos.txt").createNewFile();  
         }
-        
+                
+        // crear archivo de indice de grupos  
+         boolean arch_IndiceGrupos = new File("C:/MEIA/IndiceGrupos.txt").exists();
+        if (!arch_IndiceGrupos) {
+            var creado = new File("C:/MEIA/IndiceGrupos.txt").createNewFile();  
+        }
         
         
         FileReader file = new FileReader(ubicacion);

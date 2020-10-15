@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.meia_2020.meia;
-
+import fase2.Mamejo_de_Grupos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -204,9 +204,12 @@ public class AgregarAGrupos extends javax.swing.JFrame {
         
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
-        
-        AmigoSeleccionado.setEnabled(false);
-        GrupoSeleccionado.setEnabled(false);
+        try {  
+            new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
