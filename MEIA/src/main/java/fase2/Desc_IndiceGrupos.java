@@ -28,12 +28,17 @@ public String fecha_creacion;
 public String usuario_creacion;
 public String fecha_modificacion;
 public String usuario_modificacion;
+
+public int NoBloques;
+public int RegistroActual;
+public int RegistroSiguiente;
+
 public int num_registros;
 public int registros_activos;
 public int registros_inactivos;
 public int max_reorganizacion;
 public int registro_inicial;
-public int NoBloques;
+
 
 
         public void crearBitacora(){
@@ -43,7 +48,11 @@ public int NoBloques;
             nuevo.registros_activos =0;
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
             Date date = new Date(System.currentTimeMillis());
-          nuevo.fecha_creacion= formatter.format(date);
+            nuevo.fecha_creacion= formatter.format(date); 
+            nuevo.RegistroActual=1;
+            nuevo.RegistroSiguiente=2;
+
+          
            nuevo.max_reorganizacion =4;
             actualizarJson(nuevo);
         }

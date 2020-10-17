@@ -202,8 +202,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int indexAmigo = ListaAmigos.getSelectedIndex();
-        new Desc_IndiceGrupos().crearBitacora();        
-        var lol = new Desc_IndiceGrupos().devolverObjeto();
+        
 
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
