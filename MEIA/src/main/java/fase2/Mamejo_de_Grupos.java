@@ -60,7 +60,7 @@ public class Mamejo_de_Grupos {
             //No hay nada, entonces se agrega el indice
             descIndiceGrupo = new Desc_IndiceGrupos().devolverObjeto();
             descIndiceGrupo.NoBloques=1;
-            descIndiceGrupo.RegistroActual=1;
+            descIndiceGrupo.RegistroDeInicio=1;
             descIndiceGrupo.RegistroSiguiente=2;
             descIndiceGrupo.registros_activos =1;
             descIndiceGrupo.num_registros =1;
