@@ -205,12 +205,18 @@ public class Mamejo_de_Grupos {
         List<String> Activos = new ArrayList<String>();        
         List<String> DesActivados = new ArrayList<String>();
 
-        while ((linea = lector.readLine())!=null) {     
+        while ((linea = lector.readLine())!=null)
+        {     
             var key = linea.split("\\|")[2];
             var status = linea.split("\\|")[4];
-           
-           
-                Activos.add(key);
+            if (status.equals(1)) 
+            {
+            Activos.add(key);
+                
+            }else
+            {
+            DesActivados.add(key); 
+            }
        }
         // obteniendo
         List<String> sortedList = Activos.stream().sorted().collect(Collectors.toList());
@@ -243,19 +249,24 @@ public class Mamejo_de_Grupos {
                    //1|1.1|compañeros-ElRoches-Mischa|0|1
                    if (sortedList.get(j).equals(llave)) 
                    {
-                       var Escritura=indice+"|"+bloque+"|"+llave+"|"+ (j++) +"|"+estatusDePeticion;
+                       //hizo match con el que buscamos
+                       var indiceDelSiguiente=0;
+                       
+                       for (int k = 0; k < sortedList.size(); k++) 
+                       {
+                        //buscamos el siguiente   
+                       }
+                       var Escritura=indice+"|"+bloque+"|"+llave+"|"+ "siguiente" +"|"+estatusDePeticion;
                        OrdenadosPorSiguiente.add(Escritura);
                        encontrado = true;
                        break;
                    }
-                   
                }
                if (encontrado = false) 
                {
-                   //esta desactivado
+                   //esta desactivado, lo escribimos asi como viene pero con ningun siguiente ni activado
                        var Escritura=indice+"|"+bloque+"|"+llave+"|"+ 0 +"|"+0;
                        OrdenadosPorSiguiente.add(Escritura);
-                               
                }
                
            }
