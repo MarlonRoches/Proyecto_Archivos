@@ -67,7 +67,7 @@ public class Mamejo_de_Grupos {
             //No hay nada, entonces se agrega el indice
             descIndiceGrupo = new Desc_IndiceGrupos().devolverObjeto();
             descIndiceGrupo.NoBloques=1;
-            descIndiceGrupo.RegistroDeInicio=1;
+            //descIndiceGrupo.RegistroDeInicio=1;
             descIndiceGrupo.RegistroSiguiente=2;
             descIndiceGrupo.registros_activos =1;
             descIndiceGrupo.num_registros =1;
@@ -209,7 +209,7 @@ public class Mamejo_de_Grupos {
         {     
             var key = linea.split("\\|")[2];
             var status = linea.split("\\|")[4];
-            if (status.equals(1)) 
+            if (status.equals("1")) 
             {
             Activos.add(key);
                 
@@ -219,11 +219,12 @@ public class Mamejo_de_Grupos {
             }
        }
         // obteniendo
-        List<String> sortedList = Activos.stream().sorted().collect(Collectors.toList());
+        List<String> ActivosOrdenados = Activos.stream().sorted().collect(Collectors.toList());
         var lol =0;
         lector.close();
         Archivo.close();
         //inserando ordenados
+        
         Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
         lector = new BufferedReader(Archivo);
          List<String> Todos = new ArrayList<String>();   
@@ -234,44 +235,118 @@ public class Mamejo_de_Grupos {
         Archivo.close();
         //asignando valores de siguiente
         List<String> OrdenadosPorSiguiente = new ArrayList<String>();
-        var encontrado = false;
-           for (int i = 0; i < Todos.size(); i++) 
+        //Para los activos
+           for (int i = 0; i < ActivosOrdenados.size(); i++) 
            {
-               //recorremos el 
-                   var indice = Todos.get(i).split("\\|")[0];
-                   var bloque = Todos.get(i).split("\\|")[1];
-                   var llave = Todos.get(i).split("\\|")[2];
-                   var siguiente = Todos.get(i).split("\\|")[3];
-                   var estatusDePeticion = Todos.get(i).split("\\|")[4];
-               for (int j = 0; j < Activos.size(); j++) 
-               {
-                   //recorremos el arreglo para ver cual es su orden alfabetico
-                   //1|1.1|compañeros-ElRoches-Mischa|0|1
-                   if (sortedList.get(j).equals(llave)) 
-                   {
-                       //hizo match con el que buscamos
-                       var indiceDelSiguiente=0;
-                       
-                       for (int k = 0; k < sortedList.size(); k++) 
-                       {
-                        //buscamos el siguiente   
-                       }
-                       var Escritura=indice+"|"+bloque+"|"+llave+"|"+ "siguiente" +"|"+estatusDePeticion;
-                       OrdenadosPorSiguiente.add(Escritura);
-                       encontrado = true;
-                       break;
-                   }
-               }
-               if (encontrado = false) 
-               {
-                   //esta desactivado, lo escribimos asi como viene pero con ningun siguiente ni activado
-                       var Escritura=indice+"|"+bloque+"|"+llave+"|"+ 0 +"|"+0;
-                       OrdenadosPorSiguiente.add(Escritura);
-               }
                
+                   //actual, la que estoy buscando para asignarle
+                    var KeyActual = ActivosOrdenados.get(i);
+                   String infoActual="";
+                   for (int j = 0; j < Todos.size(); j++) 
+                       {//buscando la iteracion que conlleve al siguiente
+                            var indice = Todos.get(j).split("\\|")[0];
+                            var bloque = Todos.get(j).split("\\|")[1];
+                            var llavesig = Todos.get(j).split("\\|")[2];
+                            var siguiente = Todos.get(j).split("\\|")[3];
+                            var estatusDePeticion = Todos.get(j).split("\\|")[4];
+                           if (KeyActual.equals(llavesig)) 
+                           {
+                               //hace match con su siguiente
+                               infoActual=Todos.get(j);
+                               break;
+                           }
+                       }
+                    var indiceSiguiente =i+1;
+                   if (indiceSiguiente==ActivosOrdenados.size()) 
+                   {
+                    OrdenadosPorSiguiente.add(infoActual.split("\\|")[0]+"|"+infoActual.split("\\|")[1]+"|"+infoActual.split("\\|")[2]+"|"+0 +"|"+ 1);
+
+                    break;
+                    }
+                       //buscar indice de la llave siguiente
+                       var keySiguiente =ActivosOrdenados.get(indiceSiguiente);
+                       for (int j = 0; j < Todos.size(); j++) 
+                       {//buscando la iteracion que conlleve al siguiente
+                            var indice = Todos.get(j).split("\\|")[0];
+                            var bloque = Todos.get(j).split("\\|")[1];
+                            var llavesig = Todos.get(j).split("\\|")[2];
+                            var siguiente = Todos.get(j).split("\\|")[3];
+                            var estatusDePeticion = Todos.get(j).split("\\|")[4];
+                           if (keySiguiente.equals(llavesig)) 
+                           {
+                               //hace match con su siguiente
+                               OrdenadosPorSiguiente.add(infoActual.split("\\|")[0]+"|"+infoActual.split("\\|")[1]+"|"+infoActual.split("\\|")[2]+"|"+indice +"|"+ 1);
+                               
+                               var sto=0;
+                               break;
+                           }
+                       }
+                       var stop=0;
            }
-           //aasdasdas
-           var stop=0;
+                      
+
+           for (int i = 0; i < DesActivados.size(); i++) {
+               var KeyActual = DesActivados.get(i);
+                   var infoDesactivado="";
+                   for (int j = 0; j < Todos.size(); j++) 
+                       {//buscando la iteracion que conlleve al siguiente
+                            var indice = Todos.get(j).split("\\|")[0];
+                            var bloque = Todos.get(j).split("\\|")[1];
+                            var llavesig = Todos.get(j).split("\\|")[2];
+                            var siguiente = Todos.get(j).split("\\|")[3];
+                            var estatusDePeticion = Todos.get(j).split("\\|")[4];
+                           if (KeyActual.equals(llavesig)) 
+                           {
+                               //hace match con su siguiente
+                               infoDesactivado=Todos.get(j);
+                               OrdenadosPorSiguiente.add(infoDesactivado);
+                               break;
+                           }
+                       }
+           }
+            var indiceInicial="";
+           var KeyActual = ActivosOrdenados.get(0);
+           for (int i = 0; i < DesActivados.size(); i++) {
+               
+                   var indfoInical="";
+                   for (int j = 0; j < Todos.size(); j++) 
+                       {//buscando la iteracion que conlleve al siguiente
+                            var indice = Todos.get(j).split("\\|")[0];
+                            var bloque = Todos.get(j).split("\\|")[1];
+                            var llavesig = Todos.get(j).split("\\|")[2];
+                            var siguiente = Todos.get(j).split("\\|")[3];
+                            var estatusDePeticion = Todos.get(j).split("\\|")[4];
+                           if (KeyActual.equals(llavesig)) 
+                           {
+                               //hace match con su siguiente
+                               indiceInicial=indice;
+                               break;
+                           }
+                       }
+           }
+           
+            List<String> TodosOrdenados = OrdenadosPorSiguiente.stream().sorted().collect(Collectors.toList());
+                     
+            //mandar a escribir
+            var WriterIndice = new FileWriter("C:/MEIA/IndiceGrupos.txt", false);
+            for (int i = 0; i < TodosOrdenados.size(); i++) 
+            {
+            String aEscribir=TodosOrdenados.get(i)+"\n";
+            WriterIndice.write(aEscribir);
+           }
+            WriterIndice.close();
+            
+            
+            //actualizando json
+              //actualizar descriptor
+            var json = new Desc_IndiceGrupos().devolverObjeto();
+            json.registro_inicial=Integer.parseInt(indiceInicial);
+            json.registros_inactivos=DesActivados.size();
+            json.registros_activos=Activos.size();
+            json.num_registros=Todos.size();
+            json.actualizarJson(json);
+            
+           var end=0;
         }
    }
 }
