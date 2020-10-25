@@ -5,6 +5,8 @@
  */
 package fase2;
 
+import com.meia_2020.meia.AgregarAGrupos;
+import com.meia_2020.meia.LoginForm;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +15,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,10 +75,26 @@ public class Mamejo_de_Grupos {
             
             
             new Desc_IndiceGrupos().actualizarJson(descIndiceGrupo);
+            //creacion descriptor de bloque
+            boolean arch_Desc_Bloques = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").exists();
+            if (!arch_Desc_Bloques) {
+            try {  
+                var creado = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").createNewFile();
+                new Desc_Bloques().crearBitacora(LoginForm.UsuarioActual.usuario, String.valueOf(descIndiceGrupo.NoBloques));
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+           
+       }
+            
              var fileWriter = new FileWriter("C:/MEIA/IndiceGrupos.txt", true);
                  var aEscribir="1|1.1|"+Grupo+"-"+UsuarioActual+"-"+Amigo+"|0|1\n";
                  fileWriter.write(aEscribir);
                  fileWriter.close();
+                 
+                 
+                 
                  
                  boolean arch_BloqueActual = new File("C:/MEIA/grupo_amigos_"+descIndiceGrupo.NoBloques+".txt").exists();
                         if (!arch_BloqueActual) 

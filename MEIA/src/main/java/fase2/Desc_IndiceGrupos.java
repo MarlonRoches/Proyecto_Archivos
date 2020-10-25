@@ -41,7 +41,7 @@ public int registro_inicial;
 
 
 
-        public void crearBitacora(){
+        public void crearBitacora(String _UsuarioDeCreacion){
             var nuevo = new Desc_IndiceGrupos();
             nuevo.nombre_simbolico = "Desc_IndiceGrupos";
             nuevo.num_registros= 0;
@@ -51,7 +51,7 @@ public int registro_inicial;
             nuevo.fecha_creacion= formatter.format(date); 
             nuevo.RegistroDeInicio=1;
             nuevo.RegistroSiguiente=2;
-
+            nuevo.usuario_creacion= _UsuarioDeCreacion;
           
            nuevo.max_reorganizacion =4;
             actualizarJson(nuevo);
@@ -98,5 +98,7 @@ public int registro_inicial;
             var objetoJson  = gson.fromJson(json, Desc_IndiceGrupos.class);
             return objetoJson;
         }
+
+   
 
 }

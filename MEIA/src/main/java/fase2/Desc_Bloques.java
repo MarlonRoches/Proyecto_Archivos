@@ -22,42 +22,34 @@ import java.util.logging.Logger;
  *
  * @author roche
  */
-public class Descriptores_Bloques 
+public class Desc_Bloques 
 {
     public String nombre_simbolico;
     public String fecha_creacion;
     public String usuario_creacion;
     public String fecha_modificacion;
     public String usuario_modificacion;
-
-    public int NoBloques;
-    public int RegistroDeInicio;
-    public int RegistroSiguiente;
-
     public int num_registros;
     public int registros_activos;
     public int registros_inactivos;
-    public int max_reorganizacion;
-    public int registro_inicial;
     
     
-    public void crearBitacora(String NumBloque){
-            var nuevo = new Descriptores_Bloques();
+    public void crearBitacora(String _UsuarioDeCreacion ,String NumBloque){
+            var nuevo = new Desc_Bloques();
             nuevo.nombre_simbolico = "Desc_BloqueNo" + NumBloque;
-            nuevo.num_registros= 0;
-            nuevo.registros_activos =0;
+            nuevo.num_registros= 1;
+            nuevo.registros_activos =1;
+            nuevo.registros_inactivos =0;
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
             Date date = new Date(System.currentTimeMillis());
-            nuevo.fecha_creacion= formatter.format(date); 
-            nuevo.RegistroDeInicio=1;
-            nuevo.RegistroSiguiente=2;
-
-          
-           nuevo.max_reorganizacion =4;
-            actualizarJson(nuevo);
+            nuevo.fecha_creacion= formatter.format(date);
+            nuevo.fecha_modificacion= formatter.format(date);
+            nuevo.usuario_creacion= _UsuarioDeCreacion;
+            nuevo.usuario_modificacion= _UsuarioDeCreacion;
+            actualizarJson(nuevo, NumBloque);
         }
         
-         public void actualizarJson(Descriptores_Bloques actualizado, String NumBloque)
+         public void actualizarJson(Desc_Bloques actualizado, String NumBloque)
         {
 
             
@@ -75,7 +67,7 @@ public class Descriptores_Bloques
          
         }
 
-        public Descriptores_Bloques devolverObjeto(String NumBloque)
+        public Desc_Bloques devolverObjeto(String NumBloque)
         {
             String json ="";
          try {
@@ -95,7 +87,7 @@ public class Descriptores_Bloques
          }
 
             var gson = new Gson(); 
-            var objetoJson  = gson.fromJson(json, Descriptores_Bloques.class);
+            var objetoJson  = gson.fromJson(json, Desc_Bloques.class);
             return objetoJson;
         }
 }

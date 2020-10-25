@@ -7,6 +7,7 @@ package com.meia_2020.meia;
 import fase2.Desc_IndiceGrupos;
 import fase2.Mamejo_de_Grupos;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -202,18 +203,35 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int indexAmigo = ListaAmigos.getSelectedIndex();
-        
-
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
-        try 
-        {  
+        boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
+       if (!arch_Desc_IndiceGrupos) 
+       {
+            try 
+            {  
+                var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();
+                new Desc_IndiceGrupos().crearBitacora(LoginForm.UsuarioActual.usuario);
+            } 
+            catch (IOException ex) 
+            {
+                Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }
+        try {
             var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
-        } 
-        catch (IOException ex) 
-        {
+            if (resultado)
+            {
+                
+            }
+            else
+            {
+            }
+            
+        } catch (IOException ex) {
             Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
       
     }//GEN-LAST:event_jButton1ActionPerformed
 
