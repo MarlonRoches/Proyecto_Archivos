@@ -204,6 +204,7 @@ public class Mamejo_de_Grupos {
    public void Solicitudes()
    {
    
+       //
    }
    public void UpdateArchivoIndexado() throws FileNotFoundException, IOException
    {

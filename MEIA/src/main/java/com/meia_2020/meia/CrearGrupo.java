@@ -141,8 +141,12 @@ public class CrearGrupo extends javax.swing.JFrame {
             FileWriter archivo;
             String lineaEscribir = LoginForm.UsuarioActual.usuario + "|" + nombreGrupo + "|" + descripcionGrupo + "|" + 0 + "|" + (new SimpleDateFormat("dd-MM-yyyy").format(fecha)) + "|" + 1;
             try {
-                archivo = new FileWriter("C:/MEIA/grupo.txt");
-                archivo.append(lineaEscribir);
+                archivo = new FileWriter("C:/MEIA/grupo.txt",true);
+                archivo.write(lineaEscribir+"\n");
+                archivo.close();
+                this.setVisible(false);
+                var manejoDeGrupos= new AgregarAGrupos();
+                manejoDeGrupos.setVisible(true);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al guardar grupo");
             }

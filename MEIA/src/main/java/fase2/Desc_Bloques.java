@@ -40,9 +40,11 @@ public class Desc_Bloques
             nuevo.num_registros= 1;
             nuevo.registros_activos =1;
             nuevo.registros_inactivos =0;
+            
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
             Date date = new Date(System.currentTimeMillis());
             nuevo.fecha_creacion= formatter.format(date);
+            
             nuevo.fecha_modificacion= formatter.format(date);
             nuevo.usuario_creacion= _UsuarioDeCreacion;
             nuevo.usuario_modificacion= _UsuarioDeCreacion;
