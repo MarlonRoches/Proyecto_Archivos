@@ -226,6 +226,7 @@ public class LoginForm extends javax.swing.JFrame {
         }
         
           //creando archivo de 
+
         boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
         if (!arch_Desc_IndiceGrupos) {
             var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();  
