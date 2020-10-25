@@ -14,9 +14,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -192,9 +195,71 @@ public class Mamejo_de_Grupos {
     }
    
    
-   public void InsertarEnBloque(int numDeBloque, String Datos)
+   public void ActualizarLista() throws FileNotFoundException, IOException
    {
-       
-   
+       if (new File("C:/MEIA/IndiceGrupos.txt").exists()) 
+       {
+        FileReader Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
+        BufferedReader lector = new BufferedReader(Archivo);
+        var linea ="";
+        List<String> Activos = new ArrayList<String>();        
+        List<String> DesActivados = new ArrayList<String>();
+
+        while ((linea = lector.readLine())!=null) {     
+            var key = linea.split("\\|")[2];
+            var status = linea.split("\\|")[4];
+           
+           
+                Activos.add(key);
+       }
+        // obteniendo
+        List<String> sortedList = Activos.stream().sorted().collect(Collectors.toList());
+        var lol =0;
+        lector.close();
+        Archivo.close();
+        //inserando ordenados
+        Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
+        lector = new BufferedReader(Archivo);
+         List<String> Todos = new ArrayList<String>();   
+        while ((linea = lector.readLine())!=null) {     
+            Todos.add(linea);
+        }
+        lector.close();
+        Archivo.close();
+        //asignando valores de siguiente
+        List<String> OrdenadosPorSiguiente = new ArrayList<String>();
+        var encontrado = false;
+           for (int i = 0; i < Todos.size(); i++) 
+           {
+               //recorremos el 
+                   var indice = Todos.get(i).split("\\|")[0];
+                   var bloque = Todos.get(i).split("\\|")[1];
+                   var llave = Todos.get(i).split("\\|")[2];
+                   var siguiente = Todos.get(i).split("\\|")[3];
+                   var estatusDePeticion = Todos.get(i).split("\\|")[4];
+               for (int j = 0; j < Activos.size(); j++) 
+               {
+                   
+                   //1|1.1|compañeros-ElRoches-Mischa|0|1
+                   if (sortedList.get(j).equals(llave)) 
+                   {
+                       var Escritura=indice+"|"+bloque+"|"+llave+"|"+ (j++) +"|"+estatusDePeticion;
+                       OrdenadosPorSiguiente.add(Escritura);
+                       encontrado = true;
+                       break;
+                   }
+                   
+               }
+               if (encontrado = false) 
+               {
+                   //esta desactivado
+                       var Escritura=indice+"|"+bloque+"|"+llave+"|"+ 0 +"|"+0;
+                       OrdenadosPorSiguiente.add(Escritura);
+                               
+               }
+               
+           }
+           var stop=0;
+        }
    }
 }

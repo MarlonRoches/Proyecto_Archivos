@@ -202,7 +202,15 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            new Mamejo_de_Grupos().ActualizarLista();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         int indexAmigo = ListaAmigos.getSelectedIndex();
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
@@ -223,16 +231,14 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
             if (resultado)
             {
-                //Initacion exitosa
+                //Insercion exitosa
                 JOptionPane.showMessageDialog(null, "Solicitud Solicitud enviada con exito! :)");
-                  this.setVisible(false);
+                this.setVisible(false);
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "El usuario ya fue agregado :(");
-                
             }
-            
         } catch (IOException ex) {
             Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -349,9 +349,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         var nuevoLogin = new LoginForm();
         this.setVisible(false);
-        nuevoLogin.setVisible(true);        
-        
-
+        nuevoLogin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
