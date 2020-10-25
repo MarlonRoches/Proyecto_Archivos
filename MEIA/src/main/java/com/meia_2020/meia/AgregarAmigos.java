@@ -194,7 +194,28 @@ public class AgregarAmigos extends javax.swing.JFrame {
                 Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        if (shownList.getSelectedIndex() != 0) {
+            if (file.length() != 0) {
+                try {
+                    var fileForReading = new FileReader("C:/MEIA/lista_amigos.txt");
+                    var buffer = new BufferedReader(fileForReading);
+                    var line = "";
+                    while((line = buffer.readLine()) != null)
+                    {
+                        var newUserValues = line.split("\\|");
+                    }
+                    buffer.close();
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Por favor escoja un usuario para agregar.");
+        }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     /**
