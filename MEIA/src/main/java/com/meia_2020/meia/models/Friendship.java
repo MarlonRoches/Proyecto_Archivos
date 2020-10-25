@@ -47,11 +47,11 @@ public class Friendship {
     public static void WriteFile(HashMap<String, Friendship> friendsDictionary, String route) throws IOException
     {
         var fileToWrite = new File(route);
-        var writer = new FileWriter(fileToWrite, false);
-        for (var value : friendsDictionary.values()) {
-            writer.write(Friendship.GetString(value) + System.lineSeparator());
+        try (java.io.FileWriter writer = new FileWriter(fileToWrite, false)) {
+            for (var value : friendsDictionary.values()) {
+                writer.write(Friendship.GetString(value) + System.lineSeparator());
+            }
         }
-        writer.close();
     }
     
     private static String GetString(Friendship friends)
@@ -61,8 +61,8 @@ public class Friendship {
         friendshipString += friends.user + "|";
         friendshipString += friends.friend + "|";
         friendshipString += friends.accepted ? "1" : "0";
-        friendshipString += friends.transactionDate;
-        friendshipString += friends.transactionUser;
+        friendshipString += "|" + friends.transactionDate + "|";
+        friendshipString += friends.transactionUser + "|";
         friendshipString += friends.status ? "1" : "0";
         return friendshipString;
     }
@@ -95,5 +95,23 @@ public class Friendship {
         newFriends.transactionUser = array[5];
         newFriends.status = "1".equals(array[6]);
         return newFriends;
+    }
+    
+    public static void AddFriend(HashMap<String, Friendship> friendsDictionary, String user, String friend, String route) throws IOException{
+        for(var friendship : friendsDictionary.keySet()){
+            if (friendship.contains(user) && friendship.contains(friend)) {
+                friendsDictionary.get(friendship).accepted = true;
+            }
+        }
+        Friendship.WriteFile(friendsDictionary, route);
+    }
+    
+    public static void DeleteFriend(HashMap<String, Friendship> friendsDictionary, String user, String friend, String route) throws IOException{
+        for(var friendship : friendsDictionary.keySet()){
+            if (friendship.contains(user) && friendship.contains(friend)) {
+                friendsDictionary.get(friendship).status = false;
+            }
+        }
+        Friendship.WriteFile(friendsDictionary, route);
     }
 }

@@ -5,6 +5,7 @@
  */
 package com.meia_2020.meia;
 
+import com.meia_2020.meia.models.Friendship;
 import com.meia_2020.meia.models.Usuario;
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  * @author misch
  */
 public class AgregarAmigos extends javax.swing.JFrame {
-
+    String fileRoute = "C:/MEIA/lista_amigos.txt";
     /**
      * Creates new form AgregarAmigos
      */
@@ -132,82 +132,112 @@ public class AgregarAmigos extends javax.swing.JFrame {
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         // TODO add your handling code here:
-        try {
-            var file = new FileReader("C:/MEIA/usuario.txt");
-            var buffer = new BufferedReader(file);
-            var line = "";
-            ArrayList<Usuario> usersList = new ArrayList<>();
-            while((line = buffer.readLine()) != null)
-            {
-                var newUserValues = line.split("\\|");
-                if ("1".equals(newUserValues[9])) {
-                    usersList.add(new Usuario().setUsuariofromArray(newUserValues));
-                }
-            }
-            buffer.close();
-            file.close();
-            
-            if (cbSearchCriteria.getSelectedIndex() != 0) {
-                switch(cbSearchCriteria.getSelectedIndex()){
-                    case 1 -> {
-                        usersList = (ArrayList<Usuario>) usersList.stream().filter(u -> u.usuario.contains(searchedData.getText())).collect(Collectors.toList());
-                    }
-                    case 2 -> {
-                        usersList = (ArrayList<Usuario>) usersList.stream().filter(u -> u.nombre.contains(searchedData.getText())).collect(Collectors.toList());
-                    }
-                    case 3 -> {
-                        usersList = (ArrayList<Usuario>) usersList.stream().filter(u -> u.usuarioApellido.contains(searchedData.getText())).collect(Collectors.toList());
-                    }
-                }
-                DefaultListModel<String> model = new DefaultListModel<>();
-                for(var user : usersList)
+        if (!"".equals(searchedData.getText())) {
+            try {
+                var file = new FileReader("C:/MEIA/usuario.txt");
+                var buffer = new BufferedReader(file);
+                var line = "";
+                ArrayList<Usuario> usersList = new ArrayList<>();
+                while((line = buffer.readLine()) != null)
                 {
-                    model.addElement(user.getUsuario() + "|" + user.getNombre() + "|" + user.getUsuarioApellido());
+                    var newUserValues = line.split("\\|");
+                    if ("1".equals(newUserValues[9])) {
+                        usersList.add(new Usuario().setUsuariofromArray(newUserValues));
+                    }
                 }
-                shownList.setModel(model);
-                shownList.repaint();
-                shownList.revalidate();
-                if (usersList.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Ningún usuario ha cumplido los criterios de búsqueda." + " Por favor intente de nuevo.");
+                buffer.close();
+                file.close();
+
+                file = new FileReader("C:/MEIA/bitacora_Usuarios.txt");
+                buffer = new BufferedReader(file);
+                while((line = buffer.readLine()) != null)
+                {
+                    var newUserValues = line.split("\\|");
+                    if ("1".equals(newUserValues[9]) && !newUserValues[0].equals(LoginForm.UsuarioActual.usuario)) {
+                        usersList.add(new Usuario().setUsuariofromArray(newUserValues));
+                    }
                 }
-                shownList.setSelectedIndex(-1);
+
+                if (cbSearchCriteria.getSelectedIndex() != 0) {
+                    switch(cbSearchCriteria.getSelectedIndex()){
+                        case 1 -> {
+                            usersList = (ArrayList<Usuario>) usersList.stream().filter(u -> u.usuario.contains(searchedData.getText())).collect(Collectors.toList());
+                        }
+                        case 2 -> {
+                            usersList = (ArrayList<Usuario>) usersList.stream().filter(u -> u.nombre.contains(searchedData.getText())).collect(Collectors.toList());
+                        }
+                        case 3 -> {
+                            usersList = (ArrayList<Usuario>) usersList.stream().filter(u -> u.usuarioApellido.contains(searchedData.getText())).collect(Collectors.toList());
+                        }
+                    }
+                    DefaultListModel<String> model = new DefaultListModel<>();
+                    for(var user : usersList)
+                    {
+                        model.addElement(user.getUsuario() + "|" + user.getNombre() + "|" + user.getUsuarioApellido());
+                    }
+                    shownList.setModel(model);
+                    shownList.repaint();
+                    shownList.revalidate();
+                    if (usersList.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ningún usuario ha cumplido los criterios de búsqueda." + " Por favor intente de nuevo.");
+                    }
+                    shownList.setSelectedIndex(-1);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Debe escoger un parámetro para poder realizar la búsqueda.");
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "Debe escoger un parámetro para poder realizar la búsqueda.");
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un dato a buscar.");
         }
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         // TODO add your handling code here:
-          var file = new File("C:/MEIA/lista_amigos.txt");
+          var file = new File(fileRoute);
         if (!file.exists()) {
             try {
-                new File("C:/MEIA/lista_amigos.txt").createNewFile();
+                new File(fileRoute).createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        var test = shownList.getSelectedIndex();
         if (shownList.getSelectedIndex() != -1) {
-            var test2 = shownList.getSelectedValue().split("\\|");
             if (file.length() != 0) {
                 try {
-                    var fileForReading = new FileReader("C:/MEIA/lista_amigos.txt");
-                    var buffer = new BufferedReader(fileForReading);
-                    var line = "";
-                    while((line = buffer.readLine()) != null)
-                    {
-                        var newFriendshipValues = line.split("\\|");
+                    var friendsDictionary = Friendship.GetMapFromFileRoute(fileRoute);
+                    var selectedUsername = shownList.getSelectedValue().split("\\|")[0];
+                    if (!friendsDictionary.containsKey(LoginForm.UsuarioActual + "," + selectedUsername)) {
+                        var newFriendship = Friendship.CreateNewFriendship(selectedUsername);
+                        friendsDictionary.put(newFriendship.key, newFriendship);
+                        Friendship.WriteFile(friendsDictionary, fileRoute);
+                        JOptionPane.showMessageDialog(null, "La solicitud de amistad ha sido enviada.");
+                        this.dispose();
                     }
-                    buffer.close();
-                } catch (FileNotFoundException ex) {
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "El usuario que ha escogido ya es su amigo o ya existe una solicitud de amistad en proceso.");
+                    }
+                } catch (IOException ex) {
                     Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+            {
+                try {
+                    var friendsDictionary = Friendship.GetMapFromFileRoute(fileRoute);
+                    var selectedUsername = shownList.getSelectedValue().split("\\|")[0];
+                    var newFriendship = Friendship.CreateNewFriendship(selectedUsername);
+                    friendsDictionary.put(newFriendship.key, newFriendship);
+                    Friendship.WriteFile(friendsDictionary, fileRoute);
+                    JOptionPane.showMessageDialog(null, "La solicitud de amistad ha sido enviada.");
+                    this.dispose();
                 } catch (IOException ex) {
                     Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
                 }
