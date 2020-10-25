@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class Archivo_Usuario {
     
-    public boolean midificarUsuario(String archivo,String nombreDeUsuario, Usuario actualizado_)
+    public boolean modificarUsuario(String archivo,String nombreDeUsuario, Usuario actualizado_)
     {
         var salida =false;
         int lineaindex =0;

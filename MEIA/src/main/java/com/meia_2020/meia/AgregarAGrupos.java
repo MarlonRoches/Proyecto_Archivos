@@ -27,8 +27,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
      */
     public AgregarAGrupos() {
         initComponents();
-        
-        
+        //carga de listas
          var lm = new DefaultListModel();
         //mostrar amigos 
          FileReader file;
@@ -41,7 +40,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)) {
+                     if (splited[0].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) {
                          linex += splited[1]+"," ;
                      }
                      var lol =0;
@@ -64,8 +63,6 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             lm.addElement(week[i]);
         }
         ListaAmigos.setModel(lm);
-        
-        
         lm = new DefaultListModel();
         //mostrar amigos 
          
@@ -78,7 +75,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)) {
+                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)&& splited[5].equals("1")) {
                          linex += splited[1]+"," ;
                      }
                      var lol =0;

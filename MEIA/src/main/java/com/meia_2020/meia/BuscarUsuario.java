@@ -395,7 +395,7 @@ public class BuscarUsuario extends javax.swing.JFrame {
           
              var lol = usuarioModificado.usuarioToString() ; 
              //verificar que este en el archivo de usuarios
-             var modificado =new Archivo_Usuario().midificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
+             var modificado =new Archivo_Usuario().modificarUsuario(global_Ruta,BuscarUsuario_TxtBox.getText(),usuarioModificado);
             
              if (global_Ruta.equals("C:/MEIA/bitacora_Usuarios.txt")) {
               var desc = new Desc_Usuarios().devolverObjeto();
