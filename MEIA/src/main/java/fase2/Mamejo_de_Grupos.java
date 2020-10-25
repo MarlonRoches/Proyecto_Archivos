@@ -239,7 +239,7 @@ public class Mamejo_de_Grupos {
                    var estatusDePeticion = Todos.get(i).split("\\|")[4];
                for (int j = 0; j < Activos.size(); j++) 
                {
-                   
+                   //recorremos el arreglo para ver cual es su orden alfabetico
                    //1|1.1|compañeros-ElRoches-Mischa|0|1
                    if (sortedList.get(j).equals(llave)) 
                    {
