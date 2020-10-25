@@ -222,6 +222,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
             if (resultado)
             {
+                //Initacion exitosa
                 
             }
             else

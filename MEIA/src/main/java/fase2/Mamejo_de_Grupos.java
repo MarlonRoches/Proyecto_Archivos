@@ -152,7 +152,9 @@ public class Mamejo_de_Grupos {
                 
                 desBloque.fecha_modificacion=formatter.format(date);
                 desBloque.usuario_modificacion=UsuarioActual;
-                
+                desBloque.num_registros++;
+                desBloque.registros_activos++;
+                desBloque.actualizarJson(desBloque, String.valueOf(descIndiceGrupo.NoBloques));
                 var stop =0;
             }
                         //escribimos en el indice
