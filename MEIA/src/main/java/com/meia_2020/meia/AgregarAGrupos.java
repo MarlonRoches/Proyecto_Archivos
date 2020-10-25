@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -223,10 +224,11 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             if (resultado)
             {
                 //Initacion exitosa
-                
+                JOptionPane.showMessageDialog(null, "Solicitud Solicitud enviada con exito! :)");
             }
             else
             {
+                JOptionPane.showMessageDialog(null, "El usuario ya fue agregado :(");
             }
             
         } catch (IOException ex) {
