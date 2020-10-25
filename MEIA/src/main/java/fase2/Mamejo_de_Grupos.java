@@ -284,7 +284,7 @@ public class Mamejo_de_Grupos {
                        var stop=0;
            }
                       
-
+//agregando los desactivados
            for (int i = 0; i < DesActivados.size(); i++) {
                var KeyActual = DesActivados.get(i);
                    var infoDesactivado="";
@@ -299,14 +299,15 @@ public class Mamejo_de_Grupos {
                            {
                                //hace match con su siguiente
                                infoDesactivado=Todos.get(j);
-                               OrdenadosPorSiguiente.add(infoDesactivado);
+                               OrdenadosPorSiguiente.add(indice+"|"+bloque+"|"+llavesig+"|"+0+"|"+0);
                                break;
                            }
                        }
            }
+           
             var indiceInicial="";
            var KeyActual = ActivosOrdenados.get(0);
-           for (int i = 0; i < DesActivados.size(); i++) {
+           for (int i = 0; i < Todos.size(); i++) {
                
                    var indfoInical="";
                    for (int j = 0; j < Todos.size(); j++) 
