@@ -144,6 +144,7 @@ public class CrearGrupo extends javax.swing.JFrame {
                 archivo = new FileWriter("C:/MEIA/grupo.txt",true);
                 archivo.write(lineaEscribir+"\n");
                 archivo.close();
+                JOptionPane.showMessageDialog(null, "Grupo creado correctamente");
                 this.setVisible(false);
                 var manejoDeGrupos= new AgregarAGrupos();
                 manejoDeGrupos.setVisible(true);

@@ -43,6 +43,8 @@ public class Main extends javax.swing.JFrame {
         }
         
         
+        
+        //carga de listas
          var lm = new DefaultListModel();
         //mostrar amigos 
          FileReader file;
@@ -55,7 +57,7 @@ public class Main extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)) {
+                     if (splited[0].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) {
                          linex += splited[1]+"," ;
                      }
                      var lol =0;
@@ -78,8 +80,6 @@ public class Main extends javax.swing.JFrame {
             lm.addElement(week[i]);
         }
         ListaAmigos.setModel(lm);
-        
-        
         lm = new DefaultListModel();
         //mostrar amigos 
          
@@ -92,7 +92,7 @@ public class Main extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)) {
+                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)&& splited[5].equals("1")) {
                          linex += splited[1]+"," ;
                      }
                      var lol =0;
@@ -115,8 +115,6 @@ public class Main extends javax.swing.JFrame {
             lm.addElement(week[i]);
         }
         ListaGrupos.setModel(lm);
-        
-        
         
         
     }
@@ -365,6 +363,7 @@ public class Main extends javax.swing.JFrame {
     private void BtnBackup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackup1ActionPerformed
         // TODO add your handling code here:
      var AgregarAGrupoFrame = new AgregarAGrupos();
+     this.setVisible(false);
             AgregarAGrupoFrame.setVisible(true);
     }//GEN-LAST:event_BtnBackup1ActionPerformed
 
