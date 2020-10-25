@@ -51,7 +51,7 @@ public class Mamejo_de_Grupos {
                 //aqui ya existe el añadido al grupo
                  fileRead.close();       
                   file.close();
-                   ActualizarLista();
+                   UpdateArchivoIndexado();
 
                 return false;
             }
@@ -112,7 +112,7 @@ public class Mamejo_de_Grupos {
                         WriterBloque.close();
         
             // TODO add your handling code here:
-           ActualizarLista();
+           UpdateArchivoIndexado();
             
                  return true;
         }
@@ -190,7 +190,7 @@ public class Mamejo_de_Grupos {
                     descIndiceGrupo.RegistroSiguiente++;
                     new Desc_IndiceGrupos().actualizarJson(descIndiceGrupo);
            
-                ActualizarLista();
+                UpdateArchivoIndexado();
              return true;
         }
         else
@@ -201,8 +201,11 @@ public class Mamejo_de_Grupos {
         }
     }
    
+   public void Solicitudes()
+   {
    
-   public void ActualizarLista() throws FileNotFoundException, IOException
+   }
+   public void UpdateArchivoIndexado() throws FileNotFoundException, IOException
    {
        if (new File("C:/MEIA/IndiceGrupos.txt").exists() && new File("C:/MEIA/Desc_IndiceGrupos.json").exists()) 
        {
