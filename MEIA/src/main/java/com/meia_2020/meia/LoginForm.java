@@ -200,11 +200,11 @@ public class LoginForm extends javax.swing.JFrame {
         if (!directory) {
             var creado = new File("C:/MEIA").mkdir();  
         }
-         boolean imagenes = new File("C:/MEIA/Fotografias").exists();
+        boolean imagenes = new File("C:/MEIA/Fotografias").exists();
         if (!imagenes) {
             var creado = new File("C:/MEIA/Fotografias").mkdir();  
         }
-         boolean arch_Usuario = new File("C:/MEIA/usuario.txt").exists();
+        boolean arch_Usuario = new File("C:/MEIA/usuario.txt").exists();
         if (!arch_Usuario) {
             var creado = new File("C:/MEIA/usuario.txt").createNewFile();  
         }
@@ -214,15 +214,13 @@ public class LoginForm extends javax.swing.JFrame {
             var creado = new File("C:/MEIA/bitacora_Usuarios.txt").createNewFile();  
         }
 
-        boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
+        boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_Bitacora.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile();  
         }
         
-        
-        
         //creando archivo de 
-        boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_usuario.json").exists();
+        boolean arch_desc_Usuario = new File("C:/MEIA/desc_usuario.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
         }
@@ -232,7 +230,6 @@ public class LoginForm extends javax.swing.JFrame {
         if (!arch_Desc_IndiceGrupos) {
             var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();  
             new Desc_IndiceGrupos().crearBitacora();
-            
         }
         
         // crear archivo de grupos
