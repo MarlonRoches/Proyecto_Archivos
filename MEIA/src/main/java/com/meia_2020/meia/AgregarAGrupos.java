@@ -149,7 +149,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
         GrupoSeleccionado.setText("jTextField1");
         GrupoSeleccionado.setEnabled(false);
 
-        jButton1.setText("Fijar Seleccion");
+        jButton1.setText("Agregar Amigo A Grupo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -167,7 +167,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             }
         });
 
-        BtnModificar.setText("Modificar");
+        BtnModificar.setText("Administrar Grupo");
         BtnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnModificarActionPerformed(evt);
@@ -209,7 +209,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                             .addComponent(GrupoSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bCrearGrupo2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(bCrearGrupo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnModificar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,6 +289,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     private void bCrearGrupo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearGrupo2ActionPerformed
         var NuevoGrupoFrame = new CrearGrupo();
         NuevoGrupoFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bCrearGrupo2ActionPerformed
 
     private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed

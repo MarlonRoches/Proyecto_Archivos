@@ -43,7 +43,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="bCrearGrupo2" pref="111" max="32767" attributes="0"/>
+                          <Component id="bCrearGrupo2" max="32767" attributes="0"/>
                           <Component id="BtnModificar" alignment="0" max="32767" attributes="0"/>
                           <Component id="BtnModificar1" alignment="1" max="32767" attributes="0"/>
                           <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
@@ -154,7 +154,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fijar Seleccion"/>
+        <Property name="text" type="java.lang.String" value="Agregar Amigo A Grupo"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -180,7 +180,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="BtnModificar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
+        <Property name="text" type="java.lang.String" value="Administrar Grupo"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnModificarActionPerformed"/>
