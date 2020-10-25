@@ -77,16 +77,15 @@ public class Mamejo_de_Grupos {
             new Desc_IndiceGrupos().actualizarJson(descIndiceGrupo);
             //creacion descriptor de bloque
             boolean arch_Desc_Bloques = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").exists();
-            if (!arch_Desc_Bloques) {
+            if (!arch_Desc_Bloques) 
+            {
             try {  
                 var creado = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").createNewFile();
                 new Desc_Bloques().crearBitacora(LoginForm.UsuarioActual.usuario, String.valueOf(descIndiceGrupo.NoBloques));
             } catch (IOException ex) {
                 Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-           
-       }
+            }
             
              var fileWriter = new FileWriter("C:/MEIA/IndiceGrupos.txt", true);
                  var aEscribir="1|1.1|"+Grupo+"-"+UsuarioActual+"-"+Amigo+"|0|1\n";
@@ -130,10 +129,28 @@ public class Mamejo_de_Grupos {
                         descIndiceGrupo.RegistroSiguiente=1;
                         descIndiceGrupo.NoBloques++;
                     }
-                         //verificar si el archivo al ingresar existe
+                         
+
+
+                        //verificar si el archivo al ingresar existe
                         ///grupo_amigos_n.txt
                        
-                        
+                        //creacion descriptor de bloque
+            boolean arch_Desc_Bloques = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").exists();
+            if (!arch_Desc_Bloques) 
+            {
+            try {  
+                var creado = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").createNewFile();
+                new Desc_Bloques().crearBitacora(LoginForm.UsuarioActual.usuario, String.valueOf(descIndiceGrupo.NoBloques));
+            } catch (IOException ex) {
+                Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }else
+            {
+                // ya existe el descriptor, actualizar
+                var desBloque = new Desc_Bloques().devolverObjeto( String.valueOf(descIndiceGrupo.NoBloques));
+                
+            }
                         //escribimos en el indice
                         //registro0	posicion1	key2	siguiente3	estatus5
                         descIndiceGrupo.num_registros++;
