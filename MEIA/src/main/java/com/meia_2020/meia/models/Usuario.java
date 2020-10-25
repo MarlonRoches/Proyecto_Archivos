@@ -50,12 +50,12 @@ public class Usuario {
         newUsuario.nombre = array[1];
         newUsuario.usuarioApellido = array[2];
         newUsuario.passWord = array[3];
-        newUsuario.rol = array[4].equals("1");
+        newUsuario.rol = array[4].equals("1") ? true: false;
         newUsuario.fecha = LocalDate.parse(array[5],formatter);
         newUsuario.correoAlterno = array[6];
         newUsuario.telefono = Integer.parseInt(array[7]);
         newUsuario.path_Fotografia = array[8];
-        newUsuario.estatus = array[9].equals("1");
+        newUsuario.estatus = array[9].equals("1") ? true: false;
         return newUsuario;
     }
     public String usuarioToString(){

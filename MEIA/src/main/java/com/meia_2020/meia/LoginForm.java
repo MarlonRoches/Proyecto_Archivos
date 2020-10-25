@@ -200,11 +200,11 @@ public class LoginForm extends javax.swing.JFrame {
         if (!directory) {
             var creado = new File("C:/MEIA").mkdir();  
         }
-        boolean imagenes = new File("C:/MEIA/Fotografias").exists();
+         boolean imagenes = new File("C:/MEIA/Fotografias").exists();
         if (!imagenes) {
             var creado = new File("C:/MEIA/Fotografias").mkdir();  
         }
-        boolean arch_Usuario = new File("C:/MEIA/usuario.txt").exists();
+         boolean arch_Usuario = new File("C:/MEIA/usuario.txt").exists();
         if (!arch_Usuario) {
             var creado = new File("C:/MEIA/usuario.txt").createNewFile();  
         }
@@ -218,6 +218,8 @@ public class LoginForm extends javax.swing.JFrame {
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile();  
         }
+        
+        
         
         //creando archivo de 
         boolean arch_desc_Usuario = new File("C:/MEIA/desc_usuario.json").exists();
@@ -233,7 +235,7 @@ public class LoginForm extends javax.swing.JFrame {
         //}
         
         // crear archivo de grupos
-         boolean arch_grupo = new File("C:/MEIA/grupo.txt").exists();
+        boolean arch_grupo = new File("C:/MEIA/grupo.txt").exists();
         if (!arch_grupo) {
             var creado = new File("C:/MEIA/grupo.txt").createNewFile();  
         }

@@ -130,7 +130,6 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         BtnBackup = new javax.swing.JButton();
         Btn_CrearUsuario = new javax.swing.JButton();
@@ -140,14 +139,11 @@ public class Main extends javax.swing.JFrame {
         labelNombre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaAmigos = new javax.swing.JList<>();
-        BtnAgregarAmigoaGrupo = new javax.swing.JButton();
+        BtnBackup1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListaGrupos = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        BtnAgregarAmigo = new javax.swing.JButton();
-
-        jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,7 +177,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Bienvenido: ");
 
-        labelNombre.setText("-");
+        labelNombre.setText("Bienvenido: ");
 
         ListaAmigos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "none" };
@@ -191,10 +187,10 @@ public class Main extends javax.swing.JFrame {
         ListaAmigos.setEnabled(false);
         jScrollPane1.setViewportView(ListaAmigos);
 
-        BtnAgregarAmigoaGrupo.setText("Agregar Amigo a Grupo");
-        BtnAgregarAmigoaGrupo.addActionListener(new java.awt.event.ActionListener() {
+        BtnBackup1.setText("Agregar Amigo a Grupo");
+        BtnBackup1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAgregarAmigoaGrupoActionPerformed(evt);
+                BtnBackup1ActionPerformed(evt);
             }
         });
 
@@ -210,13 +206,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Grupos");
 
-        BtnAgregarAmigo.setText("Agregar Amigo");
-        BtnAgregarAmigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAgregarAmigoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -224,15 +213,13 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnBackup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)))
+                    .addComponent(jButton1)
+                    .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,9 +229,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BtnAgregarAmigoaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnAgregarAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(BtnBackup1))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -274,10 +259,7 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(Btn_CrearUsuario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnBackup))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BtnAgregarAmigoaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnAgregarAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(BtnBackup1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 45, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -346,17 +328,11 @@ public class Main extends javax.swing.JFrame {
            
     }//GEN-LAST:event_Btn_BuscarUsuarioActionPerformed
 
-    private void BtnAgregarAmigoaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarAmigoaGrupoActionPerformed
+    private void BtnBackup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackup1ActionPerformed
         // TODO add your handling code here:
-        var AgregarAGrupoFrame = new AgregarAGrupos();
-        AgregarAGrupoFrame.setVisible(true);
-    }//GEN-LAST:event_BtnAgregarAmigoaGrupoActionPerformed
-
-    private void BtnAgregarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarAmigoActionPerformed
-        // TODO add your handling code here:
-        AgregarAmigos agregar = new AgregarAmigos();
-        agregar.setVisible(true);
-    }//GEN-LAST:event_BtnAgregarAmigoActionPerformed
+     var AgregarAGrupoFrame = new AgregarAGrupos();
+            AgregarAGrupoFrame.setVisible(true);
+    }//GEN-LAST:event_BtnBackup1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,16 +370,14 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAgregarAmigo;
-    private javax.swing.JButton BtnAgregarAmigoaGrupo;
     private javax.swing.JButton BtnBackup;
+    private javax.swing.JButton BtnBackup1;
     private javax.swing.JButton Btn_BuscarUsuario;
     private javax.swing.JButton Btn_CrearUsuario;
     private javax.swing.JTextField BuscarUsuario_TxtBox;
     private javax.swing.JList<String> ListaAmigos;
     private javax.swing.JList<String> ListaGrupos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
