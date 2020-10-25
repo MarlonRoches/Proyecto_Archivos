@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -169,6 +170,7 @@ public class AgregarAmigos extends javax.swing.JFrame {
                 if (usersList.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Ningún usuario ha cumplido los criterios de búsqueda." + " Por favor intente de nuevo.");
                 }
+                shownList.setSelectedIndex(-1);
             }
             else
             {
@@ -191,7 +193,9 @@ public class AgregarAmigos extends javax.swing.JFrame {
                 Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (shownList.getSelectedIndex() != 0) {
+        var test = shownList.getSelectedIndex();
+        if (shownList.getSelectedIndex() != -1) {
+            var test2 = shownList.getSelectedValue().split("\\|");
             if (file.length() != 0) {
                 try {
                     var fileForReading = new FileReader("C:/MEIA/lista_amigos.txt");
@@ -199,7 +203,7 @@ public class AgregarAmigos extends javax.swing.JFrame {
                     var line = "";
                     while((line = buffer.readLine()) != null)
                     {
-                        var newUserValues = line.split("\\|");
+                        var newFriendshipValues = line.split("\\|");
                     }
                     buffer.close();
                 } catch (FileNotFoundException ex) {
