@@ -150,6 +150,10 @@ public class Mamejo_de_Grupos {
                 // ya existe el descriptor, actualizar
                 var desBloque = new Desc_Bloques().devolverObjeto( String.valueOf(descIndiceGrupo.NoBloques));
                 
+                desBloque.fecha_modificacion=formatter.format(date);
+                desBloque.usuario_modificacion=UsuarioActual;
+                
+                var stop =0;
             }
                         //escribimos en el indice
                         //registro0	posicion1	key2	siguiente3	estatus5
