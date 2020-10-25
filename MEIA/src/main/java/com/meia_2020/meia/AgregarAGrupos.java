@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -121,6 +122,10 @@ public class AgregarAGrupos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         Amigos = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        bCrearGrupo2 = new javax.swing.JButton();
+        BtnModificar = new javax.swing.JButton();
+        BtnModificar1 = new javax.swing.JButton();
+        BtnModificar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +160,34 @@ public class AgregarAGrupos extends javax.swing.JFrame {
 
         jLabel3.setText("Grupos");
 
+        bCrearGrupo2.setLabel("Nuevo grupo");
+        bCrearGrupo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCrearGrupo2ActionPerformed(evt);
+            }
+        });
+
+        BtnModificar.setText("Modificar");
+        BtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificarActionPerformed(evt);
+            }
+        });
+
+        BtnModificar1.setText("Eliminar");
+        BtnModificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificar1ActionPerformed(evt);
+            }
+        });
+
+        BtnModificar2.setText("Buscar");
+        BtnModificar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,6 +196,10 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(Amigos, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(AmigoSeleccionado)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
@@ -170,13 +207,14 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
                             .addComponent(GrupoSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Amigos, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bCrearGrupo2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(BtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnModificar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnModificar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +227,16 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bCrearGrupo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnModificar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnModificar2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AmigoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,10 +248,11 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
         int indexAmigo = ListaAmigos.getSelectedIndex();
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
+        //creacion de descriptor
         boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
        if (!arch_Desc_IndiceGrupos) 
        {
@@ -218,22 +266,42 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                 Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
             }
        }
+       
         try {
             var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
             if (resultado)
             {
-                
+                //Insercion exitosa
+                JOptionPane.showMessageDialog(null, "Solicitud Solicitud enviada con exito! :)");
+                this.setVisible(false);
             }
             else
             {
+                JOptionPane.showMessageDialog(null, "El usuario ya fue agregado :(");
             }
-            
         } catch (IOException ex) {
             Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
         }
       
       
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bCrearGrupo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearGrupo2ActionPerformed
+        var NuevoGrupoFrame = new CrearGrupo();
+        NuevoGrupoFrame.setVisible(true);
+    }//GEN-LAST:event_bCrearGrupo2ActionPerformed
+
+    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnModificarActionPerformed
+
+    private void BtnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnModificar1ActionPerformed
+
+    private void BtnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnModificar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,9 +341,13 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AmigoSeleccionado;
     private javax.swing.JLabel Amigos;
+    private javax.swing.JButton BtnModificar;
+    private javax.swing.JButton BtnModificar1;
+    private javax.swing.JButton BtnModificar2;
     private javax.swing.JTextField GrupoSeleccionado;
     private javax.swing.JList<String> ListaAmigos;
     private javax.swing.JList<String> ListaGrupos;
+    private javax.swing.JButton bCrearGrupo2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;

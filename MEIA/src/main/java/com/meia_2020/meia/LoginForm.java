@@ -58,6 +58,8 @@ public class LoginForm extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
     /**

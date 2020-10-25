@@ -30,7 +30,7 @@ public String fecha_modificacion;
 public String usuario_modificacion;
 
 public int NoBloques;
-public int RegistroDeInicio;
+//public int RegistroDeInicio;
 public int RegistroSiguiente;
 
 public int num_registros;
@@ -49,7 +49,7 @@ public int registro_inicial;
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
             Date date = new Date(System.currentTimeMillis());
             nuevo.fecha_creacion= formatter.format(date); 
-            nuevo.RegistroDeInicio=1;
+            //nuevo.RegistroDeInicio=1;
             nuevo.RegistroSiguiente=2;
             nuevo.usuario_creacion= _UsuarioDeCreacion;
           
