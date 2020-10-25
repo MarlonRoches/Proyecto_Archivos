@@ -11,17 +11,17 @@ package fase2;
  */
 public class GruposMetodos {
     
-    void Busqueda(String Grupo)
+   public void Busqueda(String Grupo)
     {
     
     }
     
-    void Modificacion(String usuario, String grupo , String fecha)
+   public void Modificacion(String usuario, String grupo , String fecha)
     {
     
     }
     
-    void Eliminacion(String usuario, String grupo , String fecha)
+    public void Eliminacion(String usuario, String grupo , String fecha)
     {
     
     }
