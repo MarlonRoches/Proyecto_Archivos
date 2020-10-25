@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  *
  * @author roche
  */
-public class Mamejo_de_Grupos {
+public class Manejo_de_Grupos {
     public int registro;
     public int posicion; 	
     String Key;
@@ -49,17 +49,15 @@ public class Mamejo_de_Grupos {
             if ((Grupo+"-"+UsuarioActual+"-"+Amigo).equals(splited[2])) 
             {
                 //aqui ya existe el añadido al grupo
-                 fileRead.close();       
-                  file.close();
-                   UpdateArchivoIndexado();
-
+                fileRead.close();       
+                file.close();
+                UpdateArchivoIndexado();
                 return false;
             }
             else
             {
                 existeEnelGrupo=false;
             }
-                  
         }
         fileRead.close();       
         file.close();
@@ -77,22 +75,23 @@ public class Mamejo_de_Grupos {
             Date date = new Date(System.currentTimeMillis());
             descIndiceGrupo.fecha_modificacion= formatter.format(date); 
             descIndiceGrupo.usuario_modificacion=UsuarioActual;
-            
-            
             new Desc_IndiceGrupos().actualizarJson(descIndiceGrupo);
             //creacion descriptor de bloque
             boolean arch_Desc_Bloques = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").exists();
             if (!arch_Desc_Bloques) 
             {
-            try {  
-                var creado = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").createNewFile();
-                new Desc_Bloques().crearBitacora(LoginForm.UsuarioActual.usuario, String.valueOf(descIndiceGrupo.NoBloques));
-            } catch (IOException ex) {
-                Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                try 
+                {  
+                    var creado = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").createNewFile();
+                    new Desc_Bloques().crearBitacora(LoginForm.UsuarioActual.usuario, String.valueOf(descIndiceGrupo.NoBloques));
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
-             var fileWriter = new FileWriter("C:/MEIA/IndiceGrupos.txt", true);
+                 var fileWriter = new FileWriter("C:/MEIA/IndiceGrupos.txt", true);
                  var aEscribir="1|1.1|"+Grupo+"-"+UsuarioActual+"-"+Amigo+"|0|1\n";
                  fileWriter.write(aEscribir);
                  fileWriter.close();
@@ -113,7 +112,7 @@ public class Mamejo_de_Grupos {
         
             // TODO add your handling code here:
            UpdateArchivoIndexado();
-            
+             new GruposMetodos().Modificacion(Amigo, Grupo, formatter.format(date));
                  return true;
         }
         
@@ -138,13 +137,10 @@ public class Mamejo_de_Grupos {
                         descIndiceGrupo.RegistroSiguiente=1;
                         descIndiceGrupo.NoBloques++;
                     }
-                         
+                    //verificar si el archivo al ingresar existe
+                    ///grupo_amigos_n.txt
 
-
-                        //verificar si el archivo al ingresar existe
-                        ///grupo_amigos_n.txt
-                       
-                        //creacion descriptor de bloque
+                    //creacion descriptor de bloque
             boolean arch_Desc_Bloques = new File("C:/MEIA/Desc_BloqueNo" + descIndiceGrupo.NoBloques+".json").exists();
             if (!arch_Desc_Bloques) 
             {
@@ -191,6 +187,7 @@ public class Mamejo_de_Grupos {
                     new Desc_IndiceGrupos().actualizarJson(descIndiceGrupo);
            
                 UpdateArchivoIndexado();
+                new GruposMetodos().Modificacion(Amigo, Grupo, formatter.format(date));
              return true;
         }
         else

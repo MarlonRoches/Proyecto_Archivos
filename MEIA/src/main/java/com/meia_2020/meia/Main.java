@@ -354,6 +354,7 @@ public class Main extends javax.swing.JFrame {
     private void BtnBackup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackup1ActionPerformed
         // TODO add your handling code here:
      var AgregarAGrupoFrame = new AgregarAGrupos();
+     this.setVisible(false);
             AgregarAGrupoFrame.setVisible(true);
     }//GEN-LAST:event_BtnBackup1ActionPerformed
 

@@ -5,7 +5,7 @@
  */
 package com.meia_2020.meia;
 import fase2.Desc_IndiceGrupos;
-import fase2.Mamejo_de_Grupos;
+import fase2.Manejo_de_Grupos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -126,6 +126,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
         BtnModificar = new javax.swing.JButton();
         BtnModificar1 = new javax.swing.JButton();
         BtnModificar2 = new javax.swing.JButton();
+        BtnModificar3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,10 +144,8 @@ public class AgregarAGrupos extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ListaAmigos);
 
-        AmigoSeleccionado.setText("jTextField1");
         AmigoSeleccionado.setEnabled(false);
 
-        GrupoSeleccionado.setText("jTextField1");
         GrupoSeleccionado.setEnabled(false);
 
         jButton1.setText("Agregar Amigo A Grupo");
@@ -188,6 +187,13 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             }
         });
 
+        BtnModificar3.setText("Regresar");
+        BtnModificar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificar3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,7 +219,8 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                             .addComponent(BtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnModificar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnModificar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(BtnModificar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnModificar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -240,7 +247,8 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AmigoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(GrupoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(GrupoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnModificar3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -249,38 +257,53 @@ public class AgregarAGrupos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        
         int indexAmigo = ListaAmigos.getSelectedIndex();
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
-        //creacion de descriptor
-        boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
-       if (!arch_Desc_IndiceGrupos) 
-       {
-            try 
-            {  
-                var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();
-                new Desc_IndiceGrupos().crearBitacora(LoginForm.UsuarioActual.usuario);
-            } 
-            catch (IOException ex) 
-            {
+        var txt1=AmigoSeleccionado.getText();        
+        var txt2=GrupoSeleccionado.getText();
+
+        if (!"".equals(txt1) && !"".equals(txt2)) {
+            
+            //creacion de descriptor
+            boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
+           if (!arch_Desc_IndiceGrupos) 
+           {
+                try 
+                {  
+                    var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();
+                    new Desc_IndiceGrupos().crearBitacora(LoginForm.UsuarioActual.usuario);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }
+
+            try {
+                var resultado = new Manejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
+                if (resultado)
+                {
+                    //Insercion exitosa
+                    JOptionPane.showMessageDialog(null, "Solicitud Solicitud enviada con exito! :)");
+                    this.setVisible(false);
+                    var form = new AgregarAGrupos();
+                    form.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "El usuario ya fue agregado :(");
+                }
+            } catch (IOException ex) {
                 Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
             }
-       }
-       
-        try {
-            var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
-            if (resultado)
-            {
-                //Insercion exitosa
-                JOptionPane.showMessageDialog(null, "Solicitud Solicitud enviada con exito! :)");
-                this.setVisible(false);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null, "El usuario ya fue agregado :(");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
+        } else
+        {
+                    JOptionPane.showMessageDialog(null, "Elija 2 opciones almenos ;D");
+                    this.setVisible(false);
+                    var form = new AgregarAGrupos();
+                    form.setVisible(true);
         }
       
       
@@ -303,6 +326,13 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     private void BtnModificar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnModificar2ActionPerformed
+
+    private void BtnModificar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificar3ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        var form = new Main();
+        form.setVisible(true);
+    }//GEN-LAST:event_BtnModificar3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +375,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     private javax.swing.JButton BtnModificar;
     private javax.swing.JButton BtnModificar1;
     private javax.swing.JButton BtnModificar2;
+    private javax.swing.JButton BtnModificar3;
     private javax.swing.JTextField GrupoSeleccionado;
     private javax.swing.JList<String> ListaAmigos;
     private javax.swing.JList<String> ListaGrupos;
