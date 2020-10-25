@@ -51,6 +51,8 @@ public class Mamejo_de_Grupos {
                 //aqui ya existe el añadido al grupo
                  fileRead.close();       
                   file.close();
+                   ActualizarLista();
+
                 return false;
             }
             else
@@ -108,6 +110,10 @@ public class Mamejo_de_Grupos {
                          var aEscribirEnBloque= UsuarioActual+"|"+Grupo+"|"+Amigo+"|"+formatter.format(date)+"|"+"1\n";
                         WriterBloque.write(aEscribirEnBloque);
                         WriterBloque.close();
+        
+            // TODO add your handling code here:
+           ActualizarLista();
+            
                  return true;
         }
         
@@ -183,7 +189,8 @@ public class Mamejo_de_Grupos {
                     descIndiceGrupo.registros_activos++;
                     descIndiceGrupo.RegistroSiguiente++;
                     new Desc_IndiceGrupos().actualizarJson(descIndiceGrupo);
-                var lol =0;
+           
+                ActualizarLista();
              return true;
         }
         else
@@ -197,7 +204,7 @@ public class Mamejo_de_Grupos {
    
    public void ActualizarLista() throws FileNotFoundException, IOException
    {
-       if (new File("C:/MEIA/IndiceGrupos.txt").exists()) 
+       if (new File("C:/MEIA/IndiceGrupos.txt").exists() && new File("C:/MEIA/Desc_IndiceGrupos.json").exists()) 
        {
         FileReader Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
         BufferedReader lector = new BufferedReader(Archivo);

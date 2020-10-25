@@ -215,18 +215,11 @@ public class AgregarAGrupos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            // TODO add your handling code here:
-            new Mamejo_de_Grupos().ActualizarLista();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         
         int indexAmigo = ListaAmigos.getSelectedIndex();
         AmigoSeleccionado.setText((String) ListaAmigos.getSelectedValue());
         GrupoSeleccionado.setText((String) ListaGrupos.getSelectedValue());
+        //creacion de descriptor
         boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
        if (!arch_Desc_IndiceGrupos) 
        {
@@ -240,6 +233,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                 Logger.getLogger(AgregarAGrupos.class.getName()).log(Level.SEVERE, null, ex);
             }
        }
+       
         try {
             var resultado = new Mamejo_de_Grupos().AgregarAmigoAGrupo(LoginForm.UsuarioActual.usuario, (String) ListaAmigos.getSelectedValue(), (String) ListaGrupos.getSelectedValue());
             if (resultado)
