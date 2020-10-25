@@ -367,6 +367,8 @@ public class Main extends javax.swing.JFrame {
 
     private void BtnAgregarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarAmigosActionPerformed
         // TODO add your handling code here:
+        var agregarAmigos = new AgregarAmigos();
+        agregarAmigos.setVisible(true);
     }//GEN-LAST:event_BtnAgregarAmigosActionPerformed
 
     /**
