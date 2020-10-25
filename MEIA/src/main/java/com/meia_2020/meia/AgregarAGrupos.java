@@ -225,10 +225,12 @@ public class AgregarAGrupos extends javax.swing.JFrame {
             {
                 //Initacion exitosa
                 JOptionPane.showMessageDialog(null, "Solicitud Solicitud enviada con exito! :)");
+                  this.setVisible(false);
             }
             else
             {
                 JOptionPane.showMessageDialog(null, "El usuario ya fue agregado :(");
+                
             }
             
         } catch (IOException ex) {
