@@ -48,6 +48,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="BtnBackup1" max="32767" attributes="0"/>
                           <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="BtnAgregarAmigos" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -83,7 +84,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="BtnBackup" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="BtnBackup1" min="-2" pref="46" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="BtnBackup1" min="-2" pref="46" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="BtnAgregarAmigos" min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" pref="45" max="-2" attributes="0"/>
@@ -207,6 +212,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtnAgregarAmigos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar amigos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAgregarAmigosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
