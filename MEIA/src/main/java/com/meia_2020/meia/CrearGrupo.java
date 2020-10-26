@@ -133,7 +133,7 @@ public class CrearGrupo extends javax.swing.JFrame {
                     }
 
                     for(String grupo : gruposUsuario){
-                        if(grupo == nombreGrupo){
+                        if(grupo.equals(nombreGrupo)){
                             repetido = true;
                         }
                     }
