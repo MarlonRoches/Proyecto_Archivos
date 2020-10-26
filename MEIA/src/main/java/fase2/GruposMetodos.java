@@ -79,6 +79,7 @@ public class GruposMetodos {
                     }else{
                         String nuevaLinea = separado[0] +"|"+ separado[1] +"|"+ separado[2] +"|"+ separado[3] +"|"+ separado[4] +"|"+ separado[5];
                         actualizar.add(nuevaLinea);
+                        
                     }
                 }
             
