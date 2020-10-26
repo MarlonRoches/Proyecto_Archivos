@@ -1,16 +1,11 @@
 package com.meia_2020.meia;
 
 
-import static com.meia_2020.meia.CrearUsuario.contadorUsuarios;
 import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
-import com.meia_2020.meia.models.desc_usuario;
 import com.meia_2020.meia.models.Desc_Usuarios;
 import com.meia_2020.meia.models.Desc_Bitacora;
-import fase2.Desc_IndiceGrupos;
-import java.awt.List;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
