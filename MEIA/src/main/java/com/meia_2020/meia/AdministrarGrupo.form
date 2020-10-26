@@ -42,15 +42,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton1" min="-2" pref="146" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="jButton3" min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="IntegranteSeleccionado" min="-2" pref="94" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="146" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="IntegranteSeleccionado" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,7 +65,8 @@
                       <Component id="jButton1" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" pref="52" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" alignment="0" pref="312" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -78,12 +76,7 @@
                   <Component id="GrupoSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="IntegranteSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="52" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

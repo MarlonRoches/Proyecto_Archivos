@@ -32,8 +32,42 @@ public class Manejo_de_Grupos {
     public int siguiente;	
     public boolean estatus;
     
-    public void DesactivarRegistro(String UsuarioActual,String Amigo,String Grupo)
+    public void DesactivarRegistro(String UsuarioActual,String Amigo,String Grupo)throws FileNotFoundException, IOException
     {
+        var Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
+        var lector = new BufferedReader(Archivo);
+         List<String> Todos = new ArrayList<String>();   
+          List<String> Nueva_Lista = new ArrayList<String>();
+        var linea ="";
+         while ((linea = lector.readLine())!=null) {     
+            Todos.add(linea);
+        }
+        lector.close();
+        Archivo.close();
+        var concat = Grupo+"-"+UsuarioActual+"-"+Amigo;
+        for (int i = 0; i < Todos.size(); i++) {
+            var kay = Todos.get(i).split("\\|")[2];
+            
+            if (kay.equals(concat))
+            {
+                var Escribir = Todos.get(i).split("\\|")[0]+"|"+ Todos.get(i).split("\\|")[1] +"|"+ concat +"|"+ Todos.get(i).split("\\|")[3] +"|"+ 0;
+                Nueva_Lista.add(Escribir);
+
+            }
+            else
+            {
+                Nueva_Lista.add(Todos.get(i));
+            }
+       }
+        var WriterIndice = new FileWriter("C:/MEIA/IndiceGrupos.txt", false);
+            for (int i = 0; i < Nueva_Lista.size(); i++) 
+            {
+            String aEscribir=Nueva_Lista.get(i)+"\n";
+            WriterIndice.write(aEscribir);
+           }
+            WriterIndice.close();
+        UpdateArchivoIndexado();
+       //
     }
    public  boolean AgregarAmigoAGrupo(String UsuarioActual,String Amigo,String Grupo )throws FileNotFoundException, IOException
     {
@@ -201,20 +235,6 @@ public class Manejo_de_Grupos {
         }
     }
    
-   public void Solicitudes() throws FileNotFoundException, IOException
-   {
-        var Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
-        var lector = new BufferedReader(Archivo);
-         List<String> Todos = new ArrayList<String>();   
-        var linea ="";
-         while ((linea = lector.readLine())!=null) {     
-            Todos.add(linea);
-        }
-        lector.close();
-        Archivo.close();
-        
-       //
-   }
    public void UpdateArchivoIndexado() throws FileNotFoundException, IOException
    {
        if (new File("C:/MEIA/IndiceGrupos.txt").exists() && new File("C:/MEIA/Desc_IndiceGrupos.json").exists()) 
