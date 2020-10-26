@@ -31,7 +31,8 @@ public class Manejo_de_Grupos {
     String Key;
     public int siguiente;	
     public boolean estatus;
-    public void DesactivarRegistro()
+    
+    public void DesactivarRegistro(String UsuarioActual,String Amigo,String Grupo)
     {
     }
    public  boolean AgregarAmigoAGrupo(String UsuarioActual,String Amigo,String Grupo )throws FileNotFoundException, IOException
@@ -200,9 +201,18 @@ public class Manejo_de_Grupos {
         }
     }
    
-   public void Solicitudes()
+   public void Solicitudes() throws FileNotFoundException, IOException
    {
-   
+        var Archivo = new FileReader("C:/MEIA/IndiceGrupos.txt");
+        var lector = new BufferedReader(Archivo);
+         List<String> Todos = new ArrayList<String>();   
+        var linea ="";
+         while ((linea = lector.readLine())!=null) {     
+            Todos.add(linea);
+        }
+        lector.close();
+        Archivo.close();
+        
        //
    }
    public void UpdateArchivoIndexado() throws FileNotFoundException, IOException
