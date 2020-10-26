@@ -14,8 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.HashMap;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -48,7 +48,7 @@ public class Friendship {
         return newFriendship;
     }
     
-    public static void WriteFile(HashMap<String, Friendship> friendsDictionary, String route, String user) throws IOException
+    public static void WriteFile(HashMap<String, Friendship> friendsDictionary, String route, String user, boolean addedRegister) throws IOException
     {
         var fileToWrite = new File(route);
         try (java.io.FileWriter writer = new FileWriter(fileToWrite, false)) {
@@ -56,34 +56,34 @@ public class Friendship {
                 writer.write(Friendship.GetString(value) + System.lineSeparator());
             }
         }
-        WriteDescFile(user);
+        WriteDescFile(user, addedRegister);
     }
     
-    public static void WriteDescFile(String modifUser){
+    public static void WriteDescFile(String modifUser, boolean addedRegister){
         String json = "";
         try
         {
-            File desc = new File("C:/MEIA/desc_bitacora_backup.json");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm:ss z");
-            Date now = new Date(System.currentTimeMillis());
-            var writer = new FileWriter(desc.toString(), false);
+            File desc = new File("C:/MEIA/desc_lista_amigos.json");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm:ss");
+            var now = LocalDateTime.now();
             var gson = new Gson();
-            if (desc.length() != 0) {
-                BufferedReader reader = new BufferedReader(new FileReader(desc.toString()));
-                String line = "";
-                while((line = reader.readLine()) != null) json += line;
-                reader.close();
-                var JsonToWrite = gson.fromJson(json, desc_lista_amigos.class);
-                JsonToWrite.fechaModificacion = formatter.format((TemporalAccessor) now);
+            var reader = new FileReader(desc.toString());
+            var JsonToWrite = gson.fromJson(reader, desc_lista_amigos.class);  
+            var writer = new FileWriter(desc.toString(), false);
+            reader.close();
+            if (JsonToWrite != null) {
+                JsonToWrite.fechaModificacion = formatter.format(now);
                 JsonToWrite.usuarioModificacion = modifUser;
-                JsonToWrite.numRegistros++;
+                if (addedRegister) {
+                    JsonToWrite.numRegistros++;
+                }
                 writer.write(gson.toJson(JsonToWrite));
             }
             else
             {
                 var Json = new desc_lista_amigos();
                 Json.nombreSimbolico = "lista_amigos.txt";
-                Json.fechaCreacion = formatter.format((TemporalAccessor) now);
+                Json.fechaCreacion = formatter.format(now);
                 Json.usuarioCreacion = modifUser;
                 Json.fechaModificacion = Json.fechaCreacion;
                 Json.usuarioModificacion = modifUser;
@@ -122,7 +122,8 @@ public class Friendship {
             {
                 var newFriends = CreateFriendshipFromString(line);
                 friendsDictionary.put(newFriends.key, newFriends);
-            }   buffer.close();
+            }
+            buffer.close();
         }
         return friendsDictionary;
     }
@@ -147,7 +148,7 @@ public class Friendship {
                 friendsDictionary.get(friendship).accepted = true;
             }
         }
-        Friendship.WriteFile(friendsDictionary, route, user);
+        Friendship.WriteFile(friendsDictionary, route, user, false);
     }
     
     public static void DeleteFriend(HashMap<String, Friendship> friendsDictionary, String friend, String user, String route) throws IOException{
@@ -156,6 +157,6 @@ public class Friendship {
                 friendsDictionary.get(friendship).status = false;
             }
         }
-        Friendship.WriteFile(friendsDictionary, route, user);
+        Friendship.WriteFile(friendsDictionary, route, user, false);
     }
 }
