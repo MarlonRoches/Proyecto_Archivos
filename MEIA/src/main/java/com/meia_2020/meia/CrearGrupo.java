@@ -5,6 +5,7 @@
  */
 package com.meia_2020.meia;
 
+import fase2.Desc_Grupos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -118,8 +119,25 @@ public class CrearGrupo extends javax.swing.JFrame {
         String descripcionGrupo = tDescripcionGrupo.getText();
         List<String> gruposUsuario = new ArrayList<String>();
         boolean repetido = false;
-
+        boolean creado = false;
         FileReader file;
+        FileReader file2;
+        var linea = "";
+        
+        try {
+            file2 = new FileReader("C:/MEIA/Desc_Grupo.txt");
+            BufferedReader fileRead = new BufferedReader(file2);
+            try {
+                if((linea=fileRead.readLine())!=null){
+                    creado = true;
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CrearGrupo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrearGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         try {
             file = new FileReader("C:/MEIA/grupo.txt");
             BufferedReader fileRead = new BufferedReader(file);
@@ -166,6 +184,18 @@ public class CrearGrupo extends javax.swing.JFrame {
             }
         }else{
             JOptionPane.showMessageDialog(null, "Ya existe un grupo con el mismo nombre");
+        }
+        
+        Date fecha = new Date();
+        var json = new Desc_Grupos();
+        if(creado){
+            json.fecha_modificacion = new SimpleDateFormat("dd-MM-yyyy").format(fecha);
+            json.num_registros++; 
+            json.registros_activos++;
+            json.usuario_modificacion = LoginForm.UsuarioActual.usuario;
+            json.actualizarJson(json);
+        }else{
+            json.crearBitacora(LoginForm.UsuarioActual.usuario);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
