@@ -214,7 +214,7 @@ public class AgregarAmigos extends javax.swing.JFrame {
                 try {
                     var friendsDictionary = Friendship.GetMapFromFileRoute(fileRoute);
                     var selectedUsername = shownList.getSelectedValue().split("\\|")[0];
-                    if (!friendsDictionary.containsKey(LoginForm.UsuarioActual + "," + selectedUsername)) {
+                    if (!Friendship.CheckIfExists(friendsDictionary, LoginForm.UsuarioActual.usuario, selectedUsername)) {
                         var newFriendship = Friendship.CreateNewFriendship(selectedUsername);
                         friendsDictionary.put(newFriendship.key, newFriendship);
                         Friendship.WriteFile(friendsDictionary, fileRoute, LoginForm.UsuarioActual.usuario, true);

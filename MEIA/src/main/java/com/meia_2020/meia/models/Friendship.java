@@ -159,4 +159,14 @@ public class Friendship {
         }
         Friendship.WriteFile(friendsDictionary, route, user, false);
     }
+    
+    public static boolean CheckIfExists(HashMap<String, Friendship> friendsDictionary, String user, String friend){
+        var keyList = friendsDictionary.keySet();
+        for(var key : keyList){
+            if (key.contains(user) && key.contains(friend)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
