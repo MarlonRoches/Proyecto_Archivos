@@ -139,9 +139,13 @@ public class CrearGrupo extends javax.swing.JFrame {
         if(!repetido){
             Date fecha = new Date();
             FileWriter archivo;
+            FileWriter admins;
             String lineaEscribir = LoginForm.UsuarioActual.usuario + "|" + nombreGrupo + "|" + descripcionGrupo + "|" + 0 + "|" + (new SimpleDateFormat("dd-MM-yyyy").format(fecha)) + "|" + 1;
             try {
                 archivo = new FileWriter("C:/MEIA/grupo.txt",true);
+                admins = new FileWriter("C:/MEIA/AdminsGrupo.txt",true);
+                admins.write(LoginForm.UsuarioActual.usuario + "|" + nombreGrupo + "\n");
+                admins.close();
                 archivo.write(lineaEscribir+"\n");
                 archivo.close();
                 JOptionPane.showMessageDialog(null, "Grupo creado correctamente");
