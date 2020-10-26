@@ -37,27 +37,23 @@ public class AgregarAGrupos extends javax.swing.JFrame {
               BufferedReader fileRead = new BufferedReader(file);
               var linea="";
              try {
-                 while ((linea=fileRead.readLine())!= null) {
-                 
+                 while ((linea=fileRead.readLine())!= null) 
+                 {
                      var splited =linea.split("\\|");
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) {
-                         linex += splited[1]+"," ;
+                     //validacion de usuario y de estado de peticion
+                     if (splited[0].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) 
+                     {
+                         linex += splited[1]+",";
                      }
                      var lol =0;
                  }} 
              catch (IOException ex) {
                  Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
              }
-     
-     
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-        
-        
         var week= linex.split(",");
-        
        lm = new DefaultListModel();
         for (int i = 0; i < week.length; i++) {
             lm.addElement(week[i]);
