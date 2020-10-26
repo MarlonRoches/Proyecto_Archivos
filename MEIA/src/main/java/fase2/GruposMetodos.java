@@ -50,7 +50,7 @@ public class GruposMetodos {
                     }
 
                     for(String user : usuariosGrupo){
-                        if(user == usuario){
+                        if(user.equals(usuario)){
                             existe = true;
                         }
                     }
