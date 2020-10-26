@@ -27,8 +27,9 @@ public class Archivo_Usuario {
     {
         var salida =false;
         int lineaindex =0;
-         var lineas = new ArrayList<String>();
-     try {
+        var lineas = new ArrayList<String>();
+        
+        try {
              BufferedReader buf = new BufferedReader(new FileReader(archivo));
              String linea ="";
              String[] array_nuevo;

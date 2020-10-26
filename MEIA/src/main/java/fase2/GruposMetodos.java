@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,8 +33,8 @@ public class GruposMetodos {
    public void Modificacion(String usuario, String grupo, String fecha) throws FileNotFoundException, IOException
     {
         List<String> usuariosGrupo = new ArrayList<String>();
+        var actualizar = new ArrayList<String>();
         FileReader file;
-        FileWriter escribir;
         boolean existe = false;
         
         try {
@@ -64,7 +65,6 @@ public class GruposMetodos {
         if(!existe){
             String descripcionGrupo = "";
             int cantidadMiembros = 0;
-            escribir = new FileWriter("C:/MEIA/grupo.txt");
             file = new FileReader("C:/MEIA/grupo.txt");
             BufferedReader fileRead = new BufferedReader(file);
             var lineaArchivo = "";
@@ -72,25 +72,19 @@ public class GruposMetodos {
                 while((lineaArchivo = fileRead.readLine()) != null){
                     var separado = lineaArchivo.split("\\|");
                     if (separado[1].equals(grupo)) {
-                        escribir = new FileWriter("C:/MEIA/grupo.txt");
                         descripcionGrupo = separado[2];
                         cantidadMiembros = Integer.parseInt(separado[3]) + 1;
                         String nuevaLinea = separado[0] + separado[1] + separado[2] + cantidadMiembros + separado[4] + separado[5];
-                        escribir.write(nuevaLinea);
-                        escribir.close();
-                    }
-
-                    for(String user : usuariosGrupo){
-                        if(user == usuario){
-                            existe = true;
-                        }
+                        actualizar.add(nuevaLinea);
+                    }else{
+                        String nuevaLinea = separado[0] + separado[1] + separado[2] + separado[3] + separado[4] + separado[5];
+                        actualizar.add(nuevaLinea);
                     }
                 }
             
             String nuevoAmigo = usuario + "|" + grupo + "|" + descripcionGrupo + "|" + cantidadMiembros + "|" + fecha + "|" + 1;
-            escribir = new FileWriter("C:/MEIA/grupo.txt");
-            escribir.append(nuevoAmigo + "\n");
-            escribir.close();
+            actualizar.add(nuevoAmigo);
+            sobreescribirArchivo("C:/MEIA/grupo.txt", actualizar);
             JOptionPane.showMessageDialog(null, usuario + " fue agregado al grupo");
         }else{
             JOptionPane.showMessageDialog(null, usuario + " ya es parte del grupo");
@@ -100,5 +94,24 @@ public class GruposMetodos {
     public void Eliminacion(String usuario, String grupo , String fecha)
     {
         
+    }
+    
+    private void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
+        
+        FileWriter fw = new FileWriter(ruta, false);       
+        PrintWriter pw = new PrintWriter(fw);       
+
+        for (int i = 0; i <= array.size(); i++) {
+            if (i == array.size() -1) {
+                var linea =array.toArray()[i].toString();
+                pw.print(array.toArray()[i].toString());
+                break;
+            } else {
+                var linea =array.toArray()[i].toString();
+             pw.println(array.toArray()[i].toString());
+            }
+        }
+        pw.close();
+        fw.close();
     }
 }
