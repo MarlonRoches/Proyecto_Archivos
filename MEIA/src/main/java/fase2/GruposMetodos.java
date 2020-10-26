@@ -96,6 +96,7 @@ public class GruposMetodos {
         var actualizar = new ArrayList<String>();
         FileReader file;
         
+        if(!LoginForm.UsuarioActual.usuario.equals(usuario)){
         try {
             file = new FileReader("C:/MEIA/grupo.txt");
             BufferedReader fileRead = new BufferedReader(file);
@@ -123,6 +124,12 @@ public class GruposMetodos {
         
         sobreescribirArchivo("C:/MEIA/grupo.txt", actualizar);
         JOptionPane.showMessageDialog(null, usuario + " fue eliminado del grupo");
+        }else{
+            JOptionPane.showMessageDialog(null, "Eres el admin, no puedes eliminarte del grupo");
+        }
+        
+        
+        
     }
     
     private void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
