@@ -83,7 +83,7 @@ public class GruposMetodos {
                 }
             
             String nuevoAmigo = usuario + "|" + grupo + "|" + descripcionGrupo + "|" + cantidadMiembros + "|" + fecha + "|" + 1;
-            actualizar.add(nuevoAmigo);
+            actualizar.add(nuevoAmigo + "\n");
             sobreescribirArchivo("C:/MEIA/grupo.txt", actualizar);
             JOptionPane.showMessageDialog(null, usuario + " fue agregado al grupo");
         }else{
