@@ -251,6 +251,7 @@ public class AdministrarGrupo extends javax.swing.JFrame {
                 Logger.getLogger(AdministrarGrupo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
         else
         {
            JOptionPane.showMessageDialog(null, "Elija 2 opciones validas.");

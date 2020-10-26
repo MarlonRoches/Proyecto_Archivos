@@ -121,7 +121,6 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario");
 
-        jUsername.setText("ElRoches");
         jScrollPane1.setViewportView(jUsername);
 
         jLabel2.setText("Contraseña");
@@ -139,8 +138,6 @@ public class LoginForm extends javax.swing.JFrame {
                 jNewUserActionPerformed(evt);
             }
         });
-
-        jPassword.setText("elmomo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
