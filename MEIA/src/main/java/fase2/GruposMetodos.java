@@ -91,9 +91,37 @@ public class GruposMetodos {
         }
     }
     
-    public void Eliminacion(String usuario, String grupo , String fecha)
+    public void Eliminacion(String usuario, String grupo) throws IOException
     {
+        var actualizar = new ArrayList<String>();
+        FileReader file;
         
+        try {
+            file = new FileReader("C:/MEIA/grupo.txt");
+            BufferedReader fileRead = new BufferedReader(file);
+            var lineaArchivo = "";
+
+            try {
+                while((lineaArchivo = fileRead.readLine()) != null){
+                    var separado =lineaArchivo.split("\\|");
+                    if (separado[0].equals(usuario)) {
+                        if(separado[1].equals(grupo)){
+                        String usuarioActualizado = separado[0] + "|" + separado[1] + "|" + separado[2] + "|" + separado[3] + "|" + separado[4] + "|" + 0;
+                        actualizar.add(usuarioActualizado);
+                        }
+                    }else{
+                        String usuarioActualizado = separado[0] + "|" + separado[1] + "|" + separado[2] + "|" + separado[3] + "|" + separado[4] + "|" + separado[5];
+                        actualizar.add(usuarioActualizado);
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CrearGrupo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrearGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        sobreescribirArchivo("C:/MEIA/grupo.txt", actualizar);
     }
     
     private void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
