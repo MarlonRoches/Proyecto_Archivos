@@ -41,7 +41,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                  {
                      var splited =linea.split("\\|");
                      //validacion de usuario y de estado de peticion
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) 
+                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1") ) 
                      {
                          linex += splited[1]+",";
                      }
@@ -71,7 +71,7 @@ public class AgregarAGrupos extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[0].equals(LoginForm.UsuarioActual.usuario)&& splited[5].equals("1")) {
+                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1")) {
                          linex += splited[1]+"," ;
                      }
                      var lol =0;
