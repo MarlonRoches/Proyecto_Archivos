@@ -214,7 +214,7 @@ public class AdministrarAmigos extends javax.swing.JFrame {
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Por favor escoja una solicitud para eliminar.");
+            JOptionPane.showMessageDialog(null, "Por favor escoja un amigo para eliminar.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
