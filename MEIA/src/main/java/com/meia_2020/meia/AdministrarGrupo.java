@@ -5,6 +5,7 @@
  */
 package com.meia_2020.meia;
 
+import fase2.GruposMetodos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -244,7 +245,11 @@ public class AdministrarGrupo extends javax.swing.JFrame {
 
         if (!"".equals(txt1) && !"".equals(txt2))
         {
-            
+            try {
+                new GruposMetodos().Eliminacion(txt2, txt1);
+            } catch (IOException ex) {
+                Logger.getLogger(AdministrarGrupo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else
         {
