@@ -5,6 +5,7 @@
  */
 package com.meia_2020.meia.models;
 
+import com.google.gson.Gson;
 import com.meia_2020.meia.LoginForm;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,8 +14,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.HashMap;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -44,13 +48,53 @@ public class Friendship {
         return newFriendship;
     }
     
-    public static void WriteFile(HashMap<String, Friendship> friendsDictionary, String route) throws IOException
+    public static void WriteFile(HashMap<String, Friendship> friendsDictionary, String route, String user) throws IOException
     {
         var fileToWrite = new File(route);
         try (java.io.FileWriter writer = new FileWriter(fileToWrite, false)) {
             for (var value : friendsDictionary.values()) {
                 writer.write(Friendship.GetString(value) + System.lineSeparator());
             }
+        }
+        WriteDescFile(user);
+    }
+    
+    public static void WriteDescFile(String modifUser){
+        String json = "";
+        try
+        {
+            File desc = new File("C:/MEIA/desc_bitacora_backup.json");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd 'at' HH:mm:ss z");
+            Date now = new Date(System.currentTimeMillis());
+            var writer = new FileWriter(desc.toString(), false);
+            var gson = new Gson();
+            if (desc.length() != 0) {
+                BufferedReader reader = new BufferedReader(new FileReader(desc.toString()));
+                String line = "";
+                while((line = reader.readLine()) != null) json += line;
+                reader.close();
+                var JsonToWrite = gson.fromJson(json, desc_lista_amigos.class);
+                JsonToWrite.fechaModificacion = formatter.format((TemporalAccessor) now);
+                JsonToWrite.usuarioModificacion = modifUser;
+                JsonToWrite.numRegistros++;
+                writer.write(gson.toJson(JsonToWrite));
+            }
+            else
+            {
+                var Json = new desc_lista_amigos();
+                Json.nombreSimbolico = "lista_amigos.txt";
+                Json.fechaCreacion = formatter.format((TemporalAccessor) now);
+                Json.usuarioCreacion = modifUser;
+                Json.fechaModificacion = Json.fechaCreacion;
+                Json.usuarioModificacion = modifUser;
+                Json.numRegistros = 1;
+                writer.write(gson.toJson((Json)));
+            }
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            showMessageDialog(null, "No se ha podido actualizar la bitácora del backup correctamente.");
         }
     }
     
@@ -97,21 +141,21 @@ public class Friendship {
         return newFriends;
     }
     
-    public static void AddFriend(HashMap<String, Friendship> friendsDictionary, String user, String friend, String route) throws IOException{
+    public static void AddFriend(HashMap<String, Friendship> friendsDictionary, String friend, String user, String route) throws IOException{
         for(var friendship : friendsDictionary.keySet()){
             if (friendship.contains(user) && friendship.contains(friend)) {
                 friendsDictionary.get(friendship).accepted = true;
             }
         }
-        Friendship.WriteFile(friendsDictionary, route);
+        Friendship.WriteFile(friendsDictionary, route, user);
     }
     
-    public static void DeleteFriend(HashMap<String, Friendship> friendsDictionary, String user, String friend, String route) throws IOException{
+    public static void DeleteFriend(HashMap<String, Friendship> friendsDictionary, String friend, String user, String route) throws IOException{
         for(var friendship : friendsDictionary.keySet()){
             if (friendship.contains(user) && friendship.contains(friend)) {
                 friendsDictionary.get(friendship).status = false;
             }
         }
-        Friendship.WriteFile(friendsDictionary, route);
+        Friendship.WriteFile(friendsDictionary, route, user);
     }
 }

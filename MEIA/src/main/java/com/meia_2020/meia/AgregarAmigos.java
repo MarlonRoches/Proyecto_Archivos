@@ -204,6 +204,7 @@ public class AgregarAmigos extends javax.swing.JFrame {
         if (!file.exists()) {
             try {
                 new File(fileRoute).createNewFile();
+                Friendship.WriteDescFile(LoginForm.UsuarioActual.usuario);
             } catch (IOException ex) {
                 Logger.getLogger(AgregarAmigos.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -216,7 +217,7 @@ public class AgregarAmigos extends javax.swing.JFrame {
                     if (!friendsDictionary.containsKey(LoginForm.UsuarioActual + "," + selectedUsername)) {
                         var newFriendship = Friendship.CreateNewFriendship(selectedUsername);
                         friendsDictionary.put(newFriendship.key, newFriendship);
-                        Friendship.WriteFile(friendsDictionary, fileRoute);
+                        Friendship.WriteFile(friendsDictionary, fileRoute, LoginForm.UsuarioActual.usuario);
                         JOptionPane.showMessageDialog(null, "La solicitud de amistad ha sido enviada.");
                         this.dispose();
                     }
@@ -235,7 +236,7 @@ public class AgregarAmigos extends javax.swing.JFrame {
                     var selectedUsername = shownList.getSelectedValue().split("\\|")[0];
                     var newFriendship = Friendship.CreateNewFriendship(selectedUsername);
                     friendsDictionary.put(newFriendship.key, newFriendship);
-                    Friendship.WriteFile(friendsDictionary, fileRoute);
+                    Friendship.WriteFile(friendsDictionary, fileRoute, LoginForm.UsuarioActual.usuario);
                     JOptionPane.showMessageDialog(null, "La solicitud de amistad ha sido enviada.");
                     this.dispose();
                 } catch (IOException ex) {

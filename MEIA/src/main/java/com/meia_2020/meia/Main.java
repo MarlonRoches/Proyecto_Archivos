@@ -6,19 +6,13 @@
 package com.meia_2020.meia;
 import static com.meia_2020.meia.BuscarUsuario.global_Ruta;
 import com.meia_2020.meia.models.Archivo_Usuario;
-import com.meia_2020.meia.models.Data;
-import com.meia_2020.meia.models.Usuario;
-import fase2.Amigo;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
