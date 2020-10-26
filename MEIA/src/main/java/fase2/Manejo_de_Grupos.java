@@ -31,6 +31,9 @@ public class Manejo_de_Grupos {
     String Key;
     public int siguiente;	
     public boolean estatus;
+    public void DesactivarRegistro()
+    {
+    }
    public  boolean AgregarAmigoAGrupo(String UsuarioActual,String Amigo,String Grupo )throws FileNotFoundException, IOException
     {
         //registro0	posicion1	key2	siguiente3	estatus5
