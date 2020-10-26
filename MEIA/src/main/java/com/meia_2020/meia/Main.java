@@ -52,7 +52,7 @@ public class Main extends javax.swing.JFrame {
                  
                      var splited =linea.split("\\|");
                      if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1") ) {
-                         linex += splited[1]+"," ;
+                         linex += splited[2]+"," ;
                      }
                      var lol =0;
                  }} 
@@ -86,7 +86,7 @@ public class Main extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1")) {
+                     if (splited[0].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1")) {
                          linex += splited[1]+"," ;
                      }
                      var lol =0;
