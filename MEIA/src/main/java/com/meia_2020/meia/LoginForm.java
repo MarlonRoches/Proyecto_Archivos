@@ -84,6 +84,10 @@ public class LoginForm extends javax.swing.JFrame {
         }
         
         
+         boolean arch_Bit_Admins = new File("C:/MEIA/AdminsGrupo.txt").exists();
+        if (!arch_Bit_Admins) {
+            var creado = new File("C:/MEIA/AdminsGrupo.txt").createNewFile();  
+        }
         
         boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
         if (!arch_Bit_Usuario) {

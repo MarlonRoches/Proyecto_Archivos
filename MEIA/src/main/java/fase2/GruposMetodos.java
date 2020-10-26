@@ -50,7 +50,7 @@ public class GruposMetodos {
                     }
 
                     for(String user : usuariosGrupo){
-                        if(user == usuario){
+                        if(user.equals(usuario)){
                             existe = true;
                         }
                     }
@@ -77,7 +77,7 @@ public class GruposMetodos {
                         String nuevaLinea = separado[0] + "|" + separado[1] + "|" + separado[2] + "|" + cantidadMiembros + "|" + separado[4] + "|" + separado[5];
                         actualizar.add(nuevaLinea);
                     }else{
-                        String nuevaLinea = separado[0] + separado[1] + separado[2] + separado[3] + separado[4] + separado[5];
+                        String nuevaLinea = separado[0] +"|"+ separado[1] +"|"+ separado[2] +"|"+ separado[3] +"|"+ separado[4] +"|"+ separado[5];
                         actualizar.add(nuevaLinea);
                     }
                 }

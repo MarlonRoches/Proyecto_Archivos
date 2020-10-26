@@ -51,7 +51,6 @@ public class Manejo_de_Grupos {
                 //aqui ya existe el añadido al grupo
                 fileRead.close();       
                 file.close();
-                UpdateArchivoIndexado();
                 return false;
             }
             else
