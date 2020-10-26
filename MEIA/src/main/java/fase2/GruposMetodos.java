@@ -122,6 +122,7 @@ public class GruposMetodos {
         }
         
         sobreescribirArchivo("C:/MEIA/grupo.txt", actualizar);
+        JOptionPane.showMessageDialog(null, usuario + " fue eliminado del grupo");
     }
     
     private void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
