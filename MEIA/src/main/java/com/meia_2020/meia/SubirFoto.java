@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -196,6 +197,7 @@ public class SubirFoto extends javax.swing.JFrame {
                 if (new File("C:/MEIA/Fotografias/"+archivo.getName()).exists()) 
                 {
                     //existe
+                    showMessageDialog(null, "La Imagen ya fue subida, utilizar otra");
                     return false;
                 }
                 else
