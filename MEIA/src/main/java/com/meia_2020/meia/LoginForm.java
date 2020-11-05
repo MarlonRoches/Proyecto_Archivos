@@ -1,16 +1,11 @@
 package com.meia_2020.meia;
 
 
-import static com.meia_2020.meia.CrearUsuario.contadorUsuarios;
 import com.meia_2020.meia.models.Archivo_Usuario;
 import com.meia_2020.meia.models.Data;
 import com.meia_2020.meia.models.Usuario;
-import com.meia_2020.meia.models.desc_usuario;
 import com.meia_2020.meia.models.Desc_Usuarios;
 import com.meia_2020.meia.models.Desc_Bitacora;
-
-import java.awt.List;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -58,6 +53,8 @@ public class LoginForm extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
     /**
@@ -87,6 +84,10 @@ public class LoginForm extends javax.swing.JFrame {
         }
         
         
+         boolean arch_Bit_Admins = new File("C:/MEIA/AdminsGrupo.txt").exists();
+        if (!arch_Bit_Admins) {
+            var creado = new File("C:/MEIA/AdminsGrupo.txt").createNewFile();  
+        }
         
         boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
         if (!arch_Bit_Usuario) {
@@ -95,8 +96,13 @@ public class LoginForm extends javax.swing.JFrame {
         }
         
         
-        
-        
+        boolean arch_desc_Grupo = new File("C:/MEIA/Desc_Grupos.json").exists();
+        if (!arch_desc_Grupo) {
+            var creado = new File("C:/MEIA/Desc_Grupos.json").createNewFile();  
+            new Desc_Bitacora().crearBitacora();
+        }
+                
+                
         boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_usuario.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
@@ -120,7 +126,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario");
 
-        jUsername.setText("admin");
+        jUsername.setText("Tito");
         jScrollPane1.setViewportView(jUsername);
 
         jLabel2.setText("Contraseña");
@@ -139,9 +145,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\marce\\Desktop\\2020\\Semestre II 2020\\Manejo e implementación de archivos\\Proyecto_Archivos\\Logo S2.png")); // NOI18N
-
-        jPassword.setText("admin");
+        jPassword.setText("pera123");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,18 +220,44 @@ public class LoginForm extends javax.swing.JFrame {
             var creado = new File("C:/MEIA/bitacora_Usuarios.txt").createNewFile();  
         }
 
-        boolean arch_desc_Usuario = new File("C:/MEIA/desc_Bitacora.json").exists();
+        boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_Bitacora.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_Bitacora.json").createNewFile();  
         }
         
         
         
-        
-        boolean arch_desc_BitUsuario = new File("C:/MEIA/desc_usuario.json").exists();
+        //creando archivo de 
+        boolean arch_desc_Usuario = new File("C:/MEIA/desc_usuario.json").exists();
         if (!arch_Bit_Usuario) {
             var creado = new File("C:/MEIA/desc_usuario.json").createNewFile();  
         }
+        
+        //creando archivo de 
+        //boolean arch_Desc_IndiceGrupos = new File("C:/MEIA/Desc_IndiceGrupos.json").exists();
+        //if (!arch_Desc_IndiceGrupos) {
+        //    var creado = new File("C:/MEIA/Desc_IndiceGrupos.json").createNewFile();  
+        //    new Desc_IndiceGrupos().crearBitacora();
+        //}
+        
+        // crear archivo de grupos
+        boolean arch_grupo = new File("C:/MEIA/grupo.txt").exists();
+        if (!arch_grupo) {
+            var creado = new File("C:/MEIA/grupo.txt").createNewFile();  
+        }
+        
+        // crear archivo de listas de amigos
+         boolean arch_lista_amigos = new File("C:/MEIA/lista_amigos.txt").exists();
+        if (!arch_lista_amigos) {
+            var creado = new File("C:/MEIA/lista_amigos.txt").createNewFile();  
+        }
+                
+        // crear archivo de indice de grupos  
+         boolean arch_IndiceGrupos = new File("C:/MEIA/IndiceGrupos.txt").exists();
+        if (!arch_IndiceGrupos) {
+            var creado = new File("C:/MEIA/IndiceGrupos.txt").createNewFile();  
+        }
+        
         
         FileReader file = new FileReader(ubicacion);
         BufferedReader fileRead = new BufferedReader(file);
@@ -294,9 +324,7 @@ public class LoginForm extends javax.swing.JFrame {
         return userFound;
     }
     private void jLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginActionPerformed
-        
-       
-        
+
         String username = jUsername.getText();
         String password = DigestUtils.md5Hex(jPassword.getText());
       //...

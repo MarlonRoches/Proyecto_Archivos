@@ -23,12 +23,13 @@ import java.util.logging.Logger;
  */
 public class Archivo_Usuario {
     
-    public boolean midificarUsuario(String archivo,String nombreDeUsuario, Usuario actualizado_)
+    public boolean modificarUsuario(String archivo,String nombreDeUsuario, Usuario actualizado_)
     {
         var salida =false;
         int lineaindex =0;
-         var lineas = new ArrayList<String>();
-     try {
+        var lineas = new ArrayList<String>();
+        
+        try {
              BufferedReader buf = new BufferedReader(new FileReader(archivo));
              String linea ="";
              String[] array_nuevo;

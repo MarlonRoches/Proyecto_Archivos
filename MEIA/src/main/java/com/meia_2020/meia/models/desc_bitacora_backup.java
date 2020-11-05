@@ -34,14 +34,12 @@ public class desc_bitacora_backup {
             File desc = new File("C:/MEIA/desc_bitacora_backup.json");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-            var writer = new FileWriter(desc.toString(), false);
             var gson = new Gson();
-            if (desc.length() != 0) {
-                BufferedReader reader = new BufferedReader(new FileReader(desc.toString()));
-                String line = "";
-                while((line = reader.readLine()) != null) json += line;
-                reader.close();
-                var JsonToWrite = gson.fromJson(json, desc_bitacora_backup.class);
+            var reader = new FileReader(desc.toString());
+            var JsonToWrite = gson.fromJson(reader, desc_bitacora_backup.class);
+            var writer = new FileWriter(desc.toString(), false);             
+            reader.close();
+            if (desc.length() != (long)0) {
                 JsonToWrite.fechaModificacion = formatter.format(now);
                 JsonToWrite.usuarioModificacion = modifUser;
                 JsonToWrite.numRegistros++;

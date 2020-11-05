@@ -93,7 +93,7 @@ public int registrosActivos;
 
 
 
-public void actualizarJson(Desc_Usuarios actualizado)
+        public void actualizarJson(Desc_Usuarios actualizado)
         {
 
             
