@@ -174,7 +174,7 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
             }
             
             
-            var lol = 0;
+             var lol = 0;
         }
         
 }
