@@ -5,9 +5,14 @@
  */
 package com.meia_2020.meia;
 
+import Fase3.Arbol;
+import Fase3.Desc_Arbol;
+import Fase3.Nodo;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -117,9 +122,64 @@ public class SubirFoto extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             // TODO add your handling code here:
-            CopiarFoto(cRuta.getText());
+            
+            if (CopiarFoto(cRuta.getText())) 
+            {
+                var desc = new Desc_Arbol();
+                //se pudo copiar, lo metemos al arbol
+                if (!new File("C:/MEIA/Desc_Arbol.json").exists()) {
+                    new Desc_Arbol().crearBitacora(LoginForm.UsuarioActual.usuario);
+                }
+                
+                if (!new File("C:/MEIA/Desc_Gruposs.json").exists()) {
+                    new Arbol().CargarArbol().crearArbol(LoginForm.UsuarioActual.usuario);
+                }
+                //
+               
+               SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+               Date date = new Date(System.currentTimeMillis());
+                
+               desc = new Desc_Arbol().devolverObjeto();
+               var arbol = new Arbol().CargarArbol();
+               var nodo = new Nodo();
+               
+               desc.num_registros++;
+               desc.registros_activos++;
+               nodo.NoRegistro = (desc.num_registros);
+               
+               nodo.FechaTransaccion= formatter.format(date); 
+               desc.fecha_modificacion = formatter.format(date);
+               var fileName = new File(cRuta.getText()).getName();
+                       
+               nodo.Path = "C:/MEIA/Fotografias/"+fileName;
+               nodo.Status = true;
+               
+               
+               nodo.Usuario=LoginForm.UsuarioActual.usuario;
+               desc.usuario_modificacion =LoginForm.UsuarioActual.usuario;
+               
+               
+               
+               arbol.InsertarNodo(arbol.root, nodo);
+               desc.actualizarJson(desc);
+               arbol.actualizarJson(arbol);
+               
+                
+                this.setVisible(false);
+                var form = new Imagenes();
+                form.setVisible(true);
+
+            }
+            else
+            {
+            //no se pudo copiar
+            }
+            //insertar en el arbol
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(SubirFoto.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
  public boolean CopiarFoto(String path) throws IOException{
@@ -132,9 +192,20 @@ public class SubirFoto extends javax.swing.JFrame {
                 if (!dirFoto.exists()) {
                     dirFoto.mkdir();
                 }
-            File copiaPhoto = new File("C:/MEIA/Fotografias/UpLoad_"+archivo.getName());
-            Files.copy(newPhoto.toPath(),copiaPhoto.toPath());
-            return true;
+                
+                if (new File("C:/MEIA/Fotografias/"+archivo.getName()).exists()) 
+                {
+                    //existe
+                    return false;
+                }
+                else
+                {
+                    // no existe
+                    File copiaPhoto = new File("C:/MEIA/Fotografias/"+archivo.getName());
+                    Files.copy(newPhoto.toPath(),copiaPhoto.toPath());
+                    return true;
+                }
+            
             }catch(Exception e){
             return false;
             }

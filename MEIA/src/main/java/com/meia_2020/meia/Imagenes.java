@@ -5,6 +5,9 @@
  */
 package com.meia_2020.meia;
 
+import Fase3.Arbol;
+import java.io.File;
+
 /**
  *
  * @author roche
@@ -114,6 +117,12 @@ public class Imagenes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        if (!(new File("C:/MEIA/Desc_Gruposs.json").exists())) 
+        {
+            new Arbol().crearArbol(LoginForm.UsuarioActual.usuario);
+        }
         this.setVisible(false);
         var form = new SubirFoto();
         form.setVisible(true);

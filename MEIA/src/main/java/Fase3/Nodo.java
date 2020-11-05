@@ -11,27 +11,28 @@ package Fase3;
  */
 public class Nodo 
 {
-    int NoNoRegistro;
-    String Usuario;
-    String Path;
-    String FechaTransaccion;
-    boolean Status;
-    int hash;
-    int foto;
-    Nodo izq;
-    Nodo der;
+    public int NoRegistro;
+        public int Hash;
+    public Nodo izq;
+    public Nodo der;
+    public String Usuario;
+   public  String Path;
+    public String FechaTransaccion;
+    public boolean Status;
     
-    public  Nodo(int valor)
-    {
-        this.foto = valor;
-        //escribir Em el; archivo
-        der = null;
-        izq = null;
-    }
-    int GetKeyVal ()
-    {
     
-        return 0;
+    
+    int CalcularValor()
+    {
+        int hashito =0;
+        for (int i = 0; i < this.Usuario.length(); i++) {
+            hashito += (int)(byte)this.Usuario.charAt(i);
+        }   
+         for (int i = 0; i < this.Path.length(); i++) {
+            hashito += (int)(byte)this.Path.charAt(i);
+        }
+         this.Hash = hashito;
+        return hashito;
     }
     
     
