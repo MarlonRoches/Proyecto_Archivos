@@ -7,6 +7,7 @@ package com.meia_2020.meia;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -15,8 +16,10 @@ import javax.swing.JFileChooser;
  *
  * @author roche
  */
+
 public class SubirFoto extends javax.swing.JFrame {
 
+    static File archivo;
     /**
      * Creates new form SubirFoto
      */
@@ -53,6 +56,11 @@ public class SubirFoto extends javax.swing.JFrame {
         });
 
         jButton2.setText("Subir Imagen");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +114,34 @@ public class SubirFoto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            CopiarFoto(cRuta.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(SubirFoto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+ public boolean CopiarFoto(String path) throws IOException{
+     //archivo = path.getSelectedFile();
+     archivo = new File(path);
+        if(archivo.getName().endsWith("jpg")||archivo.getName().endsWith("png")){
+            try{
+            File newPhoto= new File(archivo.toString());
+            File dirFoto = new File("C:/MEIA/Fotografias");
+                if (!dirFoto.exists()) {
+                    dirFoto.mkdir();
+                }
+            File copiaPhoto = new File("C:/MEIA/Fotografias/UpLoad_"+archivo.getName());
+            Files.copy(newPhoto.toPath(),copiaPhoto.toPath());
+            return true;
+            }catch(Exception e){
+            return false;
+            }
+        }
+        return false;
+    }
+    
     /**
      * @param args the command line arguments
      */

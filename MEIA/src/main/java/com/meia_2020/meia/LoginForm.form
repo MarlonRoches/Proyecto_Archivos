@@ -88,6 +88,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jUsername">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tito"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -115,6 +118,9 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="pera123"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

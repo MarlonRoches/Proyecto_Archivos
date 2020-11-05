@@ -337,6 +337,7 @@ public class CrearUsuario extends javax.swing.JFrame {
      }
      return bytesFotografia;
     }
+    
     public void guardar(JFileChooser path, File carpeta) throws IOException{
      //archivo = path.getSelectedFile();
      
@@ -355,6 +356,7 @@ public class CrearUsuario extends javax.swing.JFrame {
 
         }
     }
+    
     public boolean comprobarCaracteres(Usuario user){
         boolean siCumple = false;
         if(user.usuario.length() <= 20 && user.nombre.length() <= 30 && user.usuarioApellido.length() <= 30 && user.passWord.length() <= 40 && user.correoAlterno.length() <= 40 && user.path_Fotografia.length() <= 200){
