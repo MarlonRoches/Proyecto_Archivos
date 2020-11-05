@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.meia_2020.meia.models.Desc_Usuarios;
 import fase2.Desc_IndiceGrupos;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -131,8 +132,44 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
             preOrder(this.root);
         
             List<String> TodosOrdenados = Lista.stream().sorted().collect(Collectors.toList());
-            if (true)
+            if (new File("C:/MEIA/imagen_usuario.txt").exists())
             {
+                //sobre escribir
+                File fold=new File("C:/MEIA/imagen_usuario.txt");
+                fold.delete();
+                File fnew=new File("C:/MEIA/imagen_usuario.txt");
+                String source = "";
+                try 
+                {
+                    FileWriter f2 = new FileWriter(fnew, false);
+                    for (int i = 0; i < TodosOrdenados.size(); i++) 
+                    {    
+                    f2.write(TodosOrdenados.get(i)+"\n");
+                    }
+                    f2.close();
+                } 
+                catch (IOException e) 
+                {
+                    e.printStackTrace();
+                }      
+            }else
+            {
+            //crear y escribir
+                File fnew=new File("C:/MEIA/imagen_usuario.txt");
+                String source = "";
+                try 
+                {
+                    FileWriter f2 = new FileWriter(fnew, false);
+                    for (int i = 0; i < TodosOrdenados.size(); i++) 
+                    {    
+                    f2.write(TodosOrdenados.get(i)+"\n");
+                    }
+                    f2.close();
+                } 
+                catch (IOException e) 
+                {
+                    e.printStackTrace();
+                }      
                 
             }
             
