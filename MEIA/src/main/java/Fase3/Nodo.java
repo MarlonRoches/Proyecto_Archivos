@@ -22,7 +22,7 @@ public class Nodo
     
     
     
-    int CalcularValor()
+    public int CalcularValor()
     {
         int hashito =0;
         for (int i = 0; i < this.Usuario.length(); i++) {
@@ -34,6 +34,29 @@ public class Nodo
          this.Hash = hashito;
         return hashito;
     }
-    
+    public String Stringer()
+    {
+        var salida ="";
+        
+        salida += this.NoRegistro+"|";
+        
+        try {
+            salida +=String.valueOf(this.izq.NoRegistro);
+        } catch (Exception e) {
+            salida +="-1";
+        }
+        
+                salida +="|";
+         try {
+            salida +=String.valueOf(this.der.NoRegistro);
+        } catch (Exception e) {
+            salida +="-1";
+        }
+             
+               salida +="|"+this.Usuario+"|"+
+                this.FechaTransaccion+"|"+((this.Status) ? "1" : "0");
+
+        return salida;
+    }
     
 }

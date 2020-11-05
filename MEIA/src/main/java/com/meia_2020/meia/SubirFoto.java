@@ -163,8 +163,8 @@ public class SubirFoto extends javax.swing.JFrame {
                arbol.InsertarNodo(arbol.root, nodo);
                desc.actualizarJson(desc);
                arbol.actualizarJson(arbol);
+               arbol.ActualizarArchivo();
                
-                
                 this.setVisible(false);
                 var form = new Imagenes();
                 form.setVisible(true);

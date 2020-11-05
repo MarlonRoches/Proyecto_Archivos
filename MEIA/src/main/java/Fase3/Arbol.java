@@ -14,9 +14,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -24,8 +27,8 @@ import java.util.logging.Logger;
  */
 public class Arbol {
    public Nodo root;
-
-
+   public List<String> Lista = new ArrayList<String>();
+//List<String> TodosOrdenados = OrdenadosPorSiguiente.stream().sorted().collect(Collectors.toList());
 
 
 public Nodo InsertarNodo(Nodo actual, Nodo valor) 
@@ -110,6 +113,31 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
          
          
         }
+    
+        void preOrder(Nodo raiz) 
+        { 
+            if (raiz == null) 
+            { return; } 
+            
+            this.Lista.add(raiz.Stringer());
+            
+            preOrder(raiz.izq); 
+            preOrder(raiz.der); 
+        }
+
+       public void ActualizarArchivo()
+        {
+            
+            preOrder(this.root);
         
+            List<String> TodosOrdenados = Lista.stream().sorted().collect(Collectors.toList());
+            if (true)
+            {
+                
+            }
+            
+            
+            var lol = 0;
+        }
         
 }
