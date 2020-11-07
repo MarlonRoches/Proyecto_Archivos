@@ -13,8 +13,8 @@ public class Nodo
 {
     public int NoRegistro;
         public int Hash;
-    public Nodo izq;
-    public Nodo der;
+    public Nodo left;
+    public Nodo right;
     public String Usuario;
    public  String Path;
     public String FechaTransaccion;
@@ -41,14 +41,14 @@ public class Nodo
         salida += this.NoRegistro+"|";
         
         try {
-            salida +=String.valueOf(this.izq.NoRegistro);
+            salida +=String.valueOf(this.left.NoRegistro);
         } catch (Exception e) {
             salida +="-1";
         }
         
                 salida +="|";
          try {
-            salida +=String.valueOf(this.der.NoRegistro);
+            salida +=String.valueOf(this.right.NoRegistro);
         } catch (Exception e) {
             salida +="-1";
         }
