@@ -53,8 +53,7 @@ public class Nodo
             salida +="-1";
         }
              
-               salida +="|"+this.Usuario+"|"+
-                this.FechaTransaccion+"|"+((this.Status) ? "1" : "0");
+               salida +="|"+this.Usuario+"|"+ this.Path+"|"+this.FechaTransaccion+"|"+((this.Status) ? "1" : "0");
 
         return salida;
     }

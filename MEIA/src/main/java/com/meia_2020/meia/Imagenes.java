@@ -6,7 +6,14 @@
 package com.meia_2020.meia;
 
 import Fase3.Arbol;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -19,6 +26,46 @@ public class Imagenes extends javax.swing.JFrame {
      */
     public Imagenes() {
         initComponents();
+        //mostrar amigos 
+         FileReader file;
+             var linex = "";
+        try {
+            file = new FileReader("C:/MEIA/imagen_usuario.txt");
+              BufferedReader fileRead = new BufferedReader(file);
+              var linea="";
+             try {
+                 while ((linea=fileRead.readLine())!= null) {
+                 
+                     var splited =linea.split("\\|");
+                     if (splited[3].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1") ) {
+                         
+                         var path = splited[4];
+                         var fisle = new File(path).getName();
+                         linex += fisle+"," ;
+                         
+                         
+                     }
+                     var lol =0;
+                 }} 
+             catch (IOException ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
+     
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        
+        
+        var week= linex.split(",");
+        
+       var lm = new DefaultListModel();
+        for (int i = 0; i < week.length; i++) {
+            lm.addElement(week[i]);
+        }
+        MisImagenes.setModel(lm);
+        //"C:/MEIA/imagen_usuario.txt"
     }
 
     /**
@@ -31,7 +78,7 @@ public class Imagenes extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        MisImagenes = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -40,12 +87,12 @@ public class Imagenes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        MisImagenes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(MisImagenes);
 
         jLabel1.setText("Mis Imagenes");
 
@@ -172,12 +219,12 @@ public class Imagenes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> MisImagenes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
