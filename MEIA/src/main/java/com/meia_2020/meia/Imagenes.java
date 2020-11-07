@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -106,6 +107,11 @@ public class Imagenes extends javax.swing.JFrame {
         jButton2.setText("Ver imagen");
 
         jButton3.setText("Borrar Imagen");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Regresar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +187,20 @@ public class Imagenes extends javax.swing.JFrame {
         var form = new Main();
         form.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        var ruta = "C:/MEIA/Fotografias/"+MisImagenes.getSelectedValue();
+        if (new File(ruta).exists()) 
+        {
+            var vile = new File(ruta).delete();
+            showMessageDialog(null, "La Imagen ya fue subida, utilizar otra");
+
+        }else
+        {
+            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
