@@ -283,6 +283,11 @@ public class Main extends javax.swing.JFrame {
         jLabel4.setText("Mensajes");
 
         bMensajesAjenos.setText("Mensajes de amigos");
+        bMensajesAjenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMensajesAjenosActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Administrar mensajes");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -493,6 +498,12 @@ public class Main extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void bMensajesAjenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMensajesAjenosActionPerformed
+        var mensajesDeAmigos = new mensajesAmigos();
+        this.setVisible(false);
+        mensajesDeAmigos.setVisible(true);
+    }//GEN-LAST:event_bMensajesAjenosActionPerformed
 
     /**
      * @param args the command line arguments

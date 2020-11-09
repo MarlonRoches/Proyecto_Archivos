@@ -333,7 +333,7 @@ public class LoginForm extends javax.swing.JFrame {
             boolean logIn = comprobacionUsuarios(username, password);
             if(logIn){
                 //abrimos uno nuevo
-                Main AbrirMenuPrincipal = new Main();
+                var AbrirMenuPrincipal = new Main();
                 AbrirMenuPrincipal.setVisible(true);
                 //cerramos este form
                 this.setVisible(false);

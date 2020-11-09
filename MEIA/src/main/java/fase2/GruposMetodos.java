@@ -133,7 +133,7 @@ public class GruposMetodos {
         
     }
     
-    private void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
+    public void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
         
         FileWriter fw = new FileWriter(ruta, false);       
         PrintWriter pw = new PrintWriter(fw);       

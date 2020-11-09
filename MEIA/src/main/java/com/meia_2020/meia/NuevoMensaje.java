@@ -177,9 +177,16 @@ public class NuevoMensaje extends javax.swing.JFrame {
         String amigoSeleccionado = ListaAmigosMensajes.getSelectedValue();
         String tipo = cTipoMensaje.getSelectedItem().toString();
         String fechaEnviado = new SimpleDateFormat("dd-MM-yyyy").format(fecha);
+        String bit = "";
+        
+        if(tipo.equals("Privado")){
+            bit = "0";
+        }else{
+            bit = "1";
+        }
         
         //linea a escribir
-        String linea = LoginForm.UsuarioActual.usuario + "|" + amigoSeleccionado + "|" + fechaEnviado + "|" + mensaje + "|" + tipo + "|" + "1" + "\n";
+        String linea = LoginForm.UsuarioActual.usuario + "|" + amigoSeleccionado + "|" + fechaEnviado + "|" + mensaje + "|" + bit + "|" + "1" + "\n";
         
         FileWriter archivo;
         if((!amigoSeleccionado.equals(null)) && (!mensaje.equals(null)) && (!LoginForm.UsuarioActual.usuario.equals(null))){
