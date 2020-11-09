@@ -333,10 +333,11 @@ public class LoginForm extends javax.swing.JFrame {
             boolean logIn = comprobacionUsuarios(username, password);
             if(logIn){
                 //abrimos uno nuevo
-                var AbrirMenuPrincipal = new Main();
-                AbrirMenuPrincipal.setVisible(true);
+                Main AbrirMenuPrincipal = new Main();
                 //cerramos este form
                 this.setVisible(false);
+                AbrirMenuPrincipal.setVisible(true);
+                
             }else{
                 int opcion = JOptionPane.showConfirmDialog(null,"Usuario o contraseña no fue encontrado, ¿desea crear un usuario?", "Aviso", JOptionPane.YES_NO_OPTION);
                 if(opcion==0){

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +42,7 @@ public class administrarMensajes extends javax.swing.JFrame {
                 while ((linea=fileRead.readLine())!= null) {
                  
                     var splited =linea.split("\\|");
-                    if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1") ) {
+                    if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) {
                         linex += "De " + splited[0] + " : " + splited[3] +"," ;
                     }
                     var lol =0;
@@ -101,6 +102,11 @@ public class administrarMensajes extends javax.swing.JFrame {
         });
 
         jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +142,7 @@ public class administrarMensajes extends javax.swing.JFrame {
         
         String mensajeSeleccionado = ListaMensajesRecibidos.getSelectedValue().toString();
         var actualizar = new ArrayList<String>();
+        var splitMensaje = mensajeSeleccionado.split(":");
         
         //carga de listas
         var lm = new DefaultListModel();
@@ -152,11 +159,12 @@ public class administrarMensajes extends javax.swing.JFrame {
                 while ((linea=fileRead.readLine())!= null) {
                  
                     var splited =linea.split("\\|");
-                    if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[3].equals(mensajeSeleccionado) ) {
-                        linex = splited[0] + "|" + splited[1] + "|" + splited[2] + "|" + splited[3] + "|" + splited[4] + "|" + "0" + "\n";
+                    String lineaMensaje = " " + splited[3];
+                    if (splited[1].equals(LoginForm.UsuarioActual.usuario) && lineaMensaje.equals(splitMensaje[1]) ) {
+                        linex = splited[0] + "|" + splited[1] + "|" + splited[2] + "|" + splited[3] + "|" + splited[4] + "|" + "0";
                         actualizar.add(linex);
                     }else{
-                        linex = splited[0] + "|" + splited[1] + "|" + splited[2] + "|" + splited[3] + "|" + splited[4] + "|" + splited[5] + "\n";
+                        linex = splited[0] + "|" + splited[1] + "|" + splited[2] + "|" + splited[3] + "|" + splited[4] + "|" + splited[5];
                         actualizar.add(linex);
                     }
                 }
@@ -174,10 +182,17 @@ public class administrarMensajes extends javax.swing.JFrame {
       
         try {
             sobreescribir.sobreescribirArchivo("C:/MEIA/mensajes.txt", actualizar);
+            JOptionPane.showMessageDialog(null, "Mensaje eliminado :0");
         } catch (IOException ex) {
             Logger.getLogger(administrarMensajes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Main main = new Main();
+        this.setVisible(false);
+        main.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

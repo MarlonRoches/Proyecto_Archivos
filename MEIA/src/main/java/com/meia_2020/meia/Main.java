@@ -176,7 +176,7 @@ public class Main extends javax.swing.JFrame {
         ListaMensajes = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         bMensajesAjenos = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        admin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -289,10 +289,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Administrar mensajes");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        admin.setText("Administrar mensajes");
+        admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                adminActionPerformed(evt);
             }
         });
 
@@ -332,7 +332,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(BtnBackup1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bMensajesAjenos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +384,7 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -495,13 +495,13 @@ public class Main extends javax.swing.JFrame {
         enviarMensaje.setVisible(true);
     }//GEN-LAST:event_bEnviarMensajesActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        administrarMensajes administrar = new administrarMensajes();
+        administrar.setVisible(true);
+    }//GEN-LAST:event_adminActionPerformed
 
     private void bMensajesAjenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMensajesAjenosActionPerformed
         var mensajesDeAmigos = new mensajesAmigos();
-        this.setVisible(false);
         mensajesDeAmigos.setVisible(true);
     }//GEN-LAST:event_bMensajesAjenosActionPerformed
 
@@ -551,12 +551,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JList<String> ListaAmigos;
     private javax.swing.JList<String> ListaGrupos;
     private javax.swing.JList<String> ListaMensajes;
+    private javax.swing.JButton admin;
     private javax.swing.JButton bEnviarMensajes;
     private javax.swing.JButton bMensajesAjenos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

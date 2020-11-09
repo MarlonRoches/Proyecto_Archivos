@@ -39,7 +39,7 @@ public class mensajesAmigos extends javax.swing.JFrame {
                  while ((linea=fileRead.readLine())!= null) {
                  
                      var splited =linea.split("\\|");
-                     if (splited[4].equals("1")) {
+                     if (splited[4].equals("1") && splited[5].equals("1")) {
                          linex += splited[0] + " a " + splited[1] + ": " + splited[3] + "," ;
                      }
                      var lol =0;
