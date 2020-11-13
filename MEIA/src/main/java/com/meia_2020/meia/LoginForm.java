@@ -246,6 +246,11 @@ public class LoginForm extends javax.swing.JFrame {
             var creado = new File("C:/MEIA/grupo.txt").createNewFile();  
         }
         
+        // crear archivo de grupos
+        boolean arch_MENSAJE = new File("C:/MEIA/mensajes.txt").exists();
+        if (!arch_MENSAJE) {
+            var creado = new File("C:/MEIA/mensajes.txt").createNewFile();  
+        }
         // crear archivo de listas de amigos
          boolean arch_lista_amigos = new File("C:/MEIA/lista_amigos.txt").exists();
         if (!arch_lista_amigos) {
