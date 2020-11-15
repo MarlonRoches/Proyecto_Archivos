@@ -68,7 +68,7 @@ public class Main extends javax.swing.JFrame {
         
         var week= linex.split(",");
         
-       lm = new DefaultListModel();
+        lm = new DefaultListModel();
         for (int i = 0; i < week.length; i++) {
             lm.addElement(week[i]);
         }
@@ -101,9 +101,9 @@ public class Main extends javax.swing.JFrame {
       
         
         
-       week= linex.split(",");
+        week= linex.split(",");
         
-       lm = new DefaultListModel();
+        lm = new DefaultListModel();
         for (int i = 0; i < week.length; i++) {
             lm.addElement(week[i]);
         }
@@ -522,7 +522,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bMensajesAjenosActionPerformed
 
     private void bMensajesAjenos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMensajesAjenos1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        PerfilAmigo perfil = new PerfilAmigo();
+        perfil.setVisible(true);
+        perfil.mostrarMensajes(ListaAmigos.getSelectedValue().toString());
     }//GEN-LAST:event_bMensajesAjenos1ActionPerformed
 
     /**
