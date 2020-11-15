@@ -27,8 +27,9 @@ public class Imagenes extends javax.swing.JFrame {
      */
     public Imagenes() {
         initComponents();
-        //mostrar amigos 
-         FileReader file;
+        
+        //mostrar fotos disponibles 
+        FileReader file;
              var linex = "";
         try {
             file = new FileReader("C:/MEIA/imagen_usuario.txt");

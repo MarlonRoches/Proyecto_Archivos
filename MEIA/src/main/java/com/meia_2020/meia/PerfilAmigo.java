@@ -153,6 +153,11 @@ public class PerfilAmigo extends javax.swing.JFrame {
         NombreDeUsuario6.setText("Mensajes:");
 
         jButton1.setText("Ver fotos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Regresar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -219,6 +224,10 @@ public class PerfilAmigo extends javax.swing.JFrame {
         Main main = new Main();
         main.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
