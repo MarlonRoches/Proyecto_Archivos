@@ -53,7 +53,11 @@ public class Main extends javax.swing.JFrame {
                      if (splitted[1].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")) {
                          linex += splitted[2]+"," ;
                      }
-                 }} 
+                      else if(splitted[2].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")){
+                        linex += splitted[1]+"," ;
+                     }
+                 }
+             } 
              catch (IOException ex) {
                  Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
              }

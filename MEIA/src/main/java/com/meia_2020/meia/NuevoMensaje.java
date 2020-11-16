@@ -39,14 +39,16 @@ public class NuevoMensaje extends javax.swing.JFrame {
               BufferedReader fileRead = new BufferedReader(file);
               var linea="";
              try {
-                 while ((linea=fileRead.readLine())!= null) {
-                 
+                 while ((linea=fileRead.readLine())!= null) {         
                      var splitted =linea.split("\\|");
                      if (splitted[1].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")) {
-                         linex += splitted[2]+"," ;
+                        linex += splitted[2]+"," ;
                      }
-                     var lol =0;
-                 }} 
+                     else if(splitted[2].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")){
+                        linex += splitted[1]+"," ;
+                     }
+                 }
+             } 
              catch (IOException ex) {
                  Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
              }
