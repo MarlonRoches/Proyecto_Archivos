@@ -6,6 +6,7 @@
 package com.meia_2020.meia;
 
 import Fase3.Arbol;
+import Fase3.Nodo;
 import static com.meia_2020.meia.FotoDeAmigo.Path;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -200,7 +201,7 @@ public class Imagenes extends javax.swing.JFrame {
         {
             var vile = new File(ruta).delete();
             showMessageDialog(null, "La Imagen ya fue subida, utilizar otra");
-
+            var nodo = new Nodo();
         }else
         {
             

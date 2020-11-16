@@ -60,13 +60,10 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
 
     public Arbol CargarArbol()
         {
-            
             String json ="";
-            
          try {
              BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/Desc_Gruposs.json"));
              String linea ="";
-             
              try
              {
                  while((linea = buf.readLine()) != null)
