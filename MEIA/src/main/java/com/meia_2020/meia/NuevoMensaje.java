@@ -5,7 +5,12 @@
  */
 package com.meia_2020.meia;
 
+import Fase3.Arbol;
+import Fase3.Desc_Arbol;
+import Fase3.Desc_Mensajes;
+import Fase3.Nodo;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -171,6 +176,11 @@ public class NuevoMensaje extends javax.swing.JFrame {
 
     private void bEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnviarActionPerformed
         Date fecha = new Date();
+        var desc = new Desc_Mensajes();
+        
+        if (!new File("C:/MEIA/Desc_Mensajes.json").exists()) {
+            new Desc_Mensajes().crearBitacora(LoginForm.UsuarioActual.usuario);
+        }
         
         //componentes del archivo 
         String mensaje = mensajeEnviar.getText();
@@ -179,29 +189,47 @@ public class NuevoMensaje extends javax.swing.JFrame {
         String fechaEnviado = new SimpleDateFormat("dd-MM-yyyy").format(fecha);
         String bit = "";
         
-        if(tipo.equals("Privado")){
-            bit = "0";
+        if(amigoSeleccionado == null){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un amigo para enviarle un mensaje");
         }else{
-            bit = "1";
-        }
+            if(mensajeEnviar.getText().isBlank()){
+                JOptionPane.showMessageDialog(null, "Debe escribir un mensaje");
+            }else{
         
-        //linea a escribir
-        String linea = LoginForm.UsuarioActual.usuario + "|" + amigoSeleccionado + "|" + fechaEnviado + "|" + mensaje + "|" + bit + "|" + "1" + "\n";
+            if(tipo.equals("Privado")){
+                bit = "0";
+            }else{
+                bit = "1";
+            }   
         
-        FileWriter archivo;
-        if((!amigoSeleccionado.equals(null)) && (!mensaje.equals(null)) && (!LoginForm.UsuarioActual.usuario.equals(null))){
-            try {
-            archivo = new FileWriter("C:/MEIA/mensajes.txt",true);
-            archivo.write(linea);
-            archivo.close();
-            JOptionPane.showMessageDialog(null, "Mensaje enviado correctamente :)");
-            this.setVisible(false);
-            var main = new Main();
-            main.setVisible(true);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Uno de los datos ingresados es incorrecto");
+            //linea a escribir
+            String linea = LoginForm.UsuarioActual.usuario + "|" + amigoSeleccionado + "|" + fechaEnviado + "|" + mensaje + "|" + bit + "|" + "1" + "\n";
+            
+            FileWriter archivo;
+            if((!amigoSeleccionado.equals(null)) && (!mensajeEnviar.getText().isEmpty()) && (!LoginForm.UsuarioActual.usuario.equals(null))){
+                try {
+                    archivo = new FileWriter("C:/MEIA/mensajes.txt",true);
+                    archivo.write(linea);
+                    archivo.close();
+                    SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+                    Date date = new Date(System.currentTimeMillis());
+                    desc = new Desc_Mensajes().devolverObjeto();
+                    desc.num_registros++;
+                    desc.registros_activos++;
+                    desc.fecha_modificacion = formatter.format(date);
+                    desc.usuario_modificacion =LoginForm.UsuarioActual.usuario;
+                    desc.actualizarJson(desc);
+                    JOptionPane.showMessageDialog(null, "Mensaje enviado correctamente :)");
+                    this.setVisible(false);
+                    var main = new Main();
+                    main.setVisible(true);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Uno de los datos ingresados es incorrecto");
+                }
+                }
             }
         }
+        
     }//GEN-LAST:event_bEnviarActionPerformed
 
     private void cTipoMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cTipoMensajeActionPerformed
