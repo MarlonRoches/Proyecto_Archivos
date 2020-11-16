@@ -6,6 +6,7 @@
 package com.meia_2020.meia;
 
 import Fase3.Desc_Mensajes;
+import Fase3.MetodosBitacora;
 import fase2.GruposMetodos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -60,7 +61,28 @@ public class administrarMensajes extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
       
-        
+        try {
+            file = new FileReader("C:/MEIA/bitacora_mensajes.txt");
+            BufferedReader fileRead = new BufferedReader(file);
+            var linea="";
+            try {
+                while ((linea=fileRead.readLine())!= null) {
+                 
+                    var splited =linea.split("\\|");
+                    if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1") ) {
+                        linex += "De " + splited[0] + " : " + splited[3] +"," ;
+                    }
+                    var lol =0;
+                }} 
+            catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+     
+             
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         var week= linex.split(",");
         
@@ -144,57 +166,12 @@ public class administrarMensajes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         String mensajeSeleccionado = ListaMensajesRecibidos.getSelectedValue().toString();
-        var actualizar = new ArrayList<String>();
         var splitMensaje = mensajeSeleccionado.split(":");
-        var desc = new Desc_Mensajes();
         
-        //carga de listas
-        var lm = new DefaultListModel();
-        var sobreescribir = new GruposMetodos();
-        
-        //mostrar mensajes recibidos 
-        FileReader file;
-        var linex = "";
+        var cambiar = new MetodosBitacora();
         try {
-            file = new FileReader("C:/MEIA/mensajes.txt");
-            BufferedReader fileRead = new BufferedReader(file);
-            var linea="";
-            try {
-                while ((linea=fileRead.readLine())!= null) {
-                 
-                    var splited =linea.split("\\|");
-                    String lineaMensaje = " " + splited[3];
-                    if (splited[1].equals(LoginForm.UsuarioActual.usuario) && lineaMensaje.equals(splitMensaje[1]) ) {
-                        linex = splited[0] + "|" + splited[1] + "|" + splited[2] + "|" + splited[3] + "|" + splited[4] + "|" + "0";
-                        actualizar.add(linex);
-                    }else{
-                        linex = splited[0] + "|" + splited[1] + "|" + splited[2] + "|" + splited[3] + "|" + splited[4] + "|" + splited[5];
-                        actualizar.add(linex);
-                    }
-                }
-                file.close();
-            } 
-            catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-     
-             
-     
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
-        try {
-            sobreescribir.sobreescribirArchivo("C:/MEIA/mensajes.txt", actualizar);
-            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-            Date date = new Date(System.currentTimeMillis());
-            desc = new Desc_Mensajes().devolverObjeto();
-            desc.registros_activos--;
-            desc.registros_inactivos++;
-            desc.fecha_modificacion = formatter.format(date);
-            desc.usuario_modificacion =LoginForm.UsuarioActual.usuario;
-            desc.actualizarJson(desc);
-            JOptionPane.showMessageDialog(null, "Mensaje eliminado :0");
+            cambiar.cambiarEstado(splitMensaje[1]);
+            JOptionPane.showMessageDialog(null, "Mensaje eliminado correctamente c:");
         } catch (IOException ex) {
             Logger.getLogger(administrarMensajes.class.getName()).log(Level.SEVERE, null, ex);
         }

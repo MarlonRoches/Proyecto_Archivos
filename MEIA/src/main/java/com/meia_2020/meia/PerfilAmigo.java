@@ -59,6 +59,27 @@ public class PerfilAmigo extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        try {
+            file = new FileReader("C:/MEIA/bitacora_mensajes.txt");
+              BufferedReader fileRead = new BufferedReader(file);
+              var linea="";
+             try {
+                 while ((linea=fileRead.readLine())!= null) {
+                 
+                     var splited =linea.split("\\|");
+                     if (splited[1].equals(usuarioSeleccionado) && splited[4].equals("1") && splited[5].equals("1")) {
+                         linex += splited[0] + ": " + splited[3] + "," ;
+                     }
+                 }} 
+             catch (IOException ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
+     
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         var week= linex.split(",");
         
         lm = new DefaultListModel();
@@ -66,7 +87,6 @@ public class PerfilAmigo extends javax.swing.JFrame {
             lm.addElement(week[i]);
         }
         lMensajesAmigo.setModel(lm);
-        
         mostrarDatos(usuarioSeleccionado);
     }
     

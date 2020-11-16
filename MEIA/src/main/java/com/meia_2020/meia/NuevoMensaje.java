@@ -8,6 +8,7 @@ package com.meia_2020.meia;
 import Fase3.Arbol;
 import Fase3.Desc_Arbol;
 import Fase3.Desc_Mensajes;
+import Fase3.MetodosBitacora;
 import Fase3.Nodo;
 import java.io.BufferedReader;
 import java.io.File;
@@ -208,11 +209,14 @@ public class NuevoMensaje extends javax.swing.JFrame {
             String linea = LoginForm.UsuarioActual.usuario + "|" + amigoSeleccionado + "|" + fechaEnviado + "|" + mensaje + "|" + bit + "|" + "1" + "\n";
             
             FileWriter archivo;
-            if((!amigoSeleccionado.equals(null)) && (!mensajeEnviar.getText().isEmpty()) && (!LoginForm.UsuarioActual.usuario.equals(null))){
+            var bitacora = new MetodosBitacora();
+            
+            if((LoginForm.UsuarioActual.usuario!=null)){
                 try {
-                    archivo = new FileWriter("C:/MEIA/mensajes.txt",true);
+                    archivo = new FileWriter("C:/MEIA/bitacora_mensajes.txt",true);
                     archivo.write(linea);
                     archivo.close();
+                    bitacora.reorganizar();
                     SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
                     Date date = new Date(System.currentTimeMillis());
                     desc = new Desc_Mensajes().devolverObjeto();

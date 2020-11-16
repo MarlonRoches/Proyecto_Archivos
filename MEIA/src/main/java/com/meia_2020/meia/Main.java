@@ -135,6 +135,28 @@ public class Main extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            file = new FileReader("C:/MEIA/bitacora_mensajes.txt");
+              BufferedReader fileRead = new BufferedReader(file);
+              var linea="";
+             try {
+                 while ((linea=fileRead.readLine())!= null) {
+                 
+                     var splited =linea.split("\\|");
+                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1")) {
+                         linex += splited[0]+" : "+ splited[3] +"," ;
+                     }
+                     var lol =0;
+                 }} 
+             catch (IOException ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
+     
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
         
         

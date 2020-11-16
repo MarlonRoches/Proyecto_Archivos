@@ -42,6 +42,7 @@ public class LoginForm extends javax.swing.JFrame {
             public void run(){
                 try {          
                     CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuario.txt");
+                    CrearUsuario.pasarFichero("C:/MEIA/bitacora_mensajes.txt", "C:/MEIA/mensajes.txt");
 
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
