@@ -48,8 +48,7 @@ public class Imagenes extends javax.swing.JFrame {
                          
                          var path = splited[4];
                          var fisle = new File(path).getName();
-                         linex += fisle+"," ;
-                         
+                         linex += fisle+",";
                          
                      }
                      var lol =0;
