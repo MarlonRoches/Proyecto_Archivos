@@ -6,6 +6,7 @@
 package com.meia_2020.meia;
 
 import Fase3.Arbol;
+import Fase3.Nodo;
 import static com.meia_2020.meia.FotoDeAmigo.Path;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -118,6 +119,7 @@ public class Imagenes extends javax.swing.JFrame {
         });
 
         jButton3.setText("Borrar Imagen");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -200,7 +202,12 @@ public class Imagenes extends javax.swing.JFrame {
         {
             var vile = new File(ruta).delete();
             showMessageDialog(null, "La Imagen ya fue subida, utilizar otra");
-
+            var nodo = new Nodo();
+            nodo.Usuario = LoginForm.UsuarioActual.usuario;
+            nodo.Path= "C:/MEIA/Fotografias/"+MisImagenes.getSelectedValue();
+            
+            var arbol = new Arbol().CargarArbol();
+            
         }else
         {
             
