@@ -49,9 +49,9 @@ public class Main extends javax.swing.JFrame {
              try {
                  while ((linea=fileRead.readLine())!= null) {
                  
-                     var splited =linea.split("\\|");
-                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1") && splited[3].equals("1")) {
-                         linex += splited[2]+"," ;
+                     var splitted =linea.split("\\|");
+                     if (splitted[1].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")) {
+                         linex += splitted[2]+"," ;
                      }
                  }} 
              catch (IOException ex) {
