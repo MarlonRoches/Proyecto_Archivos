@@ -5,6 +5,18 @@
  */
 package com.meia_2020.meia;
 
+import java.awt.Dimension;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author roche
@@ -14,8 +26,61 @@ public class FotoDeAmigo extends javax.swing.JFrame {
     /**
      * Creates new form FotoDeAmigo
      */
-    public FotoDeAmigo() {
+        public static String Path;         
+        public static String Usuario; 
+
+        public FotoDeAmigo() {
         initComponents();
+        FrameFoto.setBounds(10, 10, 400, 400);
+        FrameFoto.setVisible(true);        
+        this.setResizable(false);
+        Usuario=PerfilAmigo.usuarioSeleccionado;
+        Nombre.setText("Fotos De: "+PerfilAmigo.usuarioSeleccionado);
+        Path="C:/MEIA/imagen_usuario.txt";
+        
+        
+        //mostrar fotos disponibles 
+        FileReader file;
+             var linex = "";
+        try {
+            file = new FileReader("C:/MEIA/imagen_usuario.txt");
+              BufferedReader fileRead = new BufferedReader(file);
+              var linea="";
+             try {
+                 while ((linea=fileRead.readLine())!= null) {
+                 
+                     var splited =linea.split("\\|");
+                     if (splited[3].equals(Usuario) && splited[6].equals("1") ) {
+                         
+                         var path = splited[4];
+                         var fisle = new File(path).getName();
+                         linex += fisle+"," ;
+                         
+                         
+                     }
+                     var lol =0;
+                 }} 
+             catch (IOException ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
+     
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        
+        
+        var week= linex.split(",");
+        
+       var lm = new DefaultListModel();
+        for (int i = 0; i < week.length; i++) {
+            lm.addElement(week[i]);
+        }
+        ListaDeImagnes.setModel(lm);
+        //"C:/MEIA/imagen_usuario.txt"
+        //ImageIcon image = new ImageIcon("C:/Users/Meneer/Pictures/" + Path);
+        
     }
 
     /**
@@ -28,6 +93,11 @@ public class FotoDeAmigo extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        FrameFoto = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListaDeImagnes = new javax.swing.JList<>();
+        jButton2 = new javax.swing.JButton();
+        Nombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,20 +108,55 @@ public class FotoDeAmigo extends javax.swing.JFrame {
             }
         });
 
+        FrameFoto.setText("...");
+
+        ListaDeImagnes.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ListaDeImagnes);
+
+        jButton2.setText("Ver Foto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        Nombre.setText("Fotos De: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(FrameFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
-                .addComponent(jButton1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(FrameFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Nombre)
+                        .addGap(13, 13, 13)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
 
@@ -60,8 +165,43 @@ public class FotoDeAmigo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.hide();
+        this.setVisible(false);
+        PerfilAmigo perfil = new PerfilAmigo();
+        perfil.setVisible(true);
+        perfil.mostrarMensajes(Usuario);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        var NombreDeImagen =  ListaDeImagnes.getSelectedValue();
+        if (NombreDeImagen  == null) 
+        {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una imagen plz");
+        }
+        else
+        {
+        try 
+        {
+            ImageIcon image = new ImageIcon(Path+NombreDeImagen);
+            Dimension lol = new Dimension();
+            lol.height=400;            
+            lol.width=400;
+            FrameFoto.setMaximumSize(lol);
+            FrameFoto.setPreferredSize(lol);
+            FrameFoto.setMaximumSize(lol);
+           FrameFoto.setIcon(image);
+           FrameFoto.setBounds(10, 10, 400, 400);
+        FrameFoto.setVisible(true);        
+        this.setResizable(false);
+         
+        } 
+        catch (Exception e) 
+        {
+        }
+        }
+        
+     
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,6 +239,11 @@ public class FotoDeAmigo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FrameFoto;
+    private javax.swing.JList<String> ListaDeImagnes;
+    private javax.swing.JLabel Nombre;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

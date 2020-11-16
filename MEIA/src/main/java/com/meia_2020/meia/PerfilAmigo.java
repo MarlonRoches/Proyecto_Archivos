@@ -24,7 +24,7 @@ public class PerfilAmigo extends javax.swing.JFrame {
      * Creates new form PerfilAmigo
      */
     
-    String usuarioSeleccionado;
+   public static String usuarioSeleccionado;
     
     public PerfilAmigo() {
         initComponents();
@@ -207,14 +207,14 @@ public class PerfilAmigo extends javax.swing.JFrame {
                         .addComponent(NombreDeUsuario4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NombreDeUsuario5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(0, 17, Short.MAX_VALUE))))
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -227,7 +227,12 @@ public class PerfilAmigo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          
+        this.setVisible(false);
+        var form = new FotoDeAmigo();
+        form.Path="C:/MEIA/Fotografias/";        
+        form.Usuario=NombreDeUsuario.getText();
+        form.setVisible(true);
+        //NombreDeUsuario
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
