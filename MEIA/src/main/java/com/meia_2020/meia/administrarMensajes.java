@@ -5,12 +5,15 @@
  */
 package com.meia_2020.meia;
 
+import Fase3.Desc_Mensajes;
 import fase2.GruposMetodos;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -143,6 +146,7 @@ public class administrarMensajes extends javax.swing.JFrame {
         String mensajeSeleccionado = ListaMensajesRecibidos.getSelectedValue().toString();
         var actualizar = new ArrayList<String>();
         var splitMensaje = mensajeSeleccionado.split(":");
+        var desc = new Desc_Mensajes();
         
         //carga de listas
         var lm = new DefaultListModel();
@@ -182,6 +186,14 @@ public class administrarMensajes extends javax.swing.JFrame {
       
         try {
             sobreescribir.sobreescribirArchivo("C:/MEIA/mensajes.txt", actualizar);
+            SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+            Date date = new Date(System.currentTimeMillis());
+            desc = new Desc_Mensajes().devolverObjeto();
+            desc.registros_activos--;
+            desc.registros_inactivos++;
+            desc.fecha_modificacion = formatter.format(date);
+            desc.usuario_modificacion =LoginForm.UsuarioActual.usuario;
+            desc.actualizarJson(desc);
             JOptionPane.showMessageDialog(null, "Mensaje eliminado :0");
         } catch (IOException ex) {
             Logger.getLogger(administrarMensajes.class.getName()).log(Level.SEVERE, null, ex);
