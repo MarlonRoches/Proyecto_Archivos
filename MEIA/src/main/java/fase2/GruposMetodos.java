@@ -133,7 +133,7 @@ public class GruposMetodos {
         
     }
     
-    private void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
+    public void sobreescribirArchivo(String ruta, ArrayList<String> array) throws IOException{
         
         FileWriter fw = new FileWriter(ruta, false);       
         PrintWriter pw = new PrintWriter(fw);       
@@ -141,11 +141,11 @@ public class GruposMetodos {
         for (int i = 0; i <= array.size(); i++) {
             if (i == array.size() -1) {
                 var linea =array.toArray()[i].toString();
-                pw.print(array.toArray()[i].toString());
+                pw.print(array.toArray()[i].toString()+"\n");
                 break;
             } else {
                 var linea =array.toArray()[i].toString();
-             pw.println(array.toArray()[i].toString());
+                pw.println(array.toArray()[i].toString());
             }
         }
         pw.close();

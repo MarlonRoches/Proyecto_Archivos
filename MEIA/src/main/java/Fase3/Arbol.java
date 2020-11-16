@@ -44,9 +44,9 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
        }
 
        if (valor.CalcularValor() < actual.CalcularValor()) {
-           actual.izq = InsertarNodo(actual.izq, valor);
+           actual.left = InsertarNodo(actual.left, valor);
        } else if (valor.CalcularValor() > actual.CalcularValor()) {
-           actual.der = InsertarNodo(actual.der, valor);
+           actual.right = InsertarNodo(actual.right, valor);
        } else {
            // foto already exists
            return actual;
@@ -58,15 +58,12 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
 }
             
 
-        public Arbol CargarArbol()
+    public Arbol CargarArbol()
         {
-            
             String json ="";
-            
          try {
              BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/Desc_Gruposs.json"));
              String linea ="";
-             
              try
              {
                  while((linea = buf.readLine()) != null)
@@ -88,10 +85,52 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
             var objetoJson  = gson.fromJson(json, Arbol.class);
             return objetoJson;
         }
+    public void delete(int value) {
+    this.root = deleteRecursive(this.root, value);
+    }
     
+    private Nodo deleteRecursive(Nodo current, int value) {
+    if (current == null) {
+        return null;
+    }
+ 
+    if (value == current.CalcularValor()) {
+        // Node to delete found
+        // ... code to delete the node will go here
         
+        // es Hoja
+        if (current.left == null && current.left == null) {
+            return null;
+        }
+        if (current.right == null) {
+            return current.left;
+        }
+ 
+        if (current.left == null) {
+            return current.right;
+        }
         
-        public void crearArbol(String _UsuarioDeCreacion){
+        var smallestValue = findSmallestValue(current.right);
+        current= smallestValue;
+        
+        current.right = deleteRecursive(current.right, smallestValue.CalcularValor());
+        return current;
+        
+    } 
+    
+    if (value < current.CalcularValor()) {
+        current.left = deleteRecursive(current.left, value);
+        return current;
+    }
+        current.right = deleteRecursive(current.right, value);
+        return current;
+    }    
+    
+    
+    private Nodo findSmallestValue(Nodo root) {
+        return root.left == null ? root : findSmallestValue(root.left);
+    }
+    public void crearArbol(String _UsuarioDeCreacion){
             var nuevo = new Arbol();
             nuevo.root = null;
             actualizarJson(nuevo);
@@ -122,8 +161,8 @@ public Nodo InsertarNodo(Nodo actual, Nodo valor)
             
             this.Lista.add(raiz.Stringer());
             
-            preOrder(raiz.izq); 
-            preOrder(raiz.der); 
+            preOrder(raiz.left); 
+            preOrder(raiz.right); 
         }
 
        public void ActualizarArchivo()

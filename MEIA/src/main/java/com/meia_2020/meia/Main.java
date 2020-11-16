@@ -28,12 +28,11 @@ public class Main extends javax.swing.JFrame {
         
         
         
-        if (LoginForm.UsuarioActual.rol) {
-            
-            //es admin
-            labelNombre.setText("Bienvenido Admin: "+ LoginForm.UsuarioActual.usuario );
+        if ((LoginForm.UsuarioActual.rol).equals("1")) {
+         //es admin
+         labelNombre.setText("Bienvenido admin: "+ LoginForm.UsuarioActual.usuario );
         } else{
-         labelNombre.setText("Bienvenido Usuario: "+ LoginForm.UsuarioActual.usuario );
+         labelNombre.setText("Bienvenido usuario: "+ LoginForm.UsuarioActual.usuario );
         }
         
         
@@ -50,12 +49,15 @@ public class Main extends javax.swing.JFrame {
              try {
                  while ((linea=fileRead.readLine())!= null) {
                  
-                     var splited =linea.split("\\|");
-                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[6].equals("1") ) {
-                         linex += splited[2]+"," ;
+                     var splitted =linea.split("\\|");
+                     if (splitted[1].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")) {
+                         linex += splitted[2]+"," ;
                      }
-                     var lol =0;
-                 }} 
+                      else if(splitted[2].equals(LoginForm.UsuarioActual.usuario) && splitted[6].equals("1") && splitted[3].equals("1")){
+                        linex += splitted[1]+"," ;
+                     }
+                 }
+             } 
              catch (IOException ex) {
                  Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -69,14 +71,14 @@ public class Main extends javax.swing.JFrame {
         
         var week= linex.split(",");
         
-       lm = new DefaultListModel();
+        lm = new DefaultListModel();
         for (int i = 0; i < week.length; i++) {
             lm.addElement(week[i]);
         }
         ListaAmigos.setModel(lm);
         lm = new DefaultListModel();
+        
         //mostrar amigos 
-         
              linex = "";
         try {
             file = new FileReader("C:/MEIA/grupo.txt");
@@ -102,14 +104,69 @@ public class Main extends javax.swing.JFrame {
       
         
         
-       week= linex.split(",");
+        week= linex.split(",");
         
-       lm = new DefaultListModel();
+        lm = new DefaultListModel();
         for (int i = 0; i < week.length; i++) {
             lm.addElement(week[i]);
         }
         ListaGrupos.setModel(lm);
         
+       // mostrar mensajes
+        linex = "";
+        try {
+            file = new FileReader("C:/MEIA/mensajes.txt");
+              BufferedReader fileRead = new BufferedReader(file);
+              var linea="";
+             try {
+                 while ((linea=fileRead.readLine())!= null) {
+                 
+                     var splited =linea.split("\\|");
+                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1")) {
+                         linex += splited[0]+" : "+ splited[3] +"," ;
+                     }
+                     var lol =0;
+                 }} 
+             catch (IOException ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
+     
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            file = new FileReader("C:/MEIA/bitacora_mensajes.txt");
+              BufferedReader fileRead = new BufferedReader(file);
+              var linea="";
+             try {
+                 while ((linea=fileRead.readLine())!= null) {
+                 
+                     var splited =linea.split("\\|");
+                     if (splited[1].equals(LoginForm.UsuarioActual.usuario) && splited[5].equals("1")) {
+                         linex += splited[0]+" : "+ splited[3] +"," ;
+                     }
+                     var lol =0;
+                 }} 
+             catch (IOException ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+             }
+     
+     
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        
+        
+        week= linex.split(",");
+        
+        lm = new DefaultListModel();
+        for (int i = 0; i < week.length; i++) {
+            lm.addElement(week[i]);
+        }
+        ListaMensajes.setModel(lm);
         
     }
 
@@ -127,7 +184,6 @@ public class Main extends javax.swing.JFrame {
         Btn_CrearUsuario = new javax.swing.JButton();
         Btn_BuscarUsuario = new javax.swing.JButton();
         BuscarUsuario_TxtBox = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaAmigos = new javax.swing.JList<>();
@@ -140,38 +196,42 @@ public class Main extends javax.swing.JFrame {
         BtnAgregarAmigos = new javax.swing.JButton();
         BtnAdministrarAmigos = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        bEnviarMensajes = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ListaMensajes = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        admin = new javax.swing.JButton();
+        bMensajesAjenos1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Modoficar Mis Datos");
+        jButton1.setText("Modificar mis datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        BtnBackup.setText("Hacer Un BackUp");
+        BtnBackup.setText("Hacer un backup");
         BtnBackup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackupActionPerformed(evt);
             }
         });
 
-        Btn_CrearUsuario.setText("Crear Usuario");
+        Btn_CrearUsuario.setText("Crear usuario");
         Btn_CrearUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CrearUsuarioActionPerformed(evt);
             }
         });
 
-        Btn_BuscarUsuario.setText("Buscar Usuario");
+        Btn_BuscarUsuario.setText("Buscar usuario");
         Btn_BuscarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_BuscarUsuarioActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Bienvenido: ");
 
         labelNombre.setText("Bienvenido: ");
 
@@ -180,10 +240,9 @@ public class Main extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        ListaAmigos.setEnabled(false);
         jScrollPane1.setViewportView(ListaAmigos);
 
-        BtnBackup1.setText("Manejo De Grupos");
+        BtnBackup1.setText("Manejo de grupos");
         BtnBackup1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackup1ActionPerformed(evt);
@@ -202,7 +261,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Grupos");
 
-        jButton2.setText("Log Out");
+        jButton2.setText("Log out");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -216,17 +275,48 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        BtnAdministrarAmigos.setLabel("Administrar Amigos");
+        BtnAdministrarAmigos.setText("Administrar amigos");
         BtnAdministrarAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAdministrarAmigosActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Fotos");
+        jButton3.setText("Administrar mis fotos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        bEnviarMensajes.setText("Enviar mensaje");
+        bEnviarMensajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEnviarMensajesActionPerformed(evt);
+            }
+        });
+
+        ListaMensajes.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "none" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        ListaMensajes.setEnabled(false);
+        jScrollPane3.setViewportView(ListaMensajes);
+
+        jLabel4.setText("Mis Mensajes");
+
+        admin.setText("Administrar mensajes");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
+
+        bMensajesAjenos1.setText("Ver perfil");
+        bMensajesAjenos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMensajesAjenos1ActionPerformed(evt);
             }
         });
 
@@ -237,68 +327,93 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(BtnBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(BtnAgregarAmigos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BtnBackup1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BtnBackup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Btn_CrearUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(Btn_BuscarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                    .addComponent(BtnAdministrarAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addGap(72, 72, 72)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnAgregarAmigos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnAdministrarAmigos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnBackup1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(218, Short.MAX_VALUE))
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bEnviarMensajes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bMensajesAjenos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 157, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(labelNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelNombre)
-                                .addGap(31, 31, 31)
-                                .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Btn_BuscarUsuario)
-                                .addGap(36, 36, 36)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(Btn_CrearUsuario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnBackup))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(BtnBackup1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BtnAgregarAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnAdministrarAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(bMensajesAjenos1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bEnviarMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(BuscarUsuario_TxtBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Btn_BuscarUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Btn_CrearUsuario)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(BtnBackup)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(BtnBackup1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(BtnAgregarAmigos)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(BtnAdministrarAmigos))))
                 .addContainerGap())
         );
 
@@ -323,7 +438,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+                this.setVisible(false);
+
             //vamos a buscar el rol del usuario actual
           //if (LoginForm.UsuarioActual.rol) {
             //es admin
@@ -375,8 +491,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        var nuevoLogin = new LoginForm();
         this.setVisible(false);
+        var nuevoLogin = new LoginForm();
         nuevoLogin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -402,6 +518,25 @@ public class Main extends javax.swing.JFrame {
         var form = new Imagenes();
         form.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void bEnviarMensajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnviarMensajesActionPerformed
+        
+        this.setVisible(false);
+                var enviarMensaje = new NuevoMensaje();
+        enviarMensaje.setVisible(true);
+    }//GEN-LAST:event_bEnviarMensajesActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        administrarMensajes administrar = new administrarMensajes();
+        administrar.setVisible(true);
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void bMensajesAjenos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMensajesAjenos1ActionPerformed
+        this.setVisible(false);
+        PerfilAmigo perfil = new PerfilAmigo();
+        perfil.setVisible(true);
+        perfil.mostrarMensajes(ListaAmigos.getSelectedValue().toString());
+    }//GEN-LAST:event_bMensajesAjenos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,14 +583,19 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField BuscarUsuario_TxtBox;
     private javax.swing.JList<String> ListaAmigos;
     private javax.swing.JList<String> ListaGrupos;
+    private javax.swing.JList<String> ListaMensajes;
+    private javax.swing.JButton admin;
+    private javax.swing.JButton bEnviarMensajes;
+    private javax.swing.JButton bMensajesAjenos1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelNombre;
     // End of variables declaration//GEN-END:variables
 }

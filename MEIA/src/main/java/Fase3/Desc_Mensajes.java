@@ -18,11 +18,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author roche
+ * @author marce
  */
-public class Desc_Arbol {
-    
-public String nombre_simbolico;
+public class Desc_Mensajes {
+    public String nombre_simbolico;
 public String fecha_creacion;
 public String usuario_creacion;
 public String fecha_modificacion;
@@ -33,8 +32,8 @@ public int registros_inactivos;
 
 //recibe un usuario de creacion
   public void crearBitacora(String _UsuarioDeCreacion){
-            var nuevo = new Desc_Arbol();
-            nuevo.nombre_simbolico = "Desc_Arbol";
+            var nuevo = new Desc_Mensajes();
+            nuevo.nombre_simbolico = "Desc_Mensajes";
             nuevo.num_registros= 0;
             nuevo.registros_activos =0;
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
@@ -44,13 +43,13 @@ public int registros_inactivos;
             actualizarJson(nuevo);
         }
         
-         public void actualizarJson(Desc_Arbol actualizado)
+         public void actualizarJson(Desc_Mensajes actualizado)
         {
             var gson = new Gson(); 
             var objetoJson  = gson.toJson(actualizado);
          try {
              //return  JsonConvert.SerializeObject(new Desc_Bitacora());
-             var fileWriter = new FileWriter("C:/MEIA/Desc_Arbol.json", false); //overwrites file
+             var fileWriter = new FileWriter("C:/MEIA/Desc_Mensajes.json", false); //overwrites file
              fileWriter.write(objetoJson);
              fileWriter.close();
          } catch (IOException ex) {
@@ -60,11 +59,11 @@ public int registros_inactivos;
          
         }
 
-        public Desc_Arbol devolverObjeto()
+        public Desc_Mensajes devolverObjeto()
         {
             String json ="";
          try {
-             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/Desc_Arbol.json"));
+             BufferedReader buf = new BufferedReader(new FileReader("C:/MEIA/Desc_Mensajes.json"));
              String linea ="";
              
              try {
@@ -74,17 +73,14 @@ public int registros_inactivos;
                  }
                  buf.close();
              } catch (IOException ex) {
-                 Logger.getLogger(Desc_Arbol.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(Desc_Mensajes.class.getName()).log(Level.SEVERE, null, ex);
              }
          } catch (FileNotFoundException ex) {
-             Logger.getLogger(Desc_Arbol.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(Desc_Mensajes.class.getName()).log(Level.SEVERE, null, ex);
          }
 
             var gson = new Gson(); 
-                var objetoJson  = gson.fromJson(json, Desc_Arbol.class);
+                var objetoJson  = gson.fromJson(json, Desc_Mensajes.class);
             return objetoJson;
         }
-
-   
-
 }

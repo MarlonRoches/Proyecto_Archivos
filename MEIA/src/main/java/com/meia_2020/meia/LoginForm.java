@@ -42,6 +42,7 @@ public class LoginForm extends javax.swing.JFrame {
             public void run(){
                 try {          
                     CrearUsuario.pasarFichero("C:/MEIA/bitacora_Usuarios.txt","C:/MEIA/usuario.txt");
+                    CrearUsuario.pasarFichero("C:/MEIA/bitacora_mensajes.txt", "C:/MEIA/mensajes.txt");
 
                 } catch (IOException ex) {
                     Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -246,6 +247,11 @@ public class LoginForm extends javax.swing.JFrame {
             var creado = new File("C:/MEIA/grupo.txt").createNewFile();  
         }
         
+        // crear archivo de grupos
+        boolean arch_MENSAJE = new File("C:/MEIA/mensajes.txt").exists();
+        if (!arch_MENSAJE) {
+            var creado = new File("C:/MEIA/mensajes.txt").createNewFile();  
+        }
         // crear archivo de listas de amigos
          boolean arch_lista_amigos = new File("C:/MEIA/lista_amigos.txt").exists();
         if (!arch_lista_amigos) {
@@ -334,9 +340,10 @@ public class LoginForm extends javax.swing.JFrame {
             if(logIn){
                 //abrimos uno nuevo
                 Main AbrirMenuPrincipal = new Main();
-                AbrirMenuPrincipal.setVisible(true);
                 //cerramos este form
                 this.setVisible(false);
+                AbrirMenuPrincipal.setVisible(true);
+                
             }else{
                 int opcion = JOptionPane.showConfirmDialog(null,"Usuario o contraseña no fue encontrado, ¿desea crear un usuario?", "Aviso", JOptionPane.YES_NO_OPTION);
                 if(opcion==0){

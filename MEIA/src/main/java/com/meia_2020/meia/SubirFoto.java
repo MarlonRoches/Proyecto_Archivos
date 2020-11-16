@@ -8,6 +8,7 @@ package com.meia_2020.meia;
 import Fase3.Arbol;
 import Fase3.Desc_Arbol;
 import Fase3.Nodo;
+import com.meia_2020.meia.models.Usuario;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -152,7 +153,7 @@ public class SubirFoto extends javax.swing.JFrame {
                desc.fecha_modificacion = formatter.format(date);
                var fileName = new File(cRuta.getText()).getName();
                        
-               nodo.Path = "C:/MEIA/Fotografias/"+fileName;
+               nodo.Path = "C:/MEIA/Fotografias/"+LoginForm.UsuarioActual.usuario+"-"+fileName;
                nodo.Status = true;
                
                
@@ -194,7 +195,7 @@ public class SubirFoto extends javax.swing.JFrame {
                     dirFoto.mkdir();
                 }
                 
-                if (new File("C:/MEIA/Fotografias/"+archivo.getName()).exists()) 
+                if (new File("C:/MEIA/Fotografias/"+LoginForm.UsuarioActual.usuario+"-"+archivo.getName()).exists()) 
                 {
                     //existe
                     showMessageDialog(null, "La Imagen ya fue subida, utilizar otra");
@@ -205,6 +206,11 @@ public class SubirFoto extends javax.swing.JFrame {
                     // no existe
                     File copiaPhoto = new File("C:/MEIA/Fotografias/"+archivo.getName());
                     Files.copy(newPhoto.toPath(),copiaPhoto.toPath());
+                    File CambioDeNombre = new File("C:/MEIA/Fotografias/"+LoginForm.UsuarioActual.usuario+"-"+archivo.getName());
+
+                    if (copiaPhoto.renameTo(CambioDeNombre)) {
+                        
+                    }
                     return true;
                 }
             
