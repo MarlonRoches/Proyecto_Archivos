@@ -29,10 +29,10 @@
                   <Component id="jButton1" max="32767" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="300" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="285" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Component id="Nombre" min="-2" pref="131" max="-2" attributes="0"/>
+              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="Nombre" alignment="1" min="-2" pref="131" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" min="-2" pref="237" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
