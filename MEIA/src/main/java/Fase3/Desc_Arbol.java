@@ -31,6 +31,7 @@ public int num_registros;
 public int registros_activos;
 public int registros_inactivos;
 
+//recibe un usuario de creacion
   public void crearBitacora(String _UsuarioDeCreacion){
             var nuevo = new Desc_Arbol();
             nuevo.nombre_simbolico = "Desc_Arbol";
@@ -80,7 +81,7 @@ public int registros_inactivos;
          }
 
             var gson = new Gson(); 
-            var objetoJson  = gson.fromJson(json, Desc_Arbol.class);
+                var objetoJson  = gson.fromJson(json, Desc_Arbol.class);
             return objetoJson;
         }
 
